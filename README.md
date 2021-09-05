@@ -62,5 +62,8 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 해야할 것
 ------- 
 1. DB 스키마 정의
+<img src="./img/DB이미지.jpg" width="370" height="700">
+
+
 2. 신한은행의 대출 상품 정보 (금리, 한도, 필요 서류, 조건) 조사
 3. 적절한 datasets 생성

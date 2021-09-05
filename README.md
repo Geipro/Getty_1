@@ -62,9 +62,7 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 해야할 것
 ------- 
 1. DB 스키마 정의
-![DB 이미지](./img/최종컨셉2.png)
-
-<img src="./img/DB이미지.JPG" width="370" height="700">
+![DB 이미지](./img/DB이미지.JPG)
 
 
 2. 신한은행의 대출 상품 정보 (금리, 한도, 필요 서류, 조건) 조사

@@ -71,7 +71,10 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 QnA
 ---
 문서의 특정 부분만을 인식하려하는데 OCR이나 AI중 어떤 것을 사용한는 것이 나을지 궁금합니다.
+
 학습된 모델을 실제로 사용할 때 workflow 가 어떻게 흘러가는지 궁금합니다. 문서 input -> TF model -> backend -> frontend 순서가 맞나요?
+
 프로젝트를 진행 시 주의해야 할 점 혹은 어려울 것으로 예상되는 부분이 있는지 궁금합니다.
+
 
 ###감사합니다

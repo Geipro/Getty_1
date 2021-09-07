@@ -55,7 +55,7 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 
 ### database : mySQL (고객계정, 은행직원), MongoDB (고객의 서류 정보)
 
-### 사용 패키지 : fastapi, selenium, tensorflow, keras, pandas, numpy, seaborn, svg
+### 사용 패키지 : fastapi, selenium, tensorflow, keras, pandas, numpy, seaborn, svg, python-docx, Ward
 
 ### tool : JIRA, GITLAB, anaconda, jupyter nootbook, colab
 
@@ -67,3 +67,11 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 
 2. 신한은행의 대출 상품 정보 (금리, 한도, 필요 서류, 조건) 조사
 3. 적절한 datasets 생성
+
+QnA
+---
+문서의 특정 부분만을 인식하려하는데 OCR이나 AI중 어떤 것을 사용한는 것이 나을지 궁금합니다.
+학습된 모델을 실제로 사용할 때 workflow 가 어떻게 흘러가는지 궁금합니다. 문서 input -> TF model -> backend -> frontend 순서가 맞나요?
+프로젝트를 진행 시 주의해야 할 점 혹은 어려울 것으로 예상되는 부분이 있는지 궁금합니다.
+
+###감사합니다

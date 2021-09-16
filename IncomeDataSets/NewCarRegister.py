@@ -70,21 +70,21 @@ for i in range(10):
     # 자동차등록번호
     draw.text((220,332), "123가 4567", (0, 0, 0), font=normal_font)
     # 재원관리번호
-    draw.text((488,332), "A011-00057-0200-1222", (0, 0, 0), font=normal_font)
+    draw.text((483,332), "A011-00057-0200-1222", (0, 0, 0), font=normal_font)
     # 차명
-    draw.text((617,377), "그랜저", (0, 0, 0), font=normal_font)
+    draw.text((645,377), "그랜저", (0, 0, 0), font=normal_font)
     # 차종
-    draw.text((935,377), "승용 중형", (0, 0, 0), font=normal_font)
+    draw.text((960,377), "승용 중형", (0, 0, 0), font=normal_font)
     # 차대번호
-    draw.text((133,424), "WP0CB2988HS240439", (0, 0, 0), font=normal_font)
+    draw.text((170,424), "WP0CB2988HS240439", (0, 0, 0), font=normal_font)
     # 원동기형식
-    draw.text((630,424), "DDN", (0, 0, 0), font=normal_font)
+    draw.text((650,424), "DDN", (0, 0, 0), font=normal_font)
     # 연식(모델연도)
-    draw.text((305,474), "2020", (0, 0, 0), font=normal_font)
+    draw.text((325,474), "2020", (0, 0, 0), font=normal_font)
     # 색상
-    draw.text((630,474), "검정색", (0, 0, 0), font=normal_font)
+    draw.text((645,474), "검정색", (0, 0, 0), font=normal_font)
     # 최초등록일
-    draw.text((235,524), "2019-12-20", (0, 0, 0), font=normal_font)
+    draw.text((265,524), "2019-12-20", (0, 0, 0), font=normal_font)
     # 제작연월일
     draw.text((940,505), "2019-11-20", (0, 0, 0), font=small_font)
     # 최초 양도연월일
@@ -122,6 +122,8 @@ for i in range(10):
     draw.text((340,1030), newName[i], (0, 0, 0), font=small_font)
     # 주민(법인)등록번호
     draw.text((432,1030), newPer[i], (0, 0, 0), font=small_font)
+    # 일자
+    draw.text((550,1231), "2019-12-21", (0, 0, 0), font=normal_font)
 
 
     img.save(f"자동차등록원부_{i+1}.jpg")

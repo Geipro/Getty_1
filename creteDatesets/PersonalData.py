@@ -20,10 +20,20 @@ PerNum_Day = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', 
             '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28']
 PerNum_Sex = ['1', '2']
 
+Address_First = ['서울특별시']
+Address_Second = ['강남구','강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구',
+                 '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구']
+
 newName = []
 newComp = []
 newNum = []
 newPer = []
+newAddr = []
+newTotal = []
+# tax 생각 해보기
+newTax = []
+newReciptNum = []
+newPhoneNum = []
 for i in range(100):
     st = random.choice(Name_First) + random.choice(Name_Second) + random.choice(Name_Last)
     newName.append(st)
@@ -34,7 +44,16 @@ for i in range(100):
     st = random.choice(PerNum_Year) + random.choice(PerNum_Month) + random.choice(PerNum_Day) + \
         '-' + random.choice(PerNum_Sex) + '******'
     newPer.append(st)
+    st = Address_First[0] + ' ' + random.choice(Address_Second) + ' ' + '*********'
+    newAddr.append(st)
 
+    # 신용대출 범위 소득 1천만원 ~ 1억 5천만원으로 함 ,
+    st = str(random.randint(10000000, 150000000))
+    newTotal.append(st)
+    st = str(random.randint(500000000000, 599999999999))
+    newReciptNum.append(st)
+    st = '02' + '-' + str(random.randint(1000, 9999)) + '-' + str(random.randint(0000, 9999))
+    newPhoneNum.append(st)
 def createDataSets():
     print('만들 데이터 양식을 선택하세요.')
     print('1. 신용 대출 관련 서류')

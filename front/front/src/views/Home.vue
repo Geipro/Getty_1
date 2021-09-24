@@ -1,5 +1,5 @@
 <template>
-  <div id="App">
+  <div class="home container">
     <Navbar />
     <MainPageCenter />
     <MainPageBottom />
@@ -12,7 +12,7 @@ import MainPageCenter from './components/MainPageCenter.vue'
 import MainPageBottom from './components/MainPageBottom.vue'
 
 export default {
-  name: 'App',
+  name: 'Home',
   components: {
     Navbar,
     MainPageCenter,
@@ -21,13 +21,3 @@ export default {
 }
 </script>
 
-<style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
-</style>

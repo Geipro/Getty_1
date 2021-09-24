@@ -1,46 +1,3 @@
-# FamilyName = ['김', '이', '박', '최', '신', '석', '목', '맹', '정']
-# from PIL import Image, ImageFont, ImageDraw
-
-# img = Image.open("소득금액증명서_국세청_양식.jpg")
-
-# bold_font1 = ImageFont.truetype(font="./HANBatangB.ttf", size=23)
-# bold_font2 = ImageFont.truetype(font="./HANBatangB.ttf", size=26)
-
-# normal_font = ImageFont.truetype(font="./HANBatang.ttf", size=20)
-
-# draw = ImageDraw.Draw(img)
-# # 발급번호
-# draw.text((65, 285), "8017-255-8925-052", (0, 0, 0), font=normal_font)
-# # 주소
-# draw.text((170,388), "서울특별시 싸피구 ********", (0, 0, 0), font=normal_font)
-# # 이름
-# draw.text((175,443), "김싸피", (0, 0, 0), font=normal_font)
-# # 주민등록 번호
-# draw.text((826,443), "950511-1******", (0, 0, 0), font=normal_font)
-# # 법인명(상호)
-# draw.text((302,638), "주식회사 삼성전자", (0, 0, 0), font=normal_font)
-# # 소득금액(과세대상급여액) - 3자리마다 , 있어야됨
-# draw.text((680,665), "202,016,168", (0, 0, 0), font=normal_font)
-# # 총결정세액 3자리마다 , 있어야됨
-# draw.text((934,665), "20,210,129", (0, 0, 0), font=normal_font)
-# # 귀속연도(시작)
-# draw.text((632,880), "2020", (0, 0, 0), font=normal_font)
-# # 귀속연도(완료)
-# draw.text((710,880), "2020", (0, 0, 0), font=normal_font)
-# # 접수번호
-# draw.text((170,1097), "502537588018", (0, 0, 0), font=normal_font)
-# # 연락처
-# draw.text((170,1252), "02-2610-8222", (0, 0, 0), font=normal_font)
-
-# draw = ImageDraw.Draw(img)
-# img.save("소득after.jpg")
-# new_img = Image.open("소득after.jpg")
-# new_img.show()
-# print(img.size, new_img.size)
-
-
-
-
 from PIL import Image, ImageFont, ImageDraw
 import random
 
@@ -114,31 +71,72 @@ bold_font1 = ImageFont.truetype(font="./HANBatangB.ttf", size=23)
 bold_font2 = ImageFont.truetype(font="./HANBatangB.ttf", size=26)
 
 normal_font = ImageFont.truetype(font="./HANBatang.ttf", size=20)
+small_font = ImageFont.truetype(font="./HANBatang.ttf", size=14)
 
 
 for i in range(10):
-    img = Image.open("소득금액증명서_국세청_양식.jpg")
+    img = Image.open("근로소득원천징수영수증_양식.jpg")
     draw = ImageDraw.Draw(img)
-    # 발급번호
-    draw.text((88, 285), newNum[i], (0, 0, 0), font=normal_font)
-    # 주소
-    draw.text((170,388), newAddress[i], (0, 0, 0), font=normal_font)
-    # 이름
-    draw.text((175,443), newName[i], (0, 0, 0), font=normal_font)
+
+    # # 주소 - 안해도 됨
+    # draw.text((391,431), newAddress[i], (0, 0, 0), font=normal_font)
+    # 대표자 이름
+    draw.text((919,325), newName[i], (0, 0, 0), font=normal_font)
+    # 소득자 이름
+    draw.text((418,463), newName[i], (0, 0, 0), font=normal_font)
     # 주민등록 번호
-    draw.text((826,443), newPer[i], (0, 0, 0), font=normal_font)
+    draw.text((1053,463), newPer[i], (0, 0, 0), font=normal_font)
     # 법인명(상호)
-    draw.text((302,638), newComp[i], (0, 0, 0), font=normal_font)
-    # 소득금액(과세대상급여액) - 3자리마다 , 있어야됨
-    draw.text((680,665), newTotal[i], (0, 0, 0), font=normal_font)
-    # 총결정세액 3자리마다 , 있어야됨
-    draw.text((934,665), '111111 ', (0, 0, 0), font=normal_font)
-    # 귀속연도(시작)
-    draw.text((632,880), '2020 ', (0, 0, 0), font=normal_font)
-    # 귀속연도(완료) - 신용대출이니까 가장 최근 귀속연도 측정
-    draw.text((710,880), '2020', (0, 0, 0), font=normal_font)
-    # 접수번호
-    draw.text((170,1097), newReciptNum[i], (0, 0, 0), font=normal_font)
-    # 연락처
-    draw.text((170,1252), newPhoneNum[i], (0, 0, 0), font=normal_font)
-    img.save(f"소득금액증명서_{i+1}.jpg")
+    draw.text((409,325), newComp[i], (0, 0, 0), font=normal_font)
+    # 사업자등록번호
+    draw.text((409,363), "695-81-00374", (0, 0, 0), font=normal_font)
+    # 종사업장 일련번호
+    draw.text((1005,397), "0005", (0, 0, 0), font=normal_font)
+    
+    
+    # 근무처명
+    draw.text((420,570), "2******", (0, 0, 0), font=normal_font)
+    # 사업자등록번호
+    draw.text((415,606), "695-81-00374", (0, 0, 0), font=normal_font)
+
+    # 근무기간
+    draw.text((410,639), "2019-01-01 ~  12-31", (0, 0, 0), font=small_font)
+    # 감면기간
+    draw.text((410,681), "2019-01-01 ~  12-31", (0, 0, 0), font=small_font)
+    # 급여
+    draw.text((421,714), '50000000 ', (0, 0, 0), font=normal_font)
+    # 합계
+    draw.text((1091,714), '50000000 ', (0, 0, 0), font=normal_font)
+    # 계
+    draw.text((421,965), '50000000 ', (0, 0, 0), font=normal_font)
+    # 합계(계)
+    draw.text((1098,965), '50000000 ', (0, 0, 0), font=normal_font)
+    # 감면소득 계
+    draw.text((437,1370), '4500000 ', (0, 0, 0), font=normal_font)
+    # 합계(감면소득)
+    draw.text((1102,1370), '4500000 ', (0, 0, 0), font=normal_font)
+
+
+    # 결정세액 - 소득세
+    draw.text((650,1445), '50000000 ', (0, 0, 0), font=normal_font)
+    # 결정세액 - 지방소득세
+    draw.text((850,1445), '50000000 ', (0, 0, 0), font=normal_font)
+    # 근무지 - 소득세
+    draw.text((650,1587), '4500000 ', (0, 0, 0), font=normal_font)
+    # 근무지 - 지방소득세
+    draw.text((850,1587), '4500000 ', (0, 0, 0), font=normal_font)
+    # 차감징수세액 - 소득세
+    draw.text((650,1658), '4500000 ', (0, 0, 0), font=normal_font)
+    # 차감징수세액 - 지방소득세
+    draw.text((850,1658), '4500000 ', (0, 0, 0), font=normal_font)
+    
+    # 법인명(상호)
+    draw.text((680,1750), newComp[i], (0, 0, 0), font=normal_font)
+    # 연도
+    draw.text((1000,1717), "2021", (0, 0, 0), font=normal_font)
+    # 월
+    draw.text((1086,1717), "09", (0, 0, 0), font=normal_font)
+    # 일자
+    draw.text((1160,1717), "15", (0, 0, 0), font=normal_font)
+
+    img.save(f"근로소득원천징수영수증_{i+1}.jpg")

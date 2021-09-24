@@ -7,7 +7,7 @@ bold_font2 = ImageFont.truetype(font="./자격득실확인/HANBatangB.ttf", size
 normal_font = ImageFont.truetype(font="./자격득실확인/HANBatang.ttf", size=20)
 
 
-def makefile1(number, name, personal, company, index):
+def makedata1(number, name, personal, company, index):
     img = Image.open("./자격득실확인/자격득실확인서.png")
     draw = ImageDraw.Draw(img)
     # 발급번호

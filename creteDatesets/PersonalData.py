@@ -2,6 +2,7 @@ from PIL.Image import new
 import tqdm
 import random
 from 자격득실확인 import main as form1
+from 근로소득원천징수 import main as form2
 
 Name_First = ['김', '이', '박', '최', '신', '석', '목', '맹', '윤', '정', '장']
 Name_Second = ['', '창', '정', '상', '명', '지', '범', '우', '유', '익', '지']
@@ -28,6 +29,11 @@ newName = []
 newComp = []
 newNum = []
 newPer = []
+
+
+newNum2 = []
+newPer2 = []
+
 newAddr = []
 newTotal = []
 # tax 생각 해보기
@@ -35,17 +41,32 @@ newTax = []
 newReciptNum = []
 newPhoneNum = []
 for i in range(100):
+    birthDay = random.choice(PerNum_Year) + random.choice(PerNum_Month) + random.choice(PerNum_Day)
+    nowDate = random.choice(PerNum_Month) + random.choice(PerNum_Day)
+    # 랜덤 이름, 회사명, 자격득실번호, 주민등록번호, 주소
     st = random.choice(Name_First) + random.choice(Name_Second) + random.choice(Name_Last)
     newName.append(st)
     st = Comp_First[0] + random.choice(Comp_Second) + random.choice(Comp_Last)
     newComp.append(st)
-    st = 'G2021' + random.choice(Num_Month) + random.choice(Num_Day) + str(random.randint(0000000, 9999999))
+    st = 'G2021' + nowDate + str(random.randint(0000000, 9999999))
     newNum.append(st)
-    st = random.choice(PerNum_Year) + random.choice(PerNum_Month) + random.choice(PerNum_Day) + \
+    st = birthDay + \
         '-' + random.choice(PerNum_Sex) + '******'
     newPer.append(st)
     st = Address_First[0] + ' ' + random.choice(Address_Second) + ' ' + '*********'
     newAddr.append(st)
+
+    # 문서번호
+    st = '11-2021' + nowDate + '-' + str(random.randint(0000000, 9999999))
+    newNum2.append(st)
+
+    # 1995.05.11 포맷 생일
+    st = '19' + birthDay
+    st = st[:4]+'.'+st[4:6]+'.'+st[6:]
+    newPer2.append(st)
+    # 납부자 번호
+    str(random.randint(80000000000, 89999999999))
+    
 
     # 신용대출 범위 소득 1천만원 ~ 1억 5천만원으로 함 ,
     st = str(random.randint(10000000, 150000000))
@@ -54,6 +75,9 @@ for i in range(100):
     newReciptNum.append(st)
     st = '02' + '-' + str(random.randint(1000, 9999)) + '-' + str(random.randint(0000, 9999))
     newPhoneNum.append(st)
+
+
+
 def createDataSets():
     print('만들 데이터 양식을 선택하세요.')
     print('1. 신용 대출 관련 서류')
@@ -69,6 +93,7 @@ def createDataSets():
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
             for i in tqdm(range(100)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
+                form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[2], company=newComp[i], index=i)
         elif cmd2 == 2:
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
 

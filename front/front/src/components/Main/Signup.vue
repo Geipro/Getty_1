@@ -101,7 +101,7 @@ import axios from 'axios'
 
 // const AUTH_SERVER_URL = process.env.VUE_APP_SERVER_URL
 
-import * as VeeValidate from 'vee-validate';
+import VeeValidate from 'vee-validate';
 import ko from 'vee-validate/dist/locale/ko.js'
 
 const VUE_APP_SERVER_URL = process.env.VUE_APP_SERVER_URL

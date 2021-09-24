@@ -1,48 +1,55 @@
-<<template>
-    <div class="login">
-        <div class="logo mb-3">
-            <div class="col-md-12 text-center">
-            <h1>Login</h1>
-            </div>
+<template>
+    <div id="first" class="col-md-12 row">
+        <div class="col-md-8">
+            공인인증서?
         </div>
-        <form action="#" method="post" name="login" class=" form-signin ">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" name="email" v-validate="'required|email'" v-model="credential.email" data-vv-as="Email"
-                class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span>
-            </div>
-            <div class="form-group">
-                <label for="">Password</label>
-                <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.password" data-vv-as="Password"
-                class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
-                <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
-            </div>
-            <div class="col-md-12 text-center ">
-                <!--
-                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" @click.prevent="getJWT">Login</button>
-                -->
-                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-            </div>
-            <div class="links">
-                <!--
-                <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
-                -->
-                <p class="member text-center">
-                    <a id="goFindID">아이디 찾기</a>
-                    <a id="rePassword">비밀번호 찾기</a>
-                    <a id="goSignup">회원가입</a>
-                </p>
-            </div>
-        </form>        
+        <div class="col-md-4">
+            <div class="myform form">
+                <div class="logo mb-3">
+                    <h1>Login</h1>
+                </div>
+                <form action="#" method="post" name="login" class=" form-signin ">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" name="email" v-validate="'required|email'" v-model="credential.email" data-vv-as="Email"
+                        class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.password" data-vv-as="Password"
+                        class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
+                        <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
+                    </div>
+                    <div class="text-center">
+                        <!--
+                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" @click.prevent="getJWT">Login</button>
+                        -->
+                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                    </div>
+                    <div class="links">
+                        <!--
+                        <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
+                        -->
+                        <p class="member text-center mt-3">
+                            <a id="goFindID">아이디 찾기  </a>
+                            |
+                            <a id="rePassword">  비밀번호 찾기  </a>
+                            |
+                            <a id="goSignup" @click="signup">  회원가입</a>
+                        </p>
+                    </div>
+                </form>    
+            </div>    
+        </div>     
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+//import VueRouter from 'vue-router'
 
-import * as VeeValidate from 'vee-validate';
+import VeeValidate from 'vee-validate';
 import ko from 'vee-validate/dist/locale/ko.js'
 import axios from 'axios';
 

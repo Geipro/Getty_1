@@ -1,33 +1,15 @@
 <template>
-  <div id="App">
-    <Navbar />
-    <MainPageCenter />
-    <MainPageBottom />
+  <div id="app">
+    <login-file></login-file>
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
-import MainPageCenter from './components/MainPageCenter.vue'
-import MainPageBottom from './components/MainPageBottom.vue'
-
+import LoginFile from './components/Main/LoginFile.vue'
 export default {
   name: 'App',
   components: {
-    Navbar,
-    MainPageCenter,
-    MainPageBottom
+    LoginFile
   }
 }
 </script>
-
-<style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
-</style>

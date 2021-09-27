@@ -75,7 +75,13 @@ small_font = ImageFont.truetype(font="./HANBatang.ttf", size=14)
 
 
 for i in range(10):
-    img = Image.open("근로소득원천징수영수증_양식.jpg")
+    bold_font1 = ImageFont.truetype(font="./HANBatangB.ttf", size=23)
+    bold_font2 = ImageFont.truetype(font="./HANBatangB.ttf", size=26)
+
+    normal_font = ImageFont.truetype(font="./HANBatang.ttf", size=20)
+    small_font = ImageFont.truetype(font="./HANBatang.ttf", size=14)
+
+    img = Image.open("../creteDatesets/근로소득원천징수/근로소득원천징수영수증_양식.JPG")
     draw = ImageDraw.Draw(img)
 
     # # 주소 - 안해도 됨

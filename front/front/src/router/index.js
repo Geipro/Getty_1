@@ -23,6 +23,26 @@ const routes = [
     name: 'BankerLoan',
     component: () => import('../views/BankerLoan.vue')
   },
+  {
+    path: '/applyDetail',
+    name: 'ApplyDetail',
+    component: () => import('../components/User/ApplyDetail.vue')
+  },
+  {
+    path: '/loanList',
+    name: 'LoanList',
+    component: () => import('../components/User/LoanList.vue')
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: () => import('../components/User/Product.vue')
+  },
+  {
+    path: '/productApply',
+    name: 'ProductApply',
+    component: () => import('../components/User/ProductApply.vue')
+  },
 ]
 
 const router = new VueRouter({

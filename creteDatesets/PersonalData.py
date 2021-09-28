@@ -1,8 +1,8 @@
 from PIL.Image import new
-import tqdm
+from tqdm import tqdm
 import random
-from 자격득실확인 import main as form1
-from 근로소득원천징수 import main as form2
+from 자격득실확인 import main1 as form1
+from 건강보험료납부확인 import main2 as form2
 
 Name_First = ['김', '이', '박', '최', '신', '석', '목', '맹', '윤', '정', '장']
 Name_Second = ['', '창', '정', '상', '명', '지', '범', '우', '유', '익', '지']
@@ -33,6 +33,7 @@ newPer = []
 
 newNum2 = []
 newPer2 = []
+newNum3 = []
 
 newAddr = []
 newTotal = []
@@ -40,7 +41,7 @@ newTotal = []
 newTax = []
 newReciptNum = []
 newPhoneNum = []
-for i in range(100):
+for i in range(1000):
     birthDay = random.choice(PerNum_Year) + random.choice(PerNum_Month) + random.choice(PerNum_Day)
     nowDate = random.choice(PerNum_Month) + random.choice(PerNum_Day)
     # 랜덤 이름, 회사명, 자격득실번호, 주민등록번호, 주소
@@ -60,13 +61,14 @@ for i in range(100):
     st = '11-2021' + nowDate + '-' + str(random.randint(0000000, 9999999))
     newNum2.append(st)
 
+
     # 1995.05.11 포맷 생일
     st = '19' + birthDay
     st = st[:4]+'.'+st[4:6]+'.'+st[6:]
     newPer2.append(st)
     # 납부자 번호
-    str(random.randint(80000000000, 89999999999))
-    
+    st = str(random.randint(80000000000, 89999999999))
+    newNum3.append(st)
 
     # 신용대출 범위 소득 1천만원 ~ 1억 5천만원으로 함 ,
     st = str(random.randint(10000000, 150000000))
@@ -91,14 +93,21 @@ def createDataSets():
         cmd2 = int(input())
         if cmd2 == 1:
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
-            for i in tqdm(range(100)):
+            for i in tqdm(range(1000)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
-                form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[2], company=newComp[i], index=i)
+                form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[2], company=newComp[i],
+                                num1=newNum3[i], tax1='54520', tax2='4630', index=i)
         elif cmd2 == 2:
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
+            for i in tqdm(range(1000)):
+                form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
+                form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[2], company=newComp[i],
+                                num1=newNum3[i], tax1='54520', tax2='4630', index=i)
 
         elif cmd2 == 3:
             print('건강보험자격득실 확인서, 소득금액증명원, 근로소득원천징수영수증 생성')
+            for i in tqdm(range(100)):
+                form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
 
     elif cmd1 == 2:
         print('1. 신한 MY CAR 신차 대출')
@@ -109,3 +118,5 @@ def createDataSets():
         
         elif cmd2 == 2:
             print('자동차 매매 계약서, 자동차 등록증 생성')
+
+createDataSets()

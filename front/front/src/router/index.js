@@ -20,13 +20,11 @@ const routes = [
     name: 'BankerLoan',
     component: () => import('../views/BankerLoan.vue')
   },
-<<<<<<< HEAD
   // {
   //   path: '/usercheck',
   //   name: 'UserCheck',
   //   component: () => import('../views/UserCheck.vue')
   // },
-=======
   {
     path: '/applyDetail',
     name: 'ApplyDetail',
@@ -47,7 +45,6 @@ const routes = [
     name: 'ProductApply',
     component: () => import('../components/User/ProductApply.vue')
   },
->>>>>>> 7da631a8727a0c4ec1ce69a8e6b7f4bac01a5555
 ]
 
 const router = new VueRouter({

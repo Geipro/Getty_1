@@ -1,11 +1,9 @@
 from PIL import Image, ImageFont, ImageDraw
 import random
-#
-# bold_font1 = ImageFont.truetype(font="./건강보험료납부확인/GodicB.ttf", size=23)
-# bold_font2 = ImageFont.truetype(font="./건강보험료납부확인/GodicB.ttf", size=26)
-#
-# normal_font = ImageFont.truetype(font="./건강보험료납부확인/Godic.ttf", size=20)
 
+Lbold_font1 = ImageFont.truetype(font="./건강보험료납부확인/GodicB.ttf", size=22)
+
+Lnormal_font = ImageFont.truetype(font="./건강보험료납부확인/Godic.ttf", size=22)
 
 def makedata2(number, name, personal, company, num1, tax1, tax2, index):
     img = Image.open("./건강보험료납부확인/건강보험료납부확인서.jpg")
@@ -27,7 +25,7 @@ def makedata2(number, name, personal, company, num1, tax1, tax2, index):
         draw.text((718, 539+i*33), tax1, (0, 0, 0), font=Lbold_font1)
         draw.text((843, 539+i*33), tax2, (0, 0, 0), font=Lbold_font1)
 
-    img.save(f"./자격득실확인/datasets/자격득실확인서{index+1}.png")
+    img.save(f"./건강보험료납부확인/datasets/건강보험료납부확인서{index+1}.png")
 
 
 if __name__ == "__main__":

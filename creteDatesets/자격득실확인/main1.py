@@ -11,13 +11,13 @@ def makedata1(number, name, personal, company, index):
     img = Image.open("./자격득실확인/자격득실확인서.png")
     draw = ImageDraw.Draw(img)
     # 발급번호
-    draw.text((254, 162), number[index], (0, 0, 0), font=bold_font1)
+    draw.text((254, 162), number, (0, 0, 0), font=bold_font1)
     # 이름
-    draw.text((373, 359), name[index], (0, 0, 0), font=bold_font2)
+    draw.text((373, 359), name, (0, 0, 0), font=bold_font2)
     # 주민등록 번호
-    draw.text((786, 362), personal[index], (0, 0, 0), font=bold_font1)
+    draw.text((786, 362), personal, (0, 0, 0), font=bold_font1)
     # 사업장 명칭
-    draw.text((328, 556), company[index], (0, 0, 0), font=normal_font)
+    draw.text((328, 556), company, (0, 0, 0), font=normal_font)
     # 자격취득일
     draw.text((826, 556), "2015.12.28", (0, 0, 0), font=normal_font)
     img.save(f"./자격득실확인/datasets/자격득실확인서{index+1}.png")

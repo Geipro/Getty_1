@@ -1,5 +1,5 @@
 <template>
-    <div id="first" class="col-md-12">
+    <div id="first" class="col-md-12 form-group">
         <div class="text-left">
             <div class="text-secondary">
                 <h6 calss="text-secondary">인터넷 | 모바일 | 영업점</h6>

@@ -1,15 +1,15 @@
 <template>
   <div id="about">
-    <login-file></login-file>
+    <login-form></login-form>
   </div>
 </template>
 
 <script>
-import LoginFile from '@/components/Main/LoginFile.vue'
+import LoginForm from '@/components/Main/LoginForm.vue'
 export default {
   name: 'About',
   components: {
-    LoginFile
+    LoginForm
   }
 }
 </script>

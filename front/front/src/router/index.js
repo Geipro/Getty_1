@@ -20,11 +20,16 @@ const routes = [
     name: 'BankerLoan',
     component: () => import('../views/BankerLoan.vue')
   },
-  // {
-  //   path: '/usercheck',
-  //   name: 'UserCheck',
-  //   component: () => import('../views/UserCheck.vue')
-  // },
+  {
+    path: '/usercheck',
+    name: 'UserCheck',
+    component: () => import('../components/Banker/UserCheck.vue')
+  },
+  {
+    path: '/filecheck',
+    name: 'FileCheck',
+    component: () => import('../components/Banker/FileCheck.vue')
+  },
   {
     path: '/applyDetail',
     name: 'ApplyDetail',

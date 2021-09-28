@@ -1,7 +1,10 @@
 <template>
 <div class="row">
 	<h3 class="offset-5">싸피 은행의 대출 추천 상품을 소개합니다.</h3>
-	<a href="#" type="button" class="btn btn-warning col-3 offset-1" style="height: 60px">뱅킹 로그인</a>
+  <router-link :to="{ name: 'About' }" class="pa-5 btn btn-warning col-3 offset-1" style="height: auto">
+    <!-- <p style="text-align:center">뱅킹 로그인</p> -->
+    <h5 style="text-align:center">뱅킹 로그인</h5>
+  </router-link>
 	<!-- 링크로 이동시켜도 될 듯 -->
 	<div class="col-7 offset-1">
 		<ul class="list-group list-group-horizontal">

@@ -1,65 +1,81 @@
 <template>
   <div>
-    <b-button-group>
-      <b-button pill variant="primary">신용대출</b-button>
-      <!-- mockup 처럼 회색으로 한 것  -->
-      <!-- <b-button pill >신용대출</b-button> -->
-      <b-button pill variant="primary">주택자금대출</b-button>
-      <b-button pill variant="primary">예/적금 담보대출</b-button>
-      <b-button pill variant="primary">MY CAR</b-button>
-    </b-button-group>
-    <!-- 대출별로 연동되고 고객별로 연동되는것 어려울 듯 -->
-    <div class="card text-center">
-      <div class="card-header row">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="true" href="#">신청 고객</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">적합 대상</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">부적합 대상</a>
-          </li>
-        </ul>
-        <!-- 검색 -->
-        <form class="d-flex offset-5">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-
-      <!-- for문? -->
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row">
-          <div class="col-4 bg-primary">
-            <br>
-            <br>
-            <h3>적합</h3>
-          </div>
-          <div class="col-8">
-            <div class="card-body">
-              <h5 class="card-title">김싸피 고객님</h5>
-              <p class="card-text">싹편한 직장인 대출 상품 신청</p>
-              <router-link :to="{ name: '#' }" class="pa-5 btn btn-primary btn-sm">
-                고객정보 확인
-              </router-link>
-              <router-link :to="{ name: '#' }" class="pa-5 btn btn-danger btn-sm">
-                제출서류 확인
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
+    <BankerNavbar />
+    <div class="row mt-3">
+      <h3 class="col-5">고객정보확인</h3>
+    </div>
+    <!-- 고객데이터 table -->
+    <div  class="row mt-3">
+      <table class="table offset-1 col-5 ">
+        <tbody>
+          <tr>
+            <th scope="row" class="table-active">이름</th>
+            <td>Mark</td>
+          </tr>
+          <tr>
+            <th scope="row" class="table-active">연락처</th>
+            <td>010-1234-5678</td>
+          </tr>
+          <tr>
+            <th scope="row" class="table-active">주소</th>
+            <td>서울특별시 강남구 역삼동 701</td>
+          </tr>
+          <tr>
+            <th scope="row" class="table-active">직장전화번호</th>
+            <td>02-1544-9001</td>
+          </tr>
+          <tr>
+            <th scope="row" class="table-active">직장/직무</th>
+            <td>싸피금융/SW개발</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table offset-1 col-4">
+        <tbody>
+          <tr>
+            <th scope="row" class="table-active">신용등급</th>
+            <td>2등급 우량신용자</td>
+          </tr>
+          <tr>
+            <th scope="row" class="table-active">자산규모</th>
+            <td>554,500,000원 (상위 5%)</td>
+          </tr>
+          <tr>
+            <th scope="row" class="table-active">소득규모</th>
+            <td>6500만원/년</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
+    <div class="row mt-5">
+      <h5 class="col-5">대출신청한 상품</h5>
+    </div>
+    <div class="row">
+      <h6 class="col-3 offset-2">1. 싹편한 직장인대출</h6>
+      <router-link :to="{ name: 'FileCheck' }" class="pa-5 btn btn-danger btn-sm">
+        제출서류 확인
+      </router-link>
+      <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a>
+    </div>
+
+    <div class="row mt-5">
+      <router-link :to="{ name: 'BankerLoan' }" class="pa-5 btn btn-secondary btn-sm col-2 offset-5">
+        목록
+      </router-link>
+    </div>
   </div>
 
 </template>
 
 <script>
+import BankerNavbar from '@/components/Banker/BankerNavbar.vue'
+
 export default {
   name: 'UserCheck',
+  components: {
+    BankerNavbar,
+  }
 }
 </script>
 

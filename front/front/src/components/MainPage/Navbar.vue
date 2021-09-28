@@ -1,10 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-success bg-info">
+  <nav class="navbar navbar-expand-lg navbar-success bg-primary">
   <div class="container-fluid">
     <div class="offset-5">
       <img src="@/assets/logo.png" style="width:70px"> 싸피은행
     </div>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <!-- 없어도 될 듯 -->
+    <!-- <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">금융서비스</a>
@@ -16,7 +17,7 @@
           <a class="nav-link" href="#">회사소개</a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
   <br>
 </nav>

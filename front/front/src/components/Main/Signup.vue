@@ -55,6 +55,10 @@
           class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
           <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span>
         </div>
+        <!-- 생년월일 -->
+        <div class="form-group">
+
+        </div>
         <div class="form-group">
           <label for="exampleInputEmail1">전화번호</label> 
           <input type="tel" name="phone" v-validate="'digits:11'" v-model="credential.phoneNum" data-vv-as="PhoneNumber"
@@ -72,16 +76,6 @@
           class="form-control" :class="{error: errors.has('passwordConfirmation')}"  id="passwordConfirmation" aria-describedby="passwordConfirmationHelp" placeholder="Enter Password One More">
           <span class="error" v-if="errors.has('passwordConfirmation')">{{errors.first('passwordConfirmation')}}</span>
         </div>
-        <!-- <div class="form-group">
-          <label for="exampleInputEmail1">Password</label>
-          <input type="password" name="password" v-model="credential.password"
-          id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Password Confirmation</label>
-          <input type="password" name="passwordfirmation" v-model="credential.passwordConfirmation"
-          id="passwordConfirmation"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password Again">
-        </div> -->
         <div class="col-md-12 text-center mb-3">
           <button type="submit" @click="signup" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started!</button>
         </div>
@@ -127,6 +121,15 @@ export default {
 
   data: function () {
     return {
+      userinfo:{
+        name:'',
+        id:'',
+        password:'',
+        born:'',
+        sex:'',
+        salary:'',
+        phoneNum:''
+      },
       credential: {
         username: null,
         nickname: null,

@@ -49,7 +49,7 @@
 import Vue from 'vue'
 //import VueRouter from 'vue-router'
 
-import VeeValidate from 'vee-validate';
+import * as VeeValidate from 'vee-validate';
 import ko from 'vee-validate/dist/locale/ko.js'
 import axios from 'axios';
 

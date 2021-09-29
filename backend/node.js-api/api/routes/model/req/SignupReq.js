@@ -1,11 +1,19 @@
-const hash = require('../../module/hash.js');
+const hash = require('../../module/hash');
 
 module.exports = {
     new : function(body) {
+        let today = new Date();   
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let day = today.getDate();  // 날짜
+        let create_at = `${year}-${month}-${day}`
         let newUser = {
-            user_ID : body.id,
+            userID : body.userID,
            // name : body.name,
-            user_passwd: hash.encoding(body.passwd)
+            userPW: hash.encoding(body.userPW),
+            userName : body.userName,
+            phone_number: body.phone_number,
+            createDate : create_at
 
         };
         return newUser;

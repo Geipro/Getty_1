@@ -1,4 +1,4 @@
 module.exports = {
-    'key' : 'qwawyycvhceujedjbcey1263kjbc8e34722232'
+    'key' : 'qw45djbcey63232'
 };
 // hash Key

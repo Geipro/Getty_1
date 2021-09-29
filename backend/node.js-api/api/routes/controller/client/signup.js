@@ -7,6 +7,7 @@ const pool = require('../../../config/db_pool').pool;
 
 
 // 아이디 중복 체크
+
 router.post('/check', async (req, res, next) => {
     const user_ID = req.body.userID;
     const QUERY = 'select * from Client where userID = ?';
@@ -33,7 +34,9 @@ router.post('/check', async (req, res, next) => {
     
 });
 
+
 //회원가입 
+
 router.post('/',async (req, res, next) => {
     const QUERY = 'insert into Client (userID,userPW,userName,phone_number,createDate) values (?,?,?,?,?)';
     // console.log(1, req.body);

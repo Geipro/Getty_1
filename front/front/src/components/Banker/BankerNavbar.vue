@@ -1,8 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-success bg-light">
+  <nav class="navbar navbar-expand-lg navbar-success bg-primary">
   <div class="container-fluid">
-    <div class="offset-5">
-      <img src="@/assets/logo.png" style="width:70px"> 싸피은행
+    <div class="offset-5" style="color: white">
+      <router-link :to="{ name: 'BankerLoan' }">
+        <img src="@/assets/logo.png" style="width:70px">
+      </router-link>
+      싸피은행
     </div>
   </div>
   <br>

@@ -1,14 +1,13 @@
 <template>
   <div>
     <b-button-group>
-      <b-button pill variant="secondary">신용대출</b-button>
-      <b-button pill variant="secondary">주택자금대출</b-button>
-      <b-button pill variant="secondary">예/적금 담보대출</b-button>
-      <b-button pill variant="secondary">MY CAR</b-button>
+      <b-button pill variant="secondary" class="mr-1">신용대출</b-button>
+      <b-button pill variant="secondary" class="mr-1">주택자금대출</b-button>
+      <b-button pill variant="secondary" class="mr-1">예/적금 담보대출</b-button>
+      <b-button pill variant="secondary" class="mr-1">MY CAR</b-button>
     </b-button-group>
     <!-- 대출별로 연동되고 고객별로 연동되는것 어려울 듯 -->
     <hr>
-
     <div class="card text-center mt-5">
       <div class="card-header row">
         <ul class="nav nav-tabs card-header-tabs">
@@ -16,7 +15,7 @@
             <a class="nav-link active" aria-current="true" href="#">신청 고객</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">적합 대상</a>
+            <a class="nav-link active" href="#">적합 대상</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">부적합 대상</a>
@@ -34,7 +33,7 @@
           <div class="col-2 offset-1 bg-primary">
             <br>
             <br>
-            <h3>적합</h3>
+            <h3 style="color:white">적합</h3>
           </div>
           <div class="col-8">
             <div class="card-body">
@@ -53,7 +52,7 @@
           <div class="col-2 offset-1 bg-danger">
             <br>
             <br>
-            <h3>부적합</h3>
+            <h3 style="color:white">부적합</h3>
           </div>
           <div class="col-8">
             <div class="card-body">

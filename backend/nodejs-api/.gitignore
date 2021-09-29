@@ -1,4 +1,0 @@
-*.log
-/src/config/
-/node_modules/
-jspm_packages/

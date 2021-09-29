@@ -59,14 +59,26 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 
 ### tool : JIRA, GITLAB, anaconda, jupyter nootbook, colab
 
+
 해야할 것
 ------- 
 1. DB 스키마 정의
 ![DB 이미지](./img/DB이미지.JPG)
 
+2. UI 디자인
+![UI 이미지](./UI-mockup/customer/01_홈화면.png)
+![UI 이미지](./UI-mockup/customer/02_로그인화면.png)
+![UI 이미지](./UI-mockup/customer/03_대출상품화면.png)
+![UI 이미지](./UI-mockup/customer/04_신청화면1.png)
+![UI 이미지](./UI-mockup/customer/05_신청화면2.png)
+![UI 이미지](./UI-mockup/bank/06_행원화면.png)
+![UI 이미지](./UI-mockup/bank/07_고객정보확인.png)
+![UI 이미지](./UI-mockup/bank/08_제출서류확인.png)
 
-2. 신한은행의 대출 상품 정보 (금리, 한도, 필요 서류, 조건) 조사
-3. 적절한 datasets 생성
+
+
+3. 신한은행의 대출 상품 정보 (금리, 한도, 필요 서류, 조건) 조사
+4. 적절한 datasets 생성
 
 QnA
 ---

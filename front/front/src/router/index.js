@@ -50,6 +50,11 @@ const routes = [
     name: 'ProductApply',
     component: () => import('../components/User/ProductApply.vue')
   },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: () => import('../components/Main/SignupForm.vue')
+  }
 ]
 
 const router = new VueRouter({

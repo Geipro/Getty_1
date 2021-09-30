@@ -35,6 +35,8 @@ newNum2 = []
 newPer2 = []
 newNum3 = []
 
+new
+
 newAddr = []
 newTotal = []
 # tax 생각 해보기

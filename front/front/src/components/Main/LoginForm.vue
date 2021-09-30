@@ -32,10 +32,6 @@
                         <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
                         -->
                         <p class="member text-center mt-3">
-                            <a id="goFindID">아이디 찾기  </a>
-                            |
-                            <a id="rePassword">  비밀번호 찾기  </a>
-                            |
                             <a id="goSignup" @click="signup">  회원가입</a>
                         </p>
                     </div>

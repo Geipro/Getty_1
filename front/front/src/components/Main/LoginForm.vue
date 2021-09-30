@@ -1,9 +1,6 @@
 <template>
-    <div id="first" class="col-md-12 row">
-        <div class="col-md-8">
-            공인인증서?
-        </div>
-        <div class="col-md-4">
+    <div id="first" class="row">
+        <div class="mx-auto col-6">
             <div class="myform form">
                 <div class="logo mb-3">
                     <h1>Login</h1>
@@ -32,12 +29,12 @@
                         <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
                         -->
                         <p class="member text-center mt-3">
-                            <a id="goSignup" @click="signup">  회원가입</a>
+                            <a id="goSignup" @click="signup" href="Signup">  회원가입</a>
                         </p>
                     </div>
-                </form>    
-            </div>    
-        </div>     
+                </form>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -72,7 +69,7 @@ export default {
                 email: '',
                 password: '',
             }
-        }   
+        }
     },
     methods: {
         change: function () {

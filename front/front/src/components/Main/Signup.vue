@@ -56,8 +56,72 @@
           <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span>
         </div>
         <!-- 생년월일 -->
-        <div class="form-group">
-
+        <div class="form-group mr-3 mb-4 col-md-12">
+          <div class="d-flex justify-content-between mr-3 ml-3">
+            <label for="exampleInputBirthday">출생연도</label>
+            <div class="row_fluid">
+              <div class="float-left">
+                <span class="ps_box">
+                  <select
+                  id="mm"
+                  class="form-select form-select-sm"
+                  v-model="signup.yyyy"
+                  @focus="checkFlag = false"
+                  >
+                    <option value="">2021</option>
+                    <option
+                    v-for="(item, index) in yyyyList"
+                    :key="index"
+                    :value="item.value"
+                    >
+                    {{ item.text }}
+                    </option>
+                  </select>
+                </span>
+                년
+              </div>
+              <div class="float-left mr-3 ml-3">
+                <span class="form-select">
+                  <select
+                  id="mm"
+                  class="selectpicker"
+                  v-model="signup.mm"
+                  @focus="checkFlag = false"
+                  >
+                    <option value="">1</option>
+                    <option
+                    v-for="(item, index) in mmlist"
+                    :key="index"
+                    :value="item.value"
+                    >
+                    {{ item.text }}
+                    </option>
+                  </select>
+                </span>
+                월
+              </div>
+              <div class="float-left ml-3 mr-3">
+                <span class="form-select">
+                  <select
+                  id="dd"
+                  class="selectpicker"
+                  v-model="signup.dd"
+                  @focus="checkFlag = false"
+                  >
+                    <option value="">1</option>
+                    <option
+                    v-for="(item, index) in ddlist"
+                    :key="index"
+                    :value="item.value"
+                    >
+                      {{ item.text }}
+                    </option>
+                  </select>
+                </span>
+                일
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">전화번호</label> 
@@ -89,6 +153,7 @@
   </div>
   <!-- signup box end -->
 </template>
+
 <script>
 import Vue from 'vue'
 import axios from 'axios'
@@ -141,7 +206,64 @@ export default {
       duplicate: {
         emailCheck: false,
         nicknameCheck: false
-      }
+      },
+      signup: {
+                    // id: this.propSignup.id,
+                    // password: this.propSignup.password,
+                    // pwhint: this.propSignup.pwhint,
+                    // pwhintans: this.propSignup.pwhintans,
+                    name: "",
+                    yyyy: "",
+                    mm: "",
+                    dd: "",
+                    gender: "",
+                    email: "",
+                    address: "",
+                    phoneNum: "",
+                },
+          genderList: [
+          {
+            value: "M",
+            text: "남성",
+          },
+          {
+            value: "F",
+            text: "여성",
+          },
+        ],
+        yyyyList: [],
+        mmlist: [],
+        ddlist: [],
+    };
+  },
+  created() {
+  // console.log(this.$store.state.todos.list[0]);
+    const nowYear = new Date().getFullYear();
+    for (let i = 1; i < 100; i++) {
+      let date = nowYear - i;
+      this.yyyyList.push({ value: date, text: date });
+    }
+    for (let i = 2; i < 13; i++) {
+      this.mmlist.push({
+        value: i,
+        text: i,
+      });
+    }
+    var day = 31;
+    // 나중에 달을 선택하면 이 변화에 따라 이 함수를 실행하도록 바꿔야 함.
+    if(this.signup.mm == 1 || this.signup.mm == 3 || this.signup.mm == 5 || this.signup.mm == 7 || this.signup.mm == 8 || this.signup.mm == 10 || this.signup.mm == 12){
+      day = 31;
+    }else if(this.signup.mm == 2){
+      day = 29;
+    }else{
+      day = 30;
+    }
+    
+    for(let i = 2; i < day + 1; i++){
+      this.ddlist.push({
+        value:i,
+        text:i
+      })
     }
   },
 
@@ -195,7 +317,7 @@ export default {
         })
     },
 
-    signup() {
+    signupCheck() {
       console.log(this.passwordConfirmation)
       if (this.onSubmit()) {
         if (this.credential.passwordConfirmation) {
@@ -231,9 +353,5 @@ export default {
 
 <style>
 @import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
-
-span.error {
-  color: #9F3A38;
-}
 
 </style>

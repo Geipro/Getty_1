@@ -1,8 +1,9 @@
 from sqlalchemy import Boolean, Column, ForeignKey, String, Integer, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import null
+from sqlalchemy.sql.sqltypes import DateTime
 
-from database.database import Base
+from .database import Base
 
 
 class Client(Base):

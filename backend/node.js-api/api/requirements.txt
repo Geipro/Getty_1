@@ -4,4 +4,4 @@ crypto
 jsonwebtoken
 lodash
 mysql2-promise
-npm install jade --save
+jade

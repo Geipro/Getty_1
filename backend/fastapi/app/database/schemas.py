@@ -1,36 +1,35 @@
+from datetime import date
 from typing import List, Optional
+from enum import Enum
 from pydantic import BaseModel
 
-
-class ItemBase(BaseModel):
-    title: str
-    description: Optional[str] = None
-
-
-class ItemCreate(ItemBase):
-    pass
-
-
-class Item(ItemBase):
-    id: int
-    owner_id: int
-
+class User(BaseModel):
+    user_id: str 
+    user_name: str 
+    phone_number: str 
+    create_date: date
     class Config:
         orm_mode = True
 
 
-class UserBase(BaseModel):
-    email: str
+class UserCreate(BaseModel): 
+    user_id: str 
+    user_pw: str
+    user_name: str 
+    phone_number: str 
+    
+    
+class Token(BaseModel):
+    Authorization: str
 
 
-class UserCreate(UserBase):
-    password: str
-
-
-class User(UserBase):
-    id: int
-    is_active: bool
-    items: List[Item] = []
+class UserToken(BaseModel):
+    cid: int
+    user_id: str
+    user_pw: str 
+    user_name: str 
+    phone_number: str 
+    create_date: date
 
     class Config:
         orm_mode = True

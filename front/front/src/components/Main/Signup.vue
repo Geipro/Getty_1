@@ -16,7 +16,7 @@
           <input type="text"  name="username" v-model="credential.username"
           class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <div class="d-flex justify-content-between">
             <label for="exampleInputEmail1">닉네임</label> 
             <button id="nicknameCheck" 
@@ -34,22 +34,22 @@
           </div>
           <input type="text"  name="nickname" v-model="credential.nickname"
           class="form-control" id="nickname" aria-describedby="nicknameHelp" placeholder="Enter Nickname">
-        </div>
+        </div> -->
         <div class="form-group">
           <div class="d-flex justify-content-between">
             <label for="exampleInputEmail1">이메일</label>
-            <button id="emailCheck" 
+            <!-- <button id="emailCheck" 
               v-if="!duplicate.emailCheck" 
               @click="emailDuplicateCheck" 
               class="border-0 bg-transparent text-primary" 
               v-bind="{ 'disabled' : duplicate.emailCheck }">
               이메일 중복확인
-            </button>
-            <button id="emailCheck"
+            </button> -->
+            <!-- <button id="emailCheck"
               v-if="duplicate.emailCheck"
               class="border-0 bg-transparent text-success" disabled>
               중복확인 완료
-            </button>
+            </button> -->
           </div>
           <input type="email" name="email" v-validate="'required|email'" v-model="credential.email" data-vv-as="Email"
           class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -63,9 +63,9 @@
               <div class="float-left">
                 <span class="ps_box">
                   <select
-                  id="mm"
+                  id="yy"
                   class="form-select form-select-sm"
-                  v-model="signup.yyyy"
+                  v-model="userinfo.year"
                   @focus="checkFlag = false"
                   >
                     <option value="">2021</option>
@@ -82,10 +82,10 @@
               </div>
               <div class="float-left mr-3 ml-3">
                 <span class="form-select">
-                  <select
+                  <select @change="changeDate($event)"
                   id="mm"
                   class="selectpicker"
-                  v-model="signup.mm"
+                  v-model="userinfo.month"
                   @focus="checkFlag = false"
                   >
                     <option value="">1</option>
@@ -105,7 +105,7 @@
                   <select
                   id="dd"
                   class="selectpicker"
-                  v-model="signup.dd"
+                  v-model="userinfo.day"
                   @focus="checkFlag = false"
                   >
                     <option value="">1</option>
@@ -123,19 +123,35 @@
             </div>
           </div>
         </div>
+        <div class="form-group text-left">
+          <label for="inlineRadio">성별</label><br> 
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="inlineRadio1" value="man" v-model="userinfo.sex">
+              <label class="form-check-label" for="inlineRadio1">남성</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="inlineRadio2" value="woman" v-model="userinfo.sex">
+              <label class="form-check-label" for="inlineRadio2">여성</label>
+            </div>
+        </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">전화번호</label> 
+          <label for="phone">전화번호</label> 
           <input type="tel" name="phone" v-validate="'digits:11'" v-model="credential.phoneNum" data-vv-as="PhoneNumber"
           class="form-control" :class="{error: errors.has('phone')}" id="phone" aria-describedby="phoneHelp" placeholder="01012345678">
         </div>
         <div class="form-group">
-          <label for="">Password</label>
+          <label for="salary">연봉(단위 : 만 원)</label> 
+          <input type="digit" name="salary" v-model="userinfo.salary" data-vv-as="Salary"
+          class="form-control" :class="{error: errors.has('salary')}" id="salary" aria-describedby="salaryHelp" placeholder="4500">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
           <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.password" data-vv-as="Password"
           class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
           <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Password Confirmation</label>
+          <label for="passwordConfirmation">Password Confirmation</label>
           <input type="password" name="passwordConfirmation" v-validate="'confirmed:password'" v-model="credential.passwordConfirmation" data-vv-as="Password Confirmation"
           class="form-control" :class="{error: errors.has('passwordConfirmation')}"  id="passwordConfirmation" aria-describedby="passwordConfirmationHelp" placeholder="Enter Password One More">
           <span class="error" v-if="errors.has('passwordConfirmation')">{{errors.first('passwordConfirmation')}}</span>
@@ -182,18 +198,21 @@ const config = {
 Vue.use(VeeValidate, config)
 
 export default {
-  name: 'Signup',
+  name: 'SignupComponent',
 
   data: function () {
     return {
       userinfo:{
         name:'',
         id:'',
-        password:'',
-        born:'',
+        year: "",
+        month: "",
+        day: "",
         sex:'',
         salary:'',
-        phoneNum:''
+        phoneNum:'',
+        password:'',
+        passwordConfirmation: null
       },
       credential: {
         username: null,
@@ -203,37 +222,37 @@ export default {
         password: null,
         passwordConfirmation: null,
       },
-      duplicate: {
-        emailCheck: false,
-        nicknameCheck: false
-      },
+      // duplicate: {
+      //   emailCheck: false,
+      //   nicknameCheck: false
+      // },
       signup: {
-                    // id: this.propSignup.id,
-                    // password: this.propSignup.password,
-                    // pwhint: this.propSignup.pwhint,
-                    // pwhintans: this.propSignup.pwhintans,
-                    name: "",
-                    yyyy: "",
-                    mm: "",
-                    dd: "",
-                    gender: "",
-                    email: "",
-                    address: "",
-                    phoneNum: "",
-                },
-          genderList: [
-          {
-            value: "M",
-            text: "남성",
-          },
-          {
-            value: "F",
-            text: "여성",
-          },
-        ],
-        yyyyList: [],
-        mmlist: [],
-        ddlist: [],
+      // id: this.propSignup.id,
+      // password: this.propSignup.password,
+      // pwhint: this.propSignup.pwhint,
+      // pwhintans: this.propSignup.pwhintans,
+        name: "",
+        yyyy: "",
+        mm: "",
+        dd: "",
+        gender: "",
+        email: "",
+        address: "",
+        phoneNum: "",
+      },
+      // genderList: [
+      //   {
+      //     value: "M",
+      //     text: "남성",
+      //   },
+      //   {
+      //     value: "F",
+      //     text: "여성",
+      //   ,
+      //   ],
+      yyyyList: [],
+      mmlist: [],
+      ddlist: [],
     };
   },
   created() {
@@ -249,25 +268,42 @@ export default {
         text: i,
       });
     }
-    var day = 31;
+    var Cday = 31;
     // 나중에 달을 선택하면 이 변화에 따라 이 함수를 실행하도록 바꿔야 함.
-    if(this.signup.mm == 1 || this.signup.mm == 3 || this.signup.mm == 5 || this.signup.mm == 7 || this.signup.mm == 8 || this.signup.mm == 10 || this.signup.mm == 12){
-      day = 31;
-    }else if(this.signup.mm == 2){
-      day = 29;
+    if(this.userinfo.month == 1 || this.userinfo.month == 3 || this.userinfo.month == 5 || this.userinfo.month == 7 || this.userinfo.month == 8 || this.userinfo.month == 10 || this.userinfo.month == 12){
+      Cday = 31;
+    }else if(this.userinfo.month == 2){
+      Cday = 29;
     }else{
-      day = 30;
+      Cday = 30;
     }
     
-    for(let i = 2; i < day + 1; i++){
+    for(let i = 2; i < Cday + 1; i++){
       this.ddlist.push({
         value:i,
         text:i
       })
     }
-  },
-
+  },  
   methods: {
+    changDate(event){
+      console.log(event.target.value)
+      // var date = 31;
+      // if(this.userinfo.month == 1 || this.userinfo.month == 3 || this.userinfo.month == 5 || this.userinfo.month == 7 || this.userinfo.month == 8 || this.userinfo.month == 10 || this.userinfo.month == 12){
+      //   date = 31;
+      // }else if(this.userinfo.month == 2){
+      //   date = 29;
+      // }else{
+      //   date = 30;
+      // }
+    
+      // for(let i = 2; i < date + 1; i++){
+      //   this.ddlist.push({
+      //     value:i,
+      //     text:i
+      //   })
+      // }
+    },
     change: function () {
       this.$emit('change')
     },

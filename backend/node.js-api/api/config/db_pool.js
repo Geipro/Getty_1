@@ -1,4 +1,5 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
+
 const dbConfig = {
     host: 'j5a205.p.ssafy.io',
     port: '3306',
@@ -6,11 +7,12 @@ const dbConfig = {
     password: '1234',
     database: 'Project2',
 
+    waitForConnections: true,
     connectionLimit: 10,
-    waitForConnection: true
+    queueLimit: 0,
 };
 
-const conn = mysql.createConnection(dbConfig);
-module.exports = conn;
+const pool = mysql.createPool(dbConfig);
+module.exports = {pool};
 
 // DB 연동

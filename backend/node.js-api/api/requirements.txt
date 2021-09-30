@@ -1,0 +1,7 @@
+cookie-parser
+morgan
+crypto
+jsonwebtoken
+lodash
+mysql2-promise
+jade

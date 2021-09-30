@@ -1,19 +1,35 @@
 const crypto = require('crypto');
 const hashKey = require('../../config/hashKey').key;
+const IV_LENGTH = 16;
 
 module.exports = {
     //암호화
     encoding : function(password) {
-        let cipher = crypto.createCipher('aes192', hashKey);
-        let encoded_result = cipher.update(password, 'utf-8', 'base64');
-        encoded_result += cipher.final('base64');
-        return encoded_result;
+        let iv = crypto.randomBytes(IV_LENGTH);
+        const key = crypto.scryptSync(hashKey, 'salt', 32);
+	    let cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+	    let encrypted = cipher.update(password,'utf8', 'hex');
+
+        encrypted += cipher.final('hex');
+
+        console.log(1,iv);
+        console.log(2,encrypted);
+        console.log(3, "  ",iv.toString('hex') + ':' + encrypted.toString('hex'))
+	    return iv.toString('hex') + ':' + encrypted.toString('hex');
     },
     //복호화
     decoding : function(password) {
-        let decipher = crypto.createDecipher('aes192', hashKey);
-        let decoded_result = decipher.update(password, 'base64', 'utf-8');
-        decoded_result += decipher.final('utf-8');
-        return decoded_result;
+        let password_Parts = (password||'').split(':');
+        let iv = Buffer.from(password_Parts.shift(), 'hex'); // let iv = Buffer.from(password_Parts.shift() || '', 'hex');
+        // console.log(1,iv);
+        // console.log(2,password_Parts)
+
+        const key = crypto.scryptSync(hashKey, 'salt', 32);
+        let decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+        let decrypted = decipher.update(password_Parts[0],'hex', 'utf8');
+        decrypted+=decipher.final('utf8');
+        // console.log(decrypted)
+
+        return decrypted;
     }
 };

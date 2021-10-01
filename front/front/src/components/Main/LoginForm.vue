@@ -1,19 +1,22 @@
 <template>
-    <div id="first" class="row">
-        <div class="mx-auto col-6">
+    <div id="first" class="row h-50 align-items-center">
+        <div class="mx-auto col-md-4 h-50">
             <div class="myform form">
                 <div class="logo mb-3">
                     <h1>Login</h1>
                 </div>
-                <form action="#" method="post" name="login" class=" form-signin ">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" name="email" v-validate="'required|email'" v-model="credential.email" data-vv-as="Email"
-                        class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span>
+                        <div class="d-flex justify-content-between">
+                            <label for="id">아이디</label>
+                        </div>
+                        <input type="id" name="id" v-validate="'required'" v-model="credential.id" data-vv-as="ID"
+                        class="form-control" :class="{error: errors.has('id')}"  id="id" aria-describedby="IdHelp" placeholder="Enter ID">
+                        <span class="text-left error" v-if="errors.has('id')">{{errors.first('id')}}</span>
                     </div>
                     <div class="form-group">
-                        <label for="">Password</label>
+                        <div class="d-flex justify-content-between">
+                            <label for="id">비밀번호</label>
+                        </div>
                         <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.password" data-vv-as="Password"
                         class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
                         <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
@@ -22,17 +25,18 @@
                         <!--
                         <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" @click.prevent="getJWT">Login</button>
                         -->
-                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                        <button type="submit" @click="loginCheck" class="btn btn-block mybtn btn-primary tx-tfm">Login</button>
                     </div>
                     <div class="links">
                         <!--
                         <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
                         -->
-                        <p class="member text-center mt-3">
-                            <a id="goSignup" @click="signup" href="Signup">  회원가입</a>
-                        </p>
+                        <div class="member text-center mt-3">
+                            <router-link  :to="{ name: 'SignupMerge' }">
+                                <a id="goSignup">  회원가입</a>
+                            </router-link>
+                        </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -46,9 +50,8 @@ import * as VeeValidate from 'vee-validate';
 import ko from 'vee-validate/dist/locale/ko.js'
 import axios from 'axios';
 
-ko.messages.email = (field) => `${field}은/는 올바른 이메일 형식이어야 합니다.`
-ko.messages.required = (field) => `${field}이/가 필요합니다.`
-ko.messages.password = (field) => `${field}는 최소 6글자 여야합니다.`
+ko.messages.required = (field) => `${field} 이/가 필요합니다.`
+ko.messages.password = (field) => `${field} 는 최소 6글자 여야합니다.`
 
 const VUE_APP_SERVER_URL = process.env.VUE_APP_SERVER_URL
 
@@ -66,21 +69,21 @@ export default {
     data: function () {
         return {
             credential: {
-                email: '',
+                id: '',
                 password: '',
             }
         }
     },
     methods: {
-        change: function () {
-            this.$emit('change')
-        },
-        signup: function(){
-            this.$emit('signup')
-        },
-        changePw: function(){
-            this.$emit('pw')
-        },
+        // change: function () {
+        //     this.$emit('change')
+        // },
+        // signup: function(){
+        //     this.$emit('signup')
+        // },
+        // changePw: function(){
+        //     this.$emit('pw')
+        // },        
         getJWT: function () {
             axios({
                 method: 'put',
@@ -97,11 +100,19 @@ export default {
                 console.log(err.headers)
             })
         },
+        loginCheck(){
+            if(this.onSubmit()){
+                this.getJWT();
+            }else{
+                alert("입력을 확인해주세요")
+            }
+        },
         onSubmit() {
             this.$validator.validateAll()
             if (!this.errors.any()) {
-                alert('submit!')
+                return true
             }
+            return false
         }
     }
 }

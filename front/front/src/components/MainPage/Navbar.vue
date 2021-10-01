@@ -1,11 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-success bg-primary">
   <div class="container-fluid">
-    <div class="offset-5" style="color: white">
+    <div style="color: white">
       <router-link :to="{ name: 'Home' }">
         <img src="@/assets/logo.png" style="width:70px">
       </router-link>
-      싸피은행
+
     </div>
     <!-- 없어도 될 듯 -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

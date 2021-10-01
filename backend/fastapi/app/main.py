@@ -10,8 +10,6 @@ from .database import crud, schemas, models
 from .common.consts import JWT_SECRET, JWT_ALGORITHM
 from .database.database import SessionLocal, engine
 
-# import json
-
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()

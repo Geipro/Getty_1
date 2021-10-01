@@ -7,7 +7,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
 from .database import crud, schemas, models
-from common.consts import JWT_SECRET, JWT_ALGORITHM
+from .common.consts import JWT_SECRET, JWT_ALGORITHM
 from .database.database import SessionLocal, engine
 
 

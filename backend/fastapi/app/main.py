@@ -82,3 +82,25 @@ def create_access_token(*, data: dict = None, expires_delta: int = None):
         to_encode.update({"exp": datetime.utcnow() + timedelta(hours=expires_delta)})
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET, algorithm=JWT_ALGORITHM)
     return encoded_jwt
+
+@app.get("/user_loan", status_code=200)
+async def read_loan_list(db: Session = Depends(get_db)):
+    """
+    `대출 상품 리스트 가져오기`
+    :param db:
+    :return:
+    """
+    db_loan_list = crud.get_loan(db)
+    if db_loan_list:
+        raise HTTPException(status=400, detail="loan error")
+    return db_loan_list
+
+@app.post("/user_loan", status_code=200, response_model=schemas.LoanCreate)
+async def create_loan(req_info:schemas.LoanCreate, db:Session=Depends(get_db)):
+    """
+    `대출 상품 리스트 추가`
+    :param req_info:
+    :param db:
+    :return:
+    """
+    return crud.create_loan(db=db, loan=req_info)

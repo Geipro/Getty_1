@@ -36,3 +36,13 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
+def get_loan(db: Session):
+    return db.query(models.UserLoan).all()
+
+
+def create_loan(db: Session, loan: schemas.LoanCreate):
+    db_loan = models.UserLoan(cid=loan.cid, lid=loan.lid)
+    db.add()
+    db.commit()
+    db.refresh(db_loan)
+    return db_loan

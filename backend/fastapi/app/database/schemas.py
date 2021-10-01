@@ -47,3 +47,17 @@ class UserToken(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+# 대출 상품 리스트
+class LoanCreate(BaseModel):
+    loan_name: str
+    loan_age: str
+    loan_salary: str
+    loan_address: str
+    loan_job: str
+    interest_rate: int
+    loan_amount: int
+
+    class Config:
+        orm_mode = True

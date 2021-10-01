@@ -22,33 +22,39 @@ class Client(Base):
     create_date = Column(Date, nullable=True, comment="생성 날짜")
     phone_number = Column(String(45), nullable=True, comment="전화 번호")
 
-    # items = relationship("UserInfomation", back_populates="owner")
-
-
-class UserInfomation(Base):
-    __tablename__ = "user_infomation"
-
-    info_id = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True,
-        nullable=False,
-        comment="고객 정보 고유 ID",
-    )
-    cid = Column(
-        Integer,
-        ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
-        primary_key=True,
-        nullable=False,
-        comment="고객 고유 ID",
-    )
-    address = Column(String(45), nullable=False, comment="주소")
+    address = Column(String(45), nullable=True, comment="주소")
     job = Column(String(45), nullable=False, comment="직업")
-    age = Column(String(45), nullable=False, comment="나이")
+    birth = Column(String(45), nullable=False, comment="생년월일")
     sex = Column(Integer, nullable=False, comment="성별")
     salary = Column(Integer, nullable=False, comment="연봉")
 
-    # owner = relationship("Client", back_populates="items")
+    # items = relationship("UserInfomation", back_populates="owner")
+
+
+# class UserInfomation(Base):
+#     __tablename__ = "user_infomation"
+
+#     info_id = Column(
+#         Integer,
+#         primary_key=True,
+#         autoincrement=True,
+#         nullable=False,
+#         comment="고객 정보 고유 ID",
+#     )
+#     cid = Column(
+#         Integer,
+#         ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
+#         primary_key=True,
+#         nullable=False,
+#         comment="고객 고유 ID",
+#     )
+#     address = Column(String(45), nullable=False, comment="주소")
+#     job = Column(String(45), nullable=False, comment="직업")
+#     age = Column(String(45), nullable=False, comment="나이")
+#     sex = Column(Integer, nullable=False, comment="성별")
+#     salary = Column(Integer, nullable=False, comment="연봉")
+
+#     # owner = relationship("Client", back_populates="items")
 
 
 class LoanProduct(Base):
@@ -92,7 +98,7 @@ class UserLoan(Base):
 
     cid = Column(
         Integer,
-        ForeignKey("user_infomation.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
         primary_key=True,
         nullable=False,
         comment="고객 고유 ID",

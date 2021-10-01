@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 engine = create_engine(
-    "mysql+pymysql://j5a205:1234@j5a205.p.ssafy.io:3306/test", convert_unicode=False
+    "mysql+pymysql://j5a205:1234@j5a205.p.ssafy.io:3306/Project2", convert_unicode=False
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

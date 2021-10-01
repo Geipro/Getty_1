@@ -338,6 +338,8 @@ export default {
             console.log(res)
             alert('회원가입이 완료되었습니다~!')
             this.login()
+          }).catch((err) =>{
+            alert(err)
           })
         }else {
           alert('비밀번호 확인하여주세요!')

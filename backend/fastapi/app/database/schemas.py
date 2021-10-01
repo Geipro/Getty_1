@@ -11,7 +11,7 @@ class User(BaseModel):
     class Config:
         orm_mode = True
 
-
+# 회원가입
 class UserCreate(BaseModel): 
     user_id: str 
     user_pw: str

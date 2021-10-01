@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="h-80" >
     <Navbar />
-    <Signup />
+    <Signup class="mt-5" />
   </div>
 </template>
 

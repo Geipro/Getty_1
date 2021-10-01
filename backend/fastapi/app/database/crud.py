@@ -43,6 +43,10 @@ def get_loan(db: Session):
     return db.query(models.LoanProduct).all()
 
 
+def get_loan_by_user(db: Session, user_id: str):
+    return db.query(models.LoanProduct).filter()
+
+
 def create_loan(db: Session, loan: schemas.LoanCreate):
     db_loan = models.LoanProduct(
         loan_name=loan.loan_name,
@@ -53,7 +57,27 @@ def create_loan(db: Session, loan: schemas.LoanCreate):
         interest_rate=loan.interest_rate,
         loan_amount=loan.loan_amount,
     )
+    # print(f"db_loan before refresh = {db_loan}")
     db.add(db_loan)
     db.commit()
     db.refresh(db_loan)
+    # print(f"db_loan after refresh = {db_loan}")
     return db_loan
+
+
+def create_user_loan(db: Session, client: schemas.ClientID, loan: schemas.LoanID):
+    db_user_loan = models.UserLoan(cid=client.cid, lid=loan.lid)
+    db.add(db_user_loan)
+    db.commit()
+    db.refresh(db_user_loan)
+    return db_user_loan
+
+
+def create_banker_client(
+    db: Session, client: schemas.ClientID, banker: schemas.BankerID
+):
+    db_banker_client = models.BankerClient(bid=banker.bid, cid=client.cid)
+    db.add(db_banker_client)
+    db.commit()
+    db.refresh(db_banker_client)
+    return db_banker_client

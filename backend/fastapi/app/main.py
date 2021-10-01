@@ -58,7 +58,7 @@ async def signup(user_info: schemas.UserCreate, db: Session = Depends(get_db)):
 @app.post("/signin", status_code=200, response_model=schemas.Token)
 async def signup(user_info: schemas.UserLogin, db: Session = Depends(get_db)):
     """
-    `회원가입 API`\n
+    `로그인 API`\n
     :param user_info:
     :param db:
     :return:

@@ -12,10 +12,10 @@
         name="registration"
       >
         <div class="text-left form-group justify-content-between">
-          <label for="username">이름</label>
-          <input type="text"  name="username" v-model="userinfo.name"
-          class="form-control" id="username" aria-describedby="nameHelp" placeholder="Enter Username">
-          <span class="error" v-if="errors.has('name')">{{errors.first('name')}}</span>
+          <label for="user_name">이름</label>
+          <input type="text"  name="user_name" v-model="userinfo.user_name"
+          class="form-control" id="user_name" aria-describedby="nameHelp" placeholder="Enter Username">
+          <span class="error" v-if="errors.has('user_name')">{{errors.first('user_name')}}</span>
         </div>
         <!-- <div class="form-group">
           <div class="d-flex justify-content-between">
@@ -38,7 +38,7 @@
         </div> -->
         <div class="form-group">
           <div class="d-flex justify-content-between">
-            <label for="id">아이디</label>
+            <label for="user_id">아이디</label>
             <!-- <button id="emailCheck" 
               v-if="!duplicate.emailCheck" 
               @click="emailDuplicateCheck" 
@@ -52,9 +52,9 @@
               중복확인 완료
             </button> -->
           </div>
-          <input type="id" name="id" v-validate="'required'" v-model="userinfo.id" data-vv-as="ID"
-          class="form-control" :class="{error: errors.has('id')}"  id="id" aria-describedby="IdHelp" placeholder="Enter ID">
-          <span class="error" v-if="errors.has('id')">{{errors.first('id')}}</span>
+          <input type="id" name="user_id" v-validate="'required'" v-model="userinfo.user_id" data-vv-as="ID"
+          class="form-control" :class="{error: errors.has('user_id')}"  id="id" aria-describedby="UserIdHelp" placeholder="Enter ID">
+          <span class="error" v-if="errors.has('user_id')">{{errors.first('user_id')}}</span>
           <!-- <input type="email" name="email" v-validate="'required|email'" v-model="credential.email" data-vv-as="Email"
           class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
           <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span> -->
@@ -134,8 +134,8 @@
           <div class="form-group text-left">
             <label for="sex">성별</label><br> 
             <label class="radio is-inline" v-for="sex in sexs" :key="sex">
-              <input type="radio" :value="sex" class="radio-input" v-validate="'required'" data-vv-as="성별" v-model="userinfo.sex" name="sex">
-              <span class="radio-label mr-3"> {{ sex }} </span>
+              <input type="radio" :value="sex.value" class="radio-input" v-validate="'required'" data-vv-as="성별" v-model="userinfo.sex" name="sex">
+              <span class="radio-label mr-3"> {{ sex.text }} </span>
             </label>
             <br>
             <span class="error" v-if="errors.has('sex')">{{errors.first('sex')}}</span>
@@ -156,7 +156,7 @@
 
         <div class="form-group text-left">
           <label for="phone">전화번호</label> 
-          <input type="tel" name="phone" v-validate="'required|digits:11'" v-model="userinfo.phoneNum" data-vv-as="전화번호"
+          <input type="tel" name="phone" v-validate="'required|digits:11'" v-model="userinfo.phone_number" data-vv-as="전화번호"
           class="form-control" :class="{error: errors.has('phone')}" id="phone" aria-describedby="phoneHelp" placeholder="01012345678">
           <span class="error" v-if="errors.has('phoneNumber')">{{errors.first('phoneNumber')}}</span>
         </div>
@@ -168,7 +168,7 @@
         </div>
         <div class="form-group text-left">
           <label for="password">Password</label>
-          <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="userinfo.password" data-vv-as="Password"
+          <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="userinfo.user_pw" data-vv-as="Password"
           class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
           <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
         </div>
@@ -223,20 +223,26 @@ export default {
   data: function () {
     return {
       sexs: [
-      '남성',
-      '여성'
+        {
+          value:0,
+          text:"남성"
+        },
+        {
+          value:1,
+          text:"여성"
+        }
       ],
       userinfo:{
-        name:'',
-        id:'',
-        date:'',
+        user_name:'',
+        user_id:'',
+        birth:'',
         year: "",
         month: "",
         day: "",
         sex:'',
         salary:'',
-        phoneNum:'',
-        password:'',
+        phone_number:'',
+        user_pw:'',
         passwordConfirmation: null
       },
       yyyyList: [],
@@ -322,12 +328,12 @@ export default {
     signupCheck() {
       var sumDate = this.userinfo.year
       sumDate = String(sumDate) + String(this.userinfo.month) + String(this.userinfo.day)
-      this.userinfo.date = sumDate
-      // alert("이름 : " + this.userinfo.name)
-      // alert("아이디 : " + this.userinfo.id)
-      // alert("생년월일 : " + this.userinfo.year + "년" + this.userinfo.month + "월" + this.userinfo.day + "일")
-      // alert("성별 : " + this.userinfo.sex)
-      // alert("생년월일2 : " + this.userinfo.date)
+      this.userinfo.birth = sumDate
+      alert("이름 : " + this.userinfo.user_name)
+      alert("아이디 : " + this.userinfo.user_id)
+      alert("생년월일 : " + this.userinfo.year + "년" + this.userinfo.month + "월" + this.userinfo.day + "일")
+      alert("성별 : " + this.userinfo.sex)
+      alert("생년월일2 : " + this.userinfo.birth)
       if (this.onSubmit()) {
         if (this.userinfo.passwordConfirmation) {
           axios({

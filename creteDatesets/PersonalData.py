@@ -73,6 +73,8 @@ carWeight = []
 carLength = []
 chaDaeNum = []
 income = []
+geonbo = []
+yobo = []
 
 for i in range(1000):
     jaeone1 = str(1000+i)
@@ -114,8 +116,13 @@ for i in range(1000):
     newNum3.append(st)
 
     # 신용대출 범위 소득 1천만원 ~ 1억 5천만원으로 함 ,
-    st = str(random.randint(10000000, 150000000))
+    st = str(random.randint(20000000, 150000000))
     newTotal.append(st)
+    
+    
+    geonbo.append(int(int(newTotal[i])*0.00343))
+    yobo.append(int(geonbo[i]*0.1152))
+
     st = str(random.randint(500000000000, 599999999999))
     newReciptNum.append(st)
     st = '02' + '-' + str(random.randint(1000, 9999)) + '-' + str(random.randint(0000, 9999))
@@ -232,13 +239,13 @@ def createDataSets():
             for i in tqdm(range(1000)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
                 form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[i], company=newComp[i],
-                                num1=newNum3[i], tax1='54520', tax2='4630', index=i)
+                                num1=newNum3[i], tax1=str(geonbo[i]), tax2=str(yobo[i]), index=i)
         elif cmd2 == 2:
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
             for i in tqdm(range(1000)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
                 form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[i], company=newComp[i],
-                                num1=newNum3[i], tax1='54520', tax2='4630', index=i)
+                                num1=newNum3[i], tax1=str(geonbo[i]), tax2=str(yobo[i]), index=i)
 
         elif cmd2 == 3:
             print('건강보험자격득실 확인서, 소득금액증명원, 근로소득원천징수영수증 생성')

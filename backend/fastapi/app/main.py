@@ -98,3 +98,41 @@ async def create_loan(req_info: schemas.LoanCreate, db: Session = Depends(get_db
     :return:
     """
     return crud.create_loan(db=db, loan=req_info)
+
+
+@app.get("/read_banker", status_code=200)
+async def read_banker(db: Session = Depends(get_db)):
+    """
+    `행원 리스트 보기`
+    :param db:
+    :return:
+    """
+    db_banker_list = crud.get_banker(db)
+    if not db_banker_list:
+        raise HTTPException(status_code=400, detail="banker error")
+    return db_banker_list
+
+
+@app.post("/create_banker", status_code=200, response_model=schemas.BankerCreate)
+async def create_banker(req_info: schemas.BankerCreate, db: Session = Depends(get_db)):
+    """
+    `행원 추가`
+    :param req_info:
+    :param db:
+    :return:
+    """
+    return crud.create_banker(db=db, banker=req_info)
+
+
+@app.post("/create_relation", status_code=200, response_model=schemas.CombineID)
+async def create_relation(req_info: schemas.CombineID, db: Session = Depends(get_db)):
+    """
+    `고객 <-> 대출 상품 연결`
+    `고객 <-> 행원 연결`
+    :param req_info:
+    :param db:
+    :return:
+    """
+    return crud.create_relation(
+        db=db, client=req_info.cid, banker=req_info.bid, loan=req_info.lid
+    )

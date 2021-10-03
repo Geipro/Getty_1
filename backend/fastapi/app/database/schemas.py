@@ -85,6 +85,9 @@ class CombineID(BaseModel):
     cid: int
     bid: int
 
+    class Config:
+        orm_mode = True
+
 
 # loan_id
 class LoanID(BaseModel):

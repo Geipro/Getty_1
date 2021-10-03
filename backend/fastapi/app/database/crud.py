@@ -84,8 +84,11 @@ def create_banker(db: Session, banker: schemas.BankerCreate):
 
 
 # 고객 <-> 대출 상품 관계 생성
-def create_user_loan(db: Session, client: schemas.ClientID, loan: schemas.LoanID):
-    db_user_loan = models.UserLoan(cid=client.cid, lid=loan.lid)
+def create_user_loan(db: Session, id_info: schemas.CombineID):
+    db_user_loan = models.UserLoan(
+        cid=id_info.cid,
+        lid=id_info.lid,
+    )
     db.add(db_user_loan)
     db.commit()
     db.refresh(db_user_loan)
@@ -93,10 +96,11 @@ def create_user_loan(db: Session, client: schemas.ClientID, loan: schemas.LoanID
 
 
 # 고객 <-> 행원 관계 생성
-def create_banker_client(
-    db: Session, client: schemas.ClientID, banker: schemas.BankerID
-):
-    db_banker_client = models.BankerClient(bid=banker.bid, cid=client.cid)
+def create_banker_client(db: Session, id_info: schemas.CombineID):
+    db_banker_client = models.BankerClient(
+        bid=id_info.bid,
+        cid=id_info.cid,
+    )
     db.add(db_banker_client)
     db.commit()
     db.refresh(db_banker_client)

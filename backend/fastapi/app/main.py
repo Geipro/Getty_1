@@ -125,7 +125,9 @@ async def create_banker(req_info: schemas.BankerCreate, db: Session = Depends(ge
 
 
 @app.post("/create_relation", status_code=200, response_model=schemas.CombineID)
-async def create_relation(req_info: schemas.CombineID, db: Session = Depends(get_db)):
+async def create_relation(
+    combine_info: schemas.CombineID, db: Session = Depends(get_db)
+):
     """
     `고객 <-> 대출 상품 연결`
     `고객 <-> 행원 연결`
@@ -133,6 +135,12 @@ async def create_relation(req_info: schemas.CombineID, db: Session = Depends(get
     :param db:
     :return:
     """
-    return crud.create_relation(
-        db=db, client=req_info.cid, banker=req_info.bid, loan=req_info.lid
-    )
+    # return crud.create_relation(
+    #     db=db, client=req_info.cid, banker=req_info.bid, loan=req_info.lid
+    # )
+
+    return [
+        crud.create_user_loan(db=db, id_info=combine_info),
+        crud.create_banker_client(db=db, id_info=combine_info),
+    ]
+    # return crud.create_user_loan(db=db, client=req_info.cid, loan=req_info.lid)

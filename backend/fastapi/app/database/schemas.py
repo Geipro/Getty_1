@@ -67,13 +67,35 @@ class LoanCreate(BaseModel):
         orm_mode = True
 
 
+# 행원
+class BankerCreate(BaseModel):
+    banker_name: str
+    lid: int
+    banker_id: str
+    banker_pw: str
+    local: str
+
+    class Config:
+        orm_mode = True
+
+
+# Combine loan_id, client_id, banker_id
+class CombineID(BaseModel):
+    lid: int
+    cid: int
+    bid: int
+
+
+# loan_id
 class LoanID(BaseModel):
     lid: int
 
 
+# client_id
 class ClientID(BaseModel):
     cid: int
 
 
+# banker_id
 class BankerID(BaseModel):
     bid: int

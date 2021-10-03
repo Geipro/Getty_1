@@ -7,7 +7,7 @@ small_font = ImageFont.truetype(font="./근로소득원천징수/HANBatang.ttf",
 
 
 
-def makedata3(number, name, personal, company, index):
+def makedata3(name, personal, company, income, tax, index):
     img = Image.open("./근로소득원천징수/근로소득원천징수영수증_양식.JPG")
     draw = ImageDraw.Draw(img)
     ceo = ''
@@ -111,30 +111,30 @@ def makedata3(number, name, personal, company, index):
     # 감면기간
     draw.text((410, 681), "2019-01-01 ~  12-31", (0, 0, 0), font=small_font)
     # 급여
-    draw.text((421, 714), '50000000 ', (0, 0, 0), font=normal_font)
+    draw.text((421, 714), income, (0, 0, 0), font=normal_font)
     # 합계
-    draw.text((1091, 714), '50000000 ', (0, 0, 0), font=normal_font)
+    draw.text((1091, 714), income, (0, 0, 0), font=normal_font)
     # 계
-    draw.text((421, 965), '50000000 ', (0, 0, 0), font=normal_font)
+    draw.text((421, 965), income, (0, 0, 0), font=normal_font)
     # 합계(계)
-    draw.text((1098, 965), '50000000 ', (0, 0, 0), font=normal_font)
+    draw.text((1098, 965), income, (0, 0, 0), font=normal_font)
     # 감면소득 계
-    draw.text((437, 1370), '4500000 ', (0, 0, 0), font=normal_font)
+    draw.text((437, 1370), tax, (0, 0, 0), font=normal_font)
     # 합계(감면소득)
-    draw.text((1102, 1370), '4500000 ', (0, 0, 0), font=normal_font)
+    draw.text((1102, 1370), tax, (0, 0, 0), font=normal_font)
 
     # 결정세액 - 소득세
-    draw.text((650, 1445), '50000000 ', (0, 0, 0), font=normal_font)
+    draw.text((650, 1445), income, (0, 0, 0), font=normal_font)
     # 결정세액 - 지방소득세
-    draw.text((850, 1445), '50000000 ', (0, 0, 0), font=normal_font)
+    draw.text((850, 1445), income, (0, 0, 0), font=normal_font)
     # 근무지 - 소득세
-    draw.text((650, 1587), '4500000 ', (0, 0, 0), font=normal_font)
+    draw.text((650, 1587), str(int(income)-int(tax)), (0, 0, 0), font=normal_font)
     # 근무지 - 지방소득세
-    draw.text((850, 1587), '4500000 ', (0, 0, 0), font=normal_font)
+    draw.text((850, 1587), str(int(income)-int(tax)), (0, 0, 0), font=normal_font)
     # 차감징수세액 - 소득세
-    draw.text((650, 1658), '4500000 ', (0, 0, 0), font=normal_font)
+    draw.text((650, 1658), str(int(income)-int(tax)), (0, 0, 0), font=normal_font)
     # 차감징수세액 - 지방소득세
-    draw.text((850, 1658), '4500000 ', (0, 0, 0), font=normal_font)
+    draw.text((850, 1658), str(int(income)-int(tax)), (0, 0, 0), font=normal_font)
 
     # 법인명(상호)
     draw.text((680, 1750), company, (0, 0, 0), font=normal_font)
@@ -187,12 +187,6 @@ newTax = []
 newReciptNum = []
 newPhoneNum = []
 
-
-bold_font1 = ImageFont.truetype(font="./HANBatangB.ttf", size=23)
-bold_font2 = ImageFont.truetype(font="./HANBatangB.ttf", size=26)
-
-normal_font = ImageFont.truetype(font="./HANBatang.ttf", size=20)
-small_font = ImageFont.truetype(font="./HANBatang.ttf", size=14)
 
 
 if __name__ == '__main__':

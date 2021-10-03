@@ -60,7 +60,7 @@ small_font = ImageFont.truetype(font="./HANBatang.ttf", size=14)
 
 
 for i in range(10):
-    img = Image.open("자동차등록원부_양식.JPG")
+    img = Image.open("../creteDatesets/자동차등록원부/자동차등록원부_양식.jpg")
     draw = ImageDraw.Draw(img)
     # 접수번호
     draw.text((116, 273), "006100", (0, 0, 0), font=normal_font)

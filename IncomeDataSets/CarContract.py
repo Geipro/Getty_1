@@ -49,6 +49,8 @@ newCarNum = []
 newCarList = []
 newDate = []
 
+
+
 for i in range(1000):
     st = random.choice(Name_First) + random.choice(Name_Second) + random.choice(Name_Last)
     newName1.append(st)
@@ -97,7 +99,7 @@ normal_font = ImageFont.truetype(font="./HANBatang.ttf", size=20)
 
 
 for i in range(10):
-    img = Image.open("car_form.JPG")
+    img = Image.open("../creteDatesets/자동차매매계약서/car_form.JPG")
     draw = ImageDraw.Draw(img)
     # 접수번호
     draw.text((241, 219), newNum[i], (0, 0, 0), font=normal_font)

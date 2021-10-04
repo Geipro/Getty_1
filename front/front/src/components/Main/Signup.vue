@@ -77,11 +77,11 @@
                     >
                       <option value="">2021</option>
                       <option
-                      v-for="(item, index) in yyyyList"
+                      v-for="(yy, index) in yyyyList"
                       :key="index"
-                      :value="item.value"
+                      :value="yy.value"
                       >
-                      {{ item.text }}
+                      {{ yy.text }}
                       </option>
                     </select>
                   </span>
@@ -97,11 +97,11 @@
                     >
                       <option value="01">01</option>
                       <option
-                      v-for="(item, index) in mmlist"
+                      v-for="(mm, index) in mmlist"
                       :key="index"
-                      :value="item.value"
+                      :value="mm.value"
                       >
-                      {{ item.text }}
+                      {{ mm.text }}
                       </option>
                     </select>
                   </span>
@@ -117,11 +117,11 @@
                     >
                       <option value="01">01</option>
                       <option
-                      v-for="(item, index) in ddlist"
-                      :key="index"
-                      :value="item.value"
+                      v-for="(dd, idx) in ddlist"
+                      :key="idx"
+                      :value="dd.value"
                       >
-                        {{ item.text }}
+                        {{ dd.text }}
                       </option>
                     </select>
                   </span>
@@ -201,7 +201,6 @@ import axios from 'axios'
 import VeeValidate from 'vee-validate';
 import ko from 'vee-validate/dist/locale/ko.js'
 
-const VUE_APP_SERVER_URL = process.env.VUE_APP_SERVER_URL
 ko.messages.required = (field) => `${field} 이/가 필요합니다.`
 
 ko.messages.password = (field) => `${field}는 최소 6글자 여야합니다.`
@@ -338,7 +337,7 @@ export default {
         if (this.userinfo.passwordConfirmation) {
           axios({
             method: 'post',
-            url: `${VUE_APP_SERVER_URL}:8000/api/auth/signup`,
+            url: `http://j5a205.p.ssafy.io/signup`,
             data: this.userinfo
           }).then((res) => {
             console.log(res)

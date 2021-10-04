@@ -16,7 +16,7 @@ def get_user_by_userid(db: Session, user_id: str):
 def create_user(db: Session, user: schemas.UserCreate):
     # fake_hashed_password = user.user_pw + "notreallyhashed"
     hashed_password = bcrypt.hashpw(user.user_pw.encode("utf-8"), bcrypt.gensalt())
-    print(1234, "   ", hashed_password)
+    # print(1234, "   ", hashed_password)
     # 현재 날짜 가져오기
     create_at = date.today()
 

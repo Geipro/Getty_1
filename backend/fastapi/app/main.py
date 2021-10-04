@@ -3,7 +3,7 @@ import bcrypt
 import jwt
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Header
 from sqlalchemy.orm import Session
 
 from database import crud, schemas, models
@@ -80,7 +80,7 @@ async def signup(user_info: schemas.UserLogin, db: Session = Depends(get_db)):
 
     print(schemas.UserToken.from_orm(is_exist).dict(exclude={"user_pw", "create_date"}))
     token = dict(
-        Authorization=f"Bearer {create_access_token(data=schemas.UserToken.from_orm(is_exist).dict(exclude={'user_pw','create_date'}),)}"
+        Authorization=f"{create_access_token(data=schemas.UserToken.from_orm(is_exist).dict(exclude={'user_pw','create_date'}),)}"
     )
     return token
 
@@ -91,6 +91,17 @@ def create_access_token(*, data: dict = None, expires_delta: int = None):
         to_encode.update({"exp": datetime.utcnow() + timedelta(hours=expires_delta)})
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET, algorithm=JWT_ALGORITHM)
     return encoded_jwt
+
+@app.get("/get_user", status_code=200)
+async def get_user(db: Session = Depends(get_db), token: str = Header(None)):
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    user = crud.get_user_by_userid(db,user_id=user_id)
+    return user
 
 
 @app.get("/read_loan", status_code=200)

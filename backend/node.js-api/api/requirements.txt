@@ -5,3 +5,5 @@ jsonwebtoken
 lodash
 mysql2-promise
 jade
+
+ sudo ln -s /etc/nginx/sites-enable/fastapi.conf  /etc/nginx/sites-available/fastapi.conf 

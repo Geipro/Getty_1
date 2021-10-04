@@ -110,6 +110,27 @@ class UserLoan(Base):
         comment="고객 대출 상품 ID",
     )
 
+class UserLoanFiles(Base):
+    __tablename__ = "user_loan_files"
+
+    cid = Column(
+        Integer,
+        ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        primary_key=True,
+        nullable=False,
+        comment="고객 고유 ID",
+    )
+    lid = Column(
+        Integer,
+        ForeignKey("loan_product.lid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        primary_key=True,
+        nullable=False,
+        comment="고객 대출 상품 ID",
+    )
+
+    file_name = Column(String(45), nullable=False, comment="파일 이름")
+    file_url = Column(String(100), nullable=False, comment="파일 저장소 URL")
+
 
 class BankerClient(Base):
     __tablename__ = "banker_client"
@@ -127,3 +148,5 @@ class BankerClient(Base):
         nullable=True,
         comment="고객 고유 ID",
     )
+
+

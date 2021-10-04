@@ -44,10 +44,10 @@ class Token(BaseModel):
 class UserToken(BaseModel):
     cid: int
     user_id: str
-    user_pw: str
+    # user_pw: str
     user_name: str
     phone_number: str
-    create_date: date
+    # create_date: date
 
     class Config:
         orm_mode = True

@@ -82,9 +82,7 @@ export default {
         method: 'get',
         url: `http://j5a205.p.ssafy.io/read_loan`,
       }).then((res) => {
-        alert("성공")
         this.loanlist = res.data
-        console.log(this.loanlist)
       }).catch((err) => {
         console.log(err.headers)
       })

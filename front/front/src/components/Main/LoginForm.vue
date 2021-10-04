@@ -89,7 +89,10 @@ export default {
                 data: this.credential
             }).then((res) => {
                 console.log(res)
+                var token = res.data.Authorization
+                token = token.slice(7, token.length)
                 localStorage.setItem('ID', this.credential.user_id)
+                localStorage.setItem('Token', token)
                 alert(`${localStorage.getItem('ID')} 님 반갑습니다!`)
                 this.$router.push('/')
             }).catch((err) => {

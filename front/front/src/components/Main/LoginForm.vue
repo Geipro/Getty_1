@@ -91,7 +91,7 @@ export default {
                 console.log(res)
                 localStorage.setItem('ID', this.credential.user_id)
                 alert(`${localStorage.getItem('ID')} 님 반갑습니다!`)
-                this.$router.push({ name: 'User' })
+                this.$router.push('/')
             }).catch((err) => {
                 alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")
                 console.log(err.headers)

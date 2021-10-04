@@ -187,11 +187,11 @@
           <span class="error" v-if="errors.has('passwordConfirmation')">{{errors.first('passwordConfirmation')}}</span>
         </div>
         <div class="text-center mb-3">
-          <button type="submit" @click="signupCheck" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started!</button>
+          <button type="submit" @click="signupCheck" class=" btn btn-block mybtn btn-primary tx-tfm">회원가입</button>
         </div>
         <div class="col-md-12 ">
           <div class="form-group">
-            <p class="text-center"><router-link  :to="{ name: 'About' }"><a>Already have an account?</a> </router-link> </p>
+            <p class="text-center"><router-link  :to="{ name: 'About' }"><a>로그인으로 가기</a> </router-link> </p>
           </div>
         </div>
       </form>
@@ -371,6 +371,7 @@ export default {
             console.log(res)
             alert('회원가입이 완료되었습니다~!')
             //this.login()
+            this.$router.push('/about')
           }).catch((err) =>{
             alert(err)
           })

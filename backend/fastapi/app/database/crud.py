@@ -89,10 +89,15 @@ def create_user_loan(db: Session, id_info: schemas.CombineID):
         cid=id_info.cid,
         lid=id_info.lid,
     )
+
     db.add(db_user_loan)
     db.commit()
     db.refresh(db_user_loan)
     return db_user_loan
+
+
+# def create_loan_files(db:Session, client_id: int, loan_id: int):
+#     db_c
 
 
 # 고객 <-> 행원 관계 생성

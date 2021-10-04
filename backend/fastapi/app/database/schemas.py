@@ -102,3 +102,4 @@ class ClientID(BaseModel):
 # banker_id
 class BankerID(BaseModel):
     bid: int
+

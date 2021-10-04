@@ -138,10 +138,9 @@ for i in range(1000):
 
     CarRegNum.append('00'+str(cn))
     newJaeone.append(f'A01-1-0{jaeone1}-{jaeone2}-{jaeone3}')
-
+    newtotTax.append(str(int(int(newTotal)//12*0.0205)))
     modyear.append(random.choice(['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']))
-    income.append(random.choice(['60000000', '55000000', '50000000', '45000000', '40000000', '35000000']))
-    newtotTax.append(f'{int(income[i][:2])*440000}')
+
     if 'GV70' == newCarList[i]:
         onedong.append('G4DB')
         carHeight.append('1,630')
@@ -252,9 +251,9 @@ def createDataSets():
             for i in tqdm(range(1000)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
                 form3.makedata3(name=newName[i], personal=newPer[i], company=newComp[i],
-                                income=income[i], tax=newtotTax[i], index=i)
+                                income=str(int(newTotal[i])//12), tax=newtotTax[i], index=i)
                 form4.makedata4(name=newName[i], address=newAddr[i], personal=newPer[i], company=newComp[i],
-                                income=income[i], tax=newtotTax[i], index=i)
+                                income=str(int(newTotal[i])//12), tax=newtotTax[i], index=i)
     elif cmd1 == 2:
         print('1. 신한 MY CAR 신차 대출')
         print('2. 신한 MY CAR 중고차 대출')

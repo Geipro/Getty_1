@@ -138,7 +138,7 @@ for i in range(1000):
 
     CarRegNum.append('00'+str(cn))
     newJaeone.append(f'A01-1-0{jaeone1}-{jaeone2}-{jaeone3}')
-    newtotTax.append(str(int(int(newTotal)//12*0.0205)))
+    newtotTax.append(str(int(int(newTotal[i])//12 * 0.0205)))
     modyear.append(random.choice(['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']))
 
     if 'GV70' == newCarList[i]:

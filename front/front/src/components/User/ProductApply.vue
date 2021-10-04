@@ -29,7 +29,7 @@
         <div class="mt-3 mb-3">
             <p>01. 대출 대상이 맞는지 확인 진행하겠습니다.</p>
         </div>
-        <div class="bg-warning mb-5">
+        <div class="product mb-5">
             <!--아마 아래 내용들도 보험 종류에 따라 달라질 듯? -->
             <b-check class="offset-1">만 19세 이상인가요?</b-check><br>
             <b-check class="offset-1">직장인으로 건강보험료를 납부 중이신가요?</b-check><br>
@@ -55,3 +55,9 @@ import Navbar from '@/components/MainPage/Navbar.vue'
     },
   }
 </script>
+
+<style>
+.product  {
+  background-color:	#87CEFA;
+}
+</style>

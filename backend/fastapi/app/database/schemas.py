@@ -3,36 +3,40 @@ from typing import List, Optional
 from enum import Enum
 from pydantic import BaseModel
 
+
 class User(BaseModel):
-    user_id: str 
-    user_name: str 
-    phone_number: str 
+    user_id: str
+    user_name: str
+    phone_number: str
     create_date: date
     address: str
     job: str
     birth: str
     sex: int
     salary: int
+
     class Config:
         orm_mode = True
 
+
 # 회원가입
-class UserCreate(BaseModel): 
-    user_id: str 
+class UserCreate(BaseModel):
+    user_id: str
     user_pw: str
-    user_name: str 
-    phone_number: str 
+    user_name: str
+    phone_number: str
     job: str
     birth: str
     sex: int
     salary: int
 
+
 # 로그인
-class UserLogin(BaseModel): 
-    user_id: str 
+class UserLogin(BaseModel):
+    user_id: str
     user_pw: str
-    
-    
+
+
 class Token(BaseModel):
     Authorization: str
 
@@ -40,9 +44,9 @@ class Token(BaseModel):
 class UserToken(BaseModel):
     cid: int
     user_id: str
-    user_pw: str 
-    user_name: str 
-    phone_number: str 
+    user_pw: str
+    user_name: str
+    phone_number: str
     create_date: date
 
     class Config:
@@ -61,3 +65,40 @@ class LoanCreate(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+# 행원
+class BankerCreate(BaseModel):
+    banker_name: str
+    lid: int
+    banker_id: str
+    banker_pw: str
+    local: str
+
+    class Config:
+        orm_mode = True
+
+
+# Combine loan_id, client_id, banker_id
+class CombineID(BaseModel):
+    lid: int
+    cid: int
+    bid: int
+
+    class Config:
+        orm_mode = True
+
+
+# loan_id
+class LoanID(BaseModel):
+    lid: int
+
+
+# client_id
+class ClientID(BaseModel):
+    cid: int
+
+
+# banker_id
+class BankerID(BaseModel):
+    bid: int

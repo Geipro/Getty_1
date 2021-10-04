@@ -21,11 +21,25 @@
             <a class="nav-link" href="#">부적합 대상</a>
           </li>
         </ul>
-        <!-- 검색 -->
         <form class="d-flex offset-5">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
+        <!-- <div class="container-fluid">
+          <div class="row">
+              <div class="col-12 mt-3">
+                  <div class="card">
+                      <div class="card-horizontal">
+                          <h3 style="color:black">적합</h3>
+                          <div class="card-body">
+                              <h4 class="card-title">Card title</h4>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          </div>
+                      </div>
+                  </div>
+                </div> -->
+
+        <!-- 검색 -->
       </div>
       <!-- for문? -->
       <div class="card mt-4">
@@ -102,5 +116,9 @@ export default {
 </script>
 
 <style>
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
 
 </style>

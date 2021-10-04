@@ -1,11 +1,10 @@
 <template>
 <div>
-	<!-- <h3 class="offset-5 mb-4">싸피 은행의 대출 추천 상품을 소개합니다.</h3> -->
-	<!-- 링크로 이동시켜도 될 듯 -->
   <div class="row">
-    <router-link :to="{ name: 'About' }" class="pa-5 btn btn-warning offset-1" style="height: auto">
-      <!-- <p style="text-align:center">뱅킹 로그인</p> -->
-      <h5 class="content" style="text-align:center">뱅킹 로그인</h5>
+    <router-link :to="{ name: 'About' }" class="pa-5 btn btn-warning offset-1" style="height: auto" v-if="!isLogin">
+      <h4 class="content" style="text-align:center">
+        <b-icon icon="box-arrow-in-right" style="text-align:center" aria-hidden="true"></b-icon><br>
+        뱅킹 로그인</h4>
     </router-link>
       <div class="col">
       <h3 class="mb-4">싸피 은행의 대출 추천 상품을 소개합니다.</h3>
@@ -34,6 +33,25 @@
 <script>
 export default {
     name: 'MainPageBottom',
+    data: function () {
+    return {
+      isLogin: false,
+    }
+  },
+  methods: {
+    logout: function () {
+      this.isLogin = false
+      localStorage.removeItem('Token')
+      localStorage.removeItem('ID')
+      this.$router.push({ name: 'Home'})
+    },
+  },
+  created: function () {
+    const token = localStorage.getItem('Token')
+    if (token != null) {
+      this.isLogin = true
+    }
+  }
 }
 </script>
 

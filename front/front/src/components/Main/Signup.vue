@@ -160,6 +160,14 @@
           class="form-control" :class="{error: errors.has('phone')}" id="phone" aria-describedby="phoneHelp" placeholder="01012345678">
           <span class="error" v-if="errors.has('phoneNumber')">{{errors.first('phoneNumber')}}</span>
         </div>
+        
+        <div class="form-group text-left">
+          <label for="job">직업</label> 
+          <input type="text" name="job" v-model="userinfo.job" data-vv-as="직업" v-validate="'required'"
+          class="form-control" :class="{error: errors.has('salary')}" id="job" aria-describedby="jobHelp" placeholder="무직">
+          <span class="error" v-if="errors.has('job')">{{errors.first('job')}}</span>
+        </div>
+
         <div class="form-group text-left">
           <label for="salary">연봉(단위 : 만 원)</label> 
           <input type="digit" name="salary" v-model="userinfo.salary" data-vv-as="연봉" v-validate="'required'"
@@ -239,10 +247,21 @@ export default {
         month: "",
         day: "",
         sex:'',
+        job:'',
         salary:'',
         phone_number:'',
         user_pw:'',
         passwordConfirmation: null
+      },
+      sendData:{
+        user_name:'',
+        user_id:'',
+        birth:'',
+        sex:'',
+        salary:'',
+        job:'무직',
+        phone_number:'',
+        user_pw:'',
       },
       yyyyList: [],
       mmlist: [],
@@ -328,21 +347,30 @@ export default {
       var sumDate = this.userinfo.year
       sumDate = String(sumDate) + String(this.userinfo.month) + String(this.userinfo.day)
       this.userinfo.birth = sumDate
-      alert("이름 : " + this.userinfo.user_name)
-      alert("아이디 : " + this.userinfo.user_id)
-      alert("생년월일 : " + this.userinfo.year + "년" + this.userinfo.month + "월" + this.userinfo.day + "일")
-      alert("성별 : " + this.userinfo.sex)
-      alert("생년월일2 : " + this.userinfo.birth)
+
+      this.sendData.user_name = this.userinfo.user_name
+      this.sendData.user_id = this.userinfo.user_id
+      this.sendData.user_pw = this.userinfo.user_pw
+      this.sendData.birth = this.userinfo.birth
+      this.sendData.sex = this.userinfo.sex
+      this.sendData.job = this.userinfo.job
+      this.sendData.salary = this.userinfo.salary
+      this.sendData.phone_number = this.userinfo.phone_number
+      // alert("이름 : " + this.userinfo.user_name)
+      // alert("아이디 : " + this.userinfo.user_id)
+      // alert("생년월일 : " + this.userinfo.year + "년" + this.userinfo.month + "월" + this.userinfo.day + "일")
+      // alert("성별 : " + this.userinfo.sex)
+      // alert("생년월일2 : " + this.userinfo.birth)
       if (this.onSubmit()) {
         if (this.userinfo.passwordConfirmation) {
           axios({
             method: 'post',
             url: `http://j5a205.p.ssafy.io/signup`,
-            data: this.userinfo
+            data: this.sendData
           }).then((res) => {
             console.log(res)
             alert('회원가입이 완료되었습니다~!')
-            this.login()
+            //this.login()
           }).catch((err) =>{
             alert(err)
           })

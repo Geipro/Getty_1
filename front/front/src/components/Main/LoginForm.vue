@@ -88,10 +88,9 @@ export default {
                 url: `http://j5a205.p.ssafy.io/signin`,
                 data: this.credential
             }).then((res) => {
-                // console.log(res)
-                localStorage.setItem('nickname', this.credential.user_id)
-                localStorage.setItem('JWT_TOKEN', res.data.accessToken)
-                //alert(`${localStorage.getItem('nickname')} 님 반갑습니다!`)
+                console.log(res)
+                localStorage.setItem('ID', this.credential.user_id)
+                alert(`${localStorage.getItem('ID')} 님 반갑습니다!`)
                 this.$router.push({ name: 'User' })
             }).catch((err) => {
                 alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")

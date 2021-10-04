@@ -39,12 +39,6 @@ export default {
     }
   },
   methods: {
-    logout: function () {
-      this.isLogin = false
-      localStorage.removeItem('Token')
-      localStorage.removeItem('ID')
-      this.$router.push({ name: 'Home'})
-    },
   },
   created: function () {
     const token = localStorage.getItem('Token')

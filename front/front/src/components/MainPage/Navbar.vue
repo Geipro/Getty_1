@@ -56,7 +56,7 @@ export default {
       this.isLogin = false
       localStorage.removeItem('Token')
       localStorage.removeItem('ID')
-      this.$router.push({ name: 'Home'})
+      this.$router.go()
     },
   },
   created: function () {

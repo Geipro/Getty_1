@@ -21,7 +21,7 @@
           <div class="text-center mt-5 pb-2">
             <div class="custom-file form-check form-check-inline mb-5">
               <div class="float-left text-right col-md-5">
-                <b-button class="btn btn-warning btn-lg" v-if="hasFile">서류 확인하기</b-button>
+                <b-button class="btn btn-warning btn-lg" v-if="hasFile"><router-link :to="{ name: 'Mypage'}" class="text-light">서류 확인하기</router-link></b-button>
                 <b-button class="btn btn-warning btn-lg" v-else><router-link :to="{ name: 'SubmitDoc' }" class="text-light">서류 제출하기</router-link></b-button>
               </div>
               <div class="float-right text-left col-md-7">
@@ -92,7 +92,9 @@ export default {
       return{
         loanlist: [],
         hasFile : false,
-        token : localStorage.getItem("Token")
+        token:{
+          token : localStorage.getItem('Token'),
+        },
       }
     },
     created(){
@@ -123,15 +125,14 @@ export default {
       axios({
         method: 'get',
         url: 'http://j5a205.p.ssafy.io/user/info',
-        data: this.token
+        headers : {"token" : `${this.token.token}`}
       }).then((res) =>{
         console.log(res.data)
-        alert(res.data.user_files)
         if(res.data.user_files != null){
           this.hasFile = true
         }
       }).catch((err) =>{
-        alert(this.token)
+        alert(this.token.token)
         alert(err)
       })
     },

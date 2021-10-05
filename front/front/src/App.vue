@@ -1,7 +1,7 @@
 <template>
   <div class="h-100" id="app">
     <router-view/>
-    <footer class="fixed-bottom d-flex justify-content-center align-items-center text-white-50 bg-secondary py-4">
+    <footer class="d-flex justify-content-center align-items-center text-white-50 bg-secondary py-4">
       <div class="float-right text-left col-md-7 row">
         <div class="text-left col-4">
           <h5>고객센터 1599-8000</h5>

@@ -167,7 +167,7 @@ async def read_loan(db: Session = Depends(get_db)):
 @app.get("/read_user_loan", status_code=200)
 async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None)):
     """
-    `대출 상품 리스트 가져오기`
+    `고객 조건에 맞는 대출 상품 리스트 가져오기`
     :param db:
     :return:
     """

@@ -1,3 +1,4 @@
+from re import S
 from sqlalchemy.orm import Session
 
 from . import models, schemas
@@ -20,7 +21,16 @@ def get_user_files_by_cid(db: Session, cid: int):
     
 def get_user_loan_by_cid(db: Session, cid: int):
     return db.query(models.UserLoan).filter(models.UserLoan.cid == cid).all()
-    
+
+def get_loan_by_lid(db: Session, lid: int):
+    return db.query(models.LoanProduct).filter(models.LoanProduct.lid == lid).first()
+
+def get_loan_info_by_cli_lid(db: Session, cid:int, lid: int):
+    return db.query(models.UserLoan).filter(models.UserLoan.lid == lid,models.UserLoan.cid==cid).first()
+
+def get_loan_files_by_cli_lid(db: Session, cid:int, lid: int):
+    return db.query(models.UserLoanFiles).filter(models.UserLoanFiles.lid == lid,models.UserLoanFiles.cid==cid).all()
+
 
 def create_user(db: Session, user: schemas.UserCreate):
     # fake_hashed_password = user.user_pw + "notreallyhashed"
@@ -183,3 +193,52 @@ def update_user_status(db:Session, status_info:schemas.UserLoan):
         setattr(loan_data, key, value)
     db.commit()
     return loan_data
+
+
+# 고객 대출 신청 리스트
+def get_loan_list(db:Session):
+    loan_list_data =  db.query(models.UserLoan).all()
+    loan_list=[]
+    for data in loan_list_data:
+        print(data.cid, data.lid)
+        client = get_user_info_by_cid(db=db, cid=data.cid)
+        loan = get_loan_by_lid(db=db, lid=data.lid)
+        is_suitable = get_loan_info_by_cli_lid(db=db,cid=data.cid,lid=data.lid)
+
+        db_loan_info = schemas.UserLoanInfo(
+            cid=data.cid,
+            lid=data.lid,
+            user_name=client.user_name,
+            loan_name=loan.loan_name,
+            is_suitable=is_suitable.is_suitable
+        )
+        loan_list.append(db_loan_info)
+
+    return loan_list
+
+
+# 고객 대출 신청 세부정보
+def get_user_loan_detail(db:Session, cid:int, lid:int):
+    user_info = get_user_info_by_cid(db=db,cid=cid)
+    loan = get_loan_by_lid(db=db, lid=lid)
+    user_loan = get_loan_info_by_cli_lid(db=db,cid=cid,lid=lid)
+
+    detail = schemas.UserLoanInfo(
+        cid=cid,
+        lid=lid,
+        loan_name=loan.loan_name,
+        user_name=user_info.user_name,
+        phone_number= user_info.phone_number,
+        address= user_info.address,
+        job= user_info.job,
+        birth= user_info.birth,
+        sex= user_info.sex,
+        salary= user_info.salary,
+        is_suitable= user_loan.is_suitable,
+    )
+
+    return detail
+
+# 고객이 신청한 상품에 맞는 서류 
+def get_user_loan_files(db:Session,cid:int, lid:int):
+    return get_loan_files_by_cli_lid(db=db,cid=cid,lid=lid)

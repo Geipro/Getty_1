@@ -22,43 +22,27 @@
     </div>
     <!-- 고객데이터 table -->
     <div  class="row mt-3">
-      <table class="table offset-1 col-5 ">
+      <table class="table offset-1 col-10 ">
         <tbody>
           <tr>
-            <th scope="row" class="table-active">이름</th>
-            <td>Mark</td>
+            <th scope="row" class="table-active col-3">이름</th>
+            <td>{{ userinfo.user_name }}</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">연락처</th>
-            <td>010-1234-5678</td>
+            <td>{{ userinfo.phone_number }}</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">주소</th>
-            <td>서울특별시 강남구 역삼동 701</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">직장전화번호</th>
-            <td>02-1544-9001</td>
+            <td>{{ userinfo.address }}</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
-            <td>싸피금융/SW개발</td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table offset-1 col-4">
-        <tbody>
-          <tr>
-            <th scope="row" class="table-active">신용등급</th>
-            <td>2등급 우량신용자</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">자산규모</th>
-            <td>554,500,000원 (상위 5%)</td>
+            <td>{{ userinfo.job }}</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">소득규모</th>
-            <td>6500만원/년</td>
+            <td>{{ userinfo.salary }}</td>
           </tr>
         </tbody>
       </table>
@@ -149,12 +133,40 @@
 
 <script>
 import Navbar from '@/components/MainPage/Navbar.vue'
+import axios from 'axios';
 
 export default {
   name: 'Mypage',
   components: {
     Navbar,
-  }
+  },
+   data: function () {
+    return {
+      token:{
+          token : localStorage.getItem('Token'),
+        },
+      userinfo:{
+        user_name:'',
+        job:'',
+        salary:'',
+        phone_number:'',
+        address: "",
+      },
+    };
+  },
+  mounted(){
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io/user/info',
+      headers : {"token" : `${this.token.token}`}
+    })
+    .then((res) =>{
+      this.userinfo = res.data.user
+      // console.log(this.userinfo)
+    }).catch((err) =>{
+      console.log(err)
+    })
+  },
 }
 </script>
 

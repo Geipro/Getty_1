@@ -110,6 +110,8 @@ class UserLoan(Base):
         comment="고객 대출 상품 ID",
     )
 
+    is_suitable = Column(String(45), nullable=True, default= "확인중", comment="대출 가입 적합/부적합")
+
 class UserLoanFiles(Base):
     __tablename__ = "user_loan_files"
 

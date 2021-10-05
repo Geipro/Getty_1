@@ -22,7 +22,7 @@
             <div class="custom-file form-check form-check-inline mb-5">
               <div class="float-left text-right col-md-5">
                 <b-button class="btn btn-warning btn-lg" v-if="hasFile">서류 확인하기</b-button>
-                <b-button class="btn btn-warning btn-lg" v-else><router-link :to="{ name: 'ProductApply' }" class="text-light">서류 제출하기</router-link></b-button>
+                <b-button class="btn btn-warning btn-lg" v-else><router-link :to="{ name: 'SubmitDoc' }" class="text-light">서류 제출하기</router-link></b-button>
               </div>
               <div class="float-right text-left col-md-7">
                 <div class="text-left">
@@ -91,16 +91,25 @@ export default {
     data: function(){
       return{
         loanlist: [],
-        hasFile : false
+        hasFile : false,
+        token : localStorage.getItem("Token")
       }
     },
     created(){
-      /*
-      axios({
-        method: 'get',
-        url: 'http://j5a205.p.ssafy.io/
-      })
-      */
+      // axios({
+      //   method: 'get',
+      //   url: 'http://j5a205.p.ssafy.io/user/info',
+      //   data: this.token
+      // }).then((res) =>{
+      //   console.log(res.data)
+      //   alert(res.data.user_files)
+      //   if(res.data.user_files != null){
+      //     this.hasFile = true
+      //   }
+      // }).catch((err) =>{
+      //   alert(this.token)
+      //   alert(err)
+      // })
     },
     mounted(){
       axios({
@@ -110,6 +119,20 @@ export default {
         this.loanlist = res.data
       }).catch((err) => {
         console.log(err.headers)
+      }),
+      axios({
+        method: 'get',
+        url: 'http://j5a205.p.ssafy.io/user/info',
+        data: this.token
+      }).then((res) =>{
+        console.log(res.data)
+        alert(res.data.user_files)
+        if(res.data.user_files != null){
+          this.hasFile = true
+        }
+      }).catch((err) =>{
+        alert(this.token)
+        alert(err)
       })
     },
     methods:{

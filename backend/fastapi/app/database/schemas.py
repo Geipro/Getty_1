@@ -103,3 +103,35 @@ class ClientID(BaseModel):
 class BankerID(BaseModel):
     bid: int
 
+
+# 고객 개인 파일 업로드
+class UserUploadFile(BaseModel):
+    cid: int
+    file_url: str
+
+
+# 고객 개인 파일
+class UserFile(BaseModel):
+    cid: Optional[int]
+    file_name: Optional[str]
+    file_url: Optional[str]
+
+
+# 고객 모든 정보
+class UserInfo(BaseModel):
+    user_id: str
+    user_name: str
+    phone_number: str
+    create_date: date
+    address: str
+    job: str
+    birth: str
+    sex: int
+    salary: int
+
+    file_name: Optional[str]
+    file_url: Optional[str]
+    
+    lid: int
+    bid: int
+

@@ -30,6 +30,19 @@ class Client(Base):
 
     # items = relationship("UserInfomation", back_populates="owner")
 
+# client files
+class ClientFile(Base):
+    __tablename__ = "client_file"
+
+    cid = Column(
+        Integer,
+        ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
+        primary_key=True,
+        nullable=False,
+        comment="고객 고유 ID",
+    )
+    file_name = Column(String(45), nullable=True, default="", comment="파일 이름")
+    file_url = Column(String(100), nullable=False, comment="파일 저장소 URL")
 
 # class UserInfomation(Base):
 #     __tablename__ = "user_infomation"
@@ -130,7 +143,7 @@ class UserLoanFiles(Base):
         comment="고객 대출 상품 ID",
     )
 
-    file_name = Column(String(45), nullable=False, comment="파일 이름")
+    file_name = Column(String(45), nullable=True, comment="파일 이름")
     file_url = Column(String(100), nullable=False, comment="파일 저장소 URL")
 
 

@@ -153,7 +153,11 @@ async def upload(fileobject: UploadFile = File(...)):
 
 
 @app.post("/user/file", status_code=200, description="Upload User File to S3")
-async def upload(db: Session = Depends(get_db), fileobject: UploadFile = File(...), token: str = Header(None)):
+async def upload(
+    db: Session = Depends(get_db),
+    fileobject: UploadFile = File(...),
+    token: str = Header(None),
+):
     """
     `고객 파일 저장 API`\n
     :header token:
@@ -166,14 +170,22 @@ async def upload(db: Session = Depends(get_db), fileobject: UploadFile = File(..
     user_id = payload.get("cid")
     if user_id is None:
         raise HTTPException(status_code=400, detail="NO_MATCH_USER")
-        
+
     filename = fileobject.filename
     current_time = datetime.now()
-    split_file_name = os.path.splitext(filename)   #split the file name into two different path (string + extention)
-    file_name_unique = str(current_time.timestamp()).replace('.','')  #for realtime application you must have genertae unique name for the file
-    file_extension = split_file_name[1]  #file extention
-    data = fileobject.file._file  # Converting tempfile.SpooledTemporaryFile to io.BytesIO
-    uploads3 = await s3_client.upload_fileobj(bucket=S3_Bucket, key=file_name_unique+  file_extension, fileobject=data)
+    split_file_name = os.path.splitext(
+        filename
+    )  # split the file name into two different path (string + extention)
+    file_name_unique = str(current_time.timestamp()).replace(
+        ".", ""
+    )  # for realtime application you must have genertae unique name for the file
+    file_extension = split_file_name[1]  # file extention
+    data = (
+        fileobject.file._file
+    )  # Converting tempfile.SpooledTemporaryFile to io.BytesIO
+    uploads3 = await s3_client.upload_fileobj(
+        bucket=S3_Bucket, key=file_name_unique + file_extension, fileobject=data
+    )
     if uploads3:
         s3_url = f"https://{S3_Bucket}.s3.{AWS_REGION}.amazonaws.com/{file_name_unique +  file_extension}"
         return crud.create_user_files(db=db, cid=user_id, file_url=s3_url)
@@ -194,8 +206,8 @@ async def update_upload(file_info: schemas.UserFile, db: Session = Depends(get_d
     return HTTPException(status_code=200, detail="success to update")
 
 
-@app.get("/user/info",status_code=200, description="get Client Information:고객 마이페이지")
-async def get_user_info(db: Session=Depends(get_db), token: str = Header(None)):
+@app.get("/user/info", status_code=200, description="get Client Information:고객 마이페이지")
+async def get_user_info(db: Session = Depends(get_db), token: str = Header(None)):
     """
     `고객 정보 불러오기 API(마이페이지)`\n
     :header token:
@@ -207,20 +219,14 @@ async def get_user_info(db: Session=Depends(get_db), token: str = Header(None)):
     user_cid = payload.get("cid")
     if user_cid is None:
         raise HTTPException(status_code=400, detail="NO_MATCH_USER")
-    user_info = crud.get_user_info_by_cid(db,cid=user_cid)
-    user_files = crud.get_user_files_by_cid(db,cid=user_cid)
-    user_loan = crud.get_user_loan_by_cid(db,cid=user_cid)
+    user_info = crud.get_user_info_by_cid(db, cid=user_cid)
+    user_files = crud.get_user_files_by_cid(db, cid=user_cid)
+    user_loan = crud.get_user_loan_by_cid(db, cid=user_cid)
 
-    
-    return {
-        "user":user_info,
-        "user_files":user_files,
-        "user_loan":user_loan
-    }
-    
+    return {"user": user_info, "user_files": user_files, "user_loan": user_loan}
 
 
-@app.get("/read_loan", status_code=200)
+@app.get("/loan", status_code=200)
 async def read_loan(db: Session = Depends(get_db)):
     """
     `대출 상품 리스트 가져오기`
@@ -233,7 +239,7 @@ async def read_loan(db: Session = Depends(get_db)):
     return db_loan_list
 
 
-@app.get("/read_user_loan", status_code=200)
+@app.get("/user/loan", status_code=200)
 async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None)):
     """
     `고객 조건에 맞는 대출 상품 리스트 가져오기`
@@ -257,7 +263,7 @@ async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None
     # return {}
 
 
-@app.get("/user_loan_list", status_code=200)
+@app.get("/user/loan/list", status_code=200)
 async def user_loan_list(db: Session = Depends(get_db), token: str = Header(None)):
     """
     `고객이 신청한 대출 상품 리스트`
@@ -273,8 +279,13 @@ async def user_loan_list(db: Session = Depends(get_db), token: str = Header(None
         raise HTTPException(status_code=400, detail="NO_MATCH_USER")
     user = crud.get_user_by_userid(db, user_id=user_id)
 
+    db_loan_by_user_list = crud.get_user_loan_by_cid(db, user.cid)
+    if not db_loan_by_user_list:
+        raise HTTPException(status_code=400, detail="user_loan_list error")
+    return db_loan_by_user_list
 
-@app.post("/create_loan", status_code=200, response_model=schemas.LoanCreate)
+
+@app.post("/test/loan", status_code=200, response_model=schemas.LoanCreate)
 async def create_loan(req_info: schemas.LoanCreate, db: Session = Depends(get_db)):
     """
     `대출 상품 리스트 추가`
@@ -285,7 +296,7 @@ async def create_loan(req_info: schemas.LoanCreate, db: Session = Depends(get_db
     return crud.create_loan(db=db, loan=req_info)
 
 
-@app.get("/read_banker", status_code=200)
+@app.get("/banker", status_code=200)
 async def read_banker(db: Session = Depends(get_db)):
     """
     `행원 리스트 보기`
@@ -298,7 +309,7 @@ async def read_banker(db: Session = Depends(get_db)):
     return db_banker_list
 
 
-@app.post("/create_banker", status_code=200, response_model=schemas.BankerCreate)
+@app.post("/test/banker", status_code=200, response_model=schemas.BankerCreate)
 async def create_banker(req_info: schemas.BankerCreate, db: Session = Depends(get_db)):
     """
     `행원 추가`
@@ -309,7 +320,7 @@ async def create_banker(req_info: schemas.BankerCreate, db: Session = Depends(ge
     return crud.create_banker(db=db, banker=req_info)
 
 
-@app.post("/create_relation", status_code=200, response_model=schemas.CombineID)
+@app.post("/test/relation", status_code=200, response_model=schemas.CombineID)
 async def create_relation(
     combine_info: schemas.CombineID, db: Session = Depends(get_db)
 ):
@@ -320,15 +331,10 @@ async def create_relation(
     :param db:
     :return:
     """
-    # return crud.create_relation(
-    #     db=db, client=req_info.cid, banker=req_info.bid, loan=req_info.lid
-    # )
-
     return [
         crud.create_user_loan(db=db, id_info=combine_info),
         crud.create_banker_client(db=db, id_info=combine_info),
     ]
-    # return crud.create_user_loan(db=db, client=req_info.cid, loan=req_info.lid)
 
 
 @app.patch("/user/loan/status", status_code=200)

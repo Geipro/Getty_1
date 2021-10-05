@@ -143,8 +143,6 @@ def update_user_files(db:Session, user_file:schemas.UserFile):
     # print(file_data.cid,file_data.file_name,file_data.file_url)
     # return file_data.update(auto_commit=True, **user_file.dict())
 
-#고객 파일 불러오기
-# def get_user_file():
 
 # 고객 <-> 행원 관계 생성
 def create_banker_client(db: Session, id_info: schemas.CombineID):
@@ -170,3 +168,18 @@ def create_relation(
     create_info.append(create_banker_client(db, client, banker))
 
     return create_info
+
+
+# 고객 대출 적부판정 수정
+def update_user_status(db:Session, status_info:schemas.UserLoan):
+    loan_data = db.query(models.UserLoan).filter(
+        models.UserLoan.cid==status_info.cid,
+        models.UserLoan.lid==status_info.lid
+    ).first()
+    req_dict = status_info.dict()
+    req_dict['cid'] = status_info.cid
+    req = {k:v for k,v in req_dict.items()}
+    for key,value in req.items():
+        setattr(loan_data, key, value)
+    db.commit()
+    return loan_data

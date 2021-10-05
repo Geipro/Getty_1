@@ -131,7 +131,13 @@ class UserInfo(BaseModel):
 
     file_name: Optional[str]
     file_url: Optional[str]
-    
+
     lid: int
     bid: int
 
+
+# 고객이 신청한 대출 
+class UserLoan(BaseModel):
+    cid: int
+    lid: int
+    is_suitable: str

@@ -129,10 +129,10 @@ def create_banker(db: Session, banker: schemas.BankerCreate):
 
 
 # 고객 <-> 대출 상품 관계 생성
-def create_user_loan(db: Session, id_info: schemas.CombineID):
+def create_user_loan(db: Session, user_loan: dict):
     db_user_loan = models.UserLoan(
-        cid=id_info.cid,
-        lid=id_info.lid,
+        cid=user_loan["cid"],
+        lid=user_loan["lid"]
     )
 
     db.add(db_user_loan)

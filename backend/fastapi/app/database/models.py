@@ -45,7 +45,6 @@ class ClientFile(Base):
     cid = Column(
         Integer,
         ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
-        primary_key=True,
         nullable=False,
         comment="고객 고유 ID",
     )
@@ -91,11 +90,17 @@ class Banker(Base):
 
 class UserLoan(Base):
     __tablename__ = "user_loan"
-
+    
+    ulid = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+        nullable=False,
+        comment="고객 상품 가입 고유 ID",
+    )
     cid = Column(
         Integer,
         ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
-        primary_key=True,
         nullable=False,
         comment="고객 고유 ID",
     )
@@ -114,17 +119,22 @@ class UserLoan(Base):
 class UserLoanFiles(Base):
     __tablename__ = "user_loan_files"
 
+    sid = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+        nullable=False,
+        comment="유저 파일 고유 ID",
+    )
     cid = Column(
         Integer,
         ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
-        primary_key=True,
         nullable=False,
         comment="고객 고유 ID",
     )
     lid = Column(
         Integer,
         ForeignKey("loan_product.lid", ondelete="RESTRICT", onupdate="RESTRICT"),
-        primary_key=True,
         nullable=False,
         comment="고객 대출 상품 ID",
     )

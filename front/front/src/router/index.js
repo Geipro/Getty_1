@@ -49,6 +49,11 @@ const routes = [
     path: '/signup',
     name: 'SignupMerge',
     component: () => import('../views/SignupMerge.vue')
+  },
+  {
+    path: '/mypage',
+    name: 'Mypage',
+    component: () => import('../components/Main/Mypage.vue')
   }
 ]
 

@@ -16,14 +16,19 @@
             <router-link :to="{ name: 'LoanList' }" class="text-light nav-link">금융서비스</router-link>
           </li>
           <li class="nav-item">
-            <router-link @click.native="logout" to="#" class="text-light nav-link" text-decoration: none>Logout</router-link>
+            <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link @click.native="logout" to="#" class="text-light nav-link" text-decoration: none>로그아웃</router-link>
           </li>
         </ul>
       </span>
       <span v-else>
         <ul class="nav">
           <li class="nav-item">
-            <!-- url 변경해야됨 -->
+            <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="http://localhost:8080/loanList" style="color: white">금융서비스</a>
           </li>
           <li class="nav-item">

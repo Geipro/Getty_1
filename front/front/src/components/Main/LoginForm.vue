@@ -116,9 +116,3 @@ export default {
     }
 }
 </script>
-<style>
-@import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
-span.error {
-    color: #9F3A38;
-}
-</style>

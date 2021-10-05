@@ -1,15 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-success bg-primary">
   <div class="container-fluid">
-    <div style="color: white">
+    <div style="color: white" class="text-left">
       <router-link :to="{ name: 'Home' }">
         <img src="@/assets/logo.png" style="width:70px">
       </router-link>
       싸피은행
     </div>
-    <!-- 없어도 될 듯 -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <!-- localstorage 에 id, token 있는지 확인해서 만들기-->
       <span v-if="isLogin">
         <ul class="navbar-nav">
           <li class="nav-item">

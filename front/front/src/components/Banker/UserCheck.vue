@@ -48,7 +48,6 @@
       </table>
     </div>
     <hr style="border: solid 1px grey; width: 85%">
-
     <div class="row mt-5">
       <h5 class="col-5">대출신청한 상품</h5>
     </div>
@@ -74,6 +73,7 @@
 
 <script>
 import BankerNavbar from '@/components/Banker/BankerNavbar.vue'
+
 
 export default {
   name: 'UserCheck',

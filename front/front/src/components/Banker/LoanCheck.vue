@@ -85,8 +85,9 @@
     </div>
 
     <!-- pagination -->
+    <!-- footer 겹쳐서 제외 우선순위가 낮아서 일단 제외 -->
     <!-- footer 하단 고정하기  -->
-    <footer class="fixed-bottom d-flex justify-content-center align-items-center text-white-50 py-2">
+    <!-- <footer class="fixed-bottom d-flex justify-content-center align-items-center text-white-50 py-2">
       <nav nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item">
@@ -104,7 +105,7 @@
           </li>
         </ul>
       </nav>
-    </footer>
+    </footer> -->
   </div>
 
 </template>

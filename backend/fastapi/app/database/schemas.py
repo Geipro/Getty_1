@@ -126,16 +126,23 @@ class UserLoanInfo(BaseModel):
     is_suitable: str
 
 
-# 고객이 신청한 대출 
+# 고객이 신청한 대출
 class UserLoan(BaseModel):
     cid: int
     lid: int
     is_suitable: str
 
 
-# 고객이 신청한 대출 디테일
-# 고객 신청 상품 정보
+# 고객이 신청한 대출 리스트
 class UserLoanInfo(BaseModel):
+    cid: int 
+    lid: int
+    loan_name: str
+    user_name: str
+    is_suitable: str
+
+# 고객 신청 상품 세부정보
+class UserLoanDetail(BaseModel):
     cid: int 
     lid: int
     loan_name: str

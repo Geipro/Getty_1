@@ -35,27 +35,27 @@
           <div class="ml-5 mt-4">
               <div>
                 <div class="mt-4 mb-3">
-                    <h4>● 소득 및 재직 확인서</h4>
+                    <h4>● 서류 1</h4>
                 </div>
                 <div class="custom-file form-check form-check-inline">
                   <label class="custom-file-label col-6" for="customFile">Choose file</label>
                   <input type="file" class="custom-file-input" id="customFile" style="width: 60%">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">해당없음</label>
+                  <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">해당없음</label> -->
                 </div>
               </div>
               <div>
-                  <div class="mt-4 mb-3">
-                      <h4 class="text-left">● 건강보험자격득실 확인서</h4>
-                  </div>
-                  <div class="custom-file form-check form-check-inline">
-                    <label class="custom-file-label col-6" for="customFile">Choose file</label>
-                    <input type="file" class="custom-file-input" id="customFile" style="width: 60%">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">해당없음</label>
-                  </div>
+                <div class="mt-4 mb-3">
+                    <h4 class="text-left">● 서류 2</h4>
+                </div>
+                <div class="custom-file form-check form-check-inline">
+                  <label class="custom-file-label col-6" for="customFile">Choose file</label>
+                  <input type="file" class="custom-file-input" id="customFile" style="width: 60%">
+                  <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                  <label class="form-check-label" for="inlineCheckbox1">해당없음</label> -->
+                </div>
               </div>
-              <div>
+              <!-- <div>
                   <div class="mt-4 mb-3">
                       <h4>● 건강장기요양보혐료 납부확인서</h4>
                   </div>
@@ -65,7 +65,7 @@
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                     <label class="form-check-label" for="inlineCheckbox1">해당없음</label>
                   </div>
-              </div>
+              </div> -->
           </div>
           <div class="text-center mt-5">
             <!-- 제출하기 누르면 페이지 만들지 말고 alert으로 제출이 완료 되었습니다. 하기? js code 잘 안되네 -->

@@ -30,6 +30,7 @@ class Client(Base):
 
     # items = relationship("UserInfomation", back_populates="owner")
 
+
 # client files
 class ClientFile(Base):
     __tablename__ = "client_file"
@@ -43,31 +44,6 @@ class ClientFile(Base):
     )
     file_name = Column(String(45), nullable=True, default="", comment="파일 이름")
     file_url = Column(String(100), nullable=False, comment="파일 저장소 URL")
-
-# class UserInfomation(Base):
-#     __tablename__ = "user_infomation"
-
-#     info_id = Column(
-#         Integer,
-#         primary_key=True,
-#         autoincrement=True,
-#         nullable=False,
-#         comment="고객 정보 고유 ID",
-#     )
-#     cid = Column(
-#         Integer,
-#         ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),
-#         primary_key=True,
-#         nullable=False,
-#         comment="고객 고유 ID",
-#     )
-#     address = Column(String(45), nullable=False, comment="주소")
-#     job = Column(String(45), nullable=False, comment="직업")
-#     age = Column(String(45), nullable=False, comment="나이")
-#     sex = Column(Integer, nullable=False, comment="성별")
-#     salary = Column(Integer, nullable=False, comment="연봉")
-
-#     # owner = relationship("Client", back_populates="items")
 
 
 class LoanProduct(Base):
@@ -123,7 +99,10 @@ class UserLoan(Base):
         comment="고객 대출 상품 ID",
     )
 
-    is_suitable = Column(String(45), nullable=True, default= "확인중", comment="대출 가입 적합/부적합")
+    is_suitable = Column(
+        String(45), nullable=True, default="확인중", comment="대출 가입 적합/부적합"
+    )
+
 
 class UserLoanFiles(Base):
     __tablename__ = "user_loan_files"
@@ -163,5 +142,3 @@ class BankerClient(Base):
         nullable=True,
         comment="고객 고유 ID",
     )
-
-

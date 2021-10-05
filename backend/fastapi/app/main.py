@@ -168,6 +168,7 @@ async def read_loan(db: Session = Depends(get_db)):
 async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None)):
     """
     `고객 조건에 맞는 대출 상품 리스트 가져오기`
+    :header token:
     :param db:
     :return:
     """
@@ -185,6 +186,23 @@ async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None
         raise HTTPException(status_code=400, detail="loan error")
     return db_user_loan_list
     # return {}
+
+
+@app.get("/user_loan_list", status_code=200)
+async def user_loan_list(db: Session = Depends(get_db), token: str = Header(None)):
+    """
+    `고객이 신청한 대출 상품 리스트`
+    :header token:
+    :param db:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    user = crud.get_user_by_userid(db, user_id=user_id)
 
 
 @app.post("/create_loan", status_code=200, response_model=schemas.LoanCreate)

@@ -329,3 +329,17 @@ async def create_relation(
         crud.create_banker_client(db=db, id_info=combine_info),
     ]
     # return crud.create_user_loan(db=db, client=req_info.cid, loan=req_info.lid)
+
+
+@app.patch("/user/loan/status", status_code=200)
+async def update_status(status_info: schemas.UserLoan, db: Session = Depends(get_db)):
+    """
+    `신청한 대출 상품 상태 변경 API`\n
+    :param is_suitable:
+    :param db:
+    :return:
+    """
+    if not status_info:
+        raise HTTPException(status_code=400, detail="Invaild Input")
+    crud.update_user_status(db=db, status_info=status_info)
+    return HTTPException(status_code=200, detail="success to update")

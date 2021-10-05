@@ -52,16 +52,16 @@
                     <h5>지정업체에 재직중인 직장인에게 한도와 금리를 우대해드리는 신용대출</h5>
                 </div>
                 <div class="row">
-                  <b-button pill variant="secondary" class="text-left">
+                  <b-button pill variant="secondary" class="text-left ml-3">
                       대출조건>
                   </b-button>
-                  <router-link :to="{ name: 'ProductApply' }" class="pa-5 mr-3 btn btn-primary btn-md offset-8">
+                  <router-link :to="{ name: 'ProductApply' }" class="pa-5 mr-2 btn btn-primary btn-md offset-8">
                     신청하기
                   </router-link>
-                  <b-button variant="dark" class="mr-3">
+                  <b-button variant="dark" class="mr-2 ml-1">
                       상세보기
                   </b-button>
-                  <b-button variant="secondary">
+                  <b-button variant="secondary" class="ml-1">
                       ♡
                   </b-button>
                 </div>

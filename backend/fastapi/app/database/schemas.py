@@ -117,27 +117,42 @@ class UserFile(BaseModel):
     file_url: Optional[str]
 
 
-# 고객 모든 정보
-class UserInfo(BaseModel):
-    user_id: str
-    user_name: str
-    phone_number: str
-    create_date: date
-    address: str
-    job: str
-    birth: str
-    sex: int
-    salary: int
-
-    file_name: Optional[str]
-    file_url: Optional[str]
-
+# 고객 신청 상품 정보
+class UserLoanInfo(BaseModel):
+    cid: int 
     lid: int
-    bid: int
+    user_name: str
+    loan_name: str
+    is_suitable: str
 
 
 # 고객이 신청한 대출
 class UserLoan(BaseModel):
     cid: int
     lid: int
+    is_suitable: str
+
+
+# 고객이 신청한 대출 리스트
+class UserLoanInfo(BaseModel):
+    cid: int 
+    lid: int
+    loan_name: str
+    user_name: str
+    is_suitable: str
+
+# 고객 신청 상품 세부정보
+class UserLoanDetail(BaseModel):
+    cid: int 
+    lid: int
+    loan_name: str
+
+    user_name: str
+    phone_number: str
+    address: str
+    job: str
+    birth: str
+    sex: int
+    salary: int
+    
     is_suitable: str

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import json
 import bcrypt
 import jwt
 import os
@@ -285,6 +286,46 @@ async def user_loan_list(db: Session = Depends(get_db), token: str = Header(None
     if not db_loan_by_user_list:
         raise HTTPException(status_code=400, detail="user_loan_list error")
     return db_loan_by_user_list
+
+
+@app.post("/user/loan/request/{lid}", status_code=200)
+async def user_loan_request(
+    db: Session = Depends(get_db), token: str = Header(None), lid: int = None
+):
+    """
+    `대출 상품 리스트 신청`
+    :header token:
+    :param db:
+    :param lid:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_cid = payload.get("cid")
+    if user_cid is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+
+    db_user_files_by_cid = crud.get_user_files_by_cid(db, cid=user_cid)
+    if db_user_files_by_cid is None:
+        raise HTTPException(status_code=400, detail="This user doesn't have file")
+    print(type(db_user_files_by_cid))
+    print(db_user_files_by_cid.cid)
+
+    return [
+        crud.create_user_loan(db, user_loan={"cid": int(user_cid), "lid": lid}),
+        crud.create_user_loan_request(
+            db,
+            user_loan={
+                "cid": user_cid,
+                "lid": lid,
+                "file_name": db_user_files_by_cid.file_name,
+                "file_url": db_user_files_by_cid.file_url,
+            },
+        ),
+    ]
+
+    # return db_user_files_by_cid
 
 
 @app.post("/test/loan", status_code=200, response_model=schemas.LoanCreate)

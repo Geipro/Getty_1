@@ -38,4 +38,14 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+footer {
+  width: 100%;
+  height: 90px;
+  bottom: 0px;
+  position: absolute;
+  border-top: 1px solid #c4c4c4;
+  padding-top: 15px;
+  color: #808080;
+  font-size: 11px;
+}
 </style>

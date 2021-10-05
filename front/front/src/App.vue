@@ -1,17 +1,18 @@
 <template>
   <div class="h-100" id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <router-view/>
     <footer class="fixed-bottom d-flex justify-content-center align-items-center text-white-50 bg-secondary py-4">
-      <div>
-        <!-- <p class="m-0">고객센터 1599-8000</p> -->
-        <h4 class="m-2">고객센터 1599-8000</h4>
-        <p class="m-0">&copy;SSAFY BANK. All rights reserved</p>
+      <div class="float-right text-left col-md-7 row">
+        <div class="text-left col-4">
+          <h5>고객센터 1599-8000</h5>
+        </div>
+        <div class="col-8">
+          <h5>평일 09:00 ~ 18:00 (은행휴무일 제외)</h5>
+        </div>
+        <div class="text-left">
+          <h6>&copy;SSAFY BANK. All rights reserved</h6>
+        </div>
       </div>
-        <p class="m-2"> 평일 09:00 ~ 18:00 (은행휴무일 제외)</p>
     </footer>
   </div>
 </template>

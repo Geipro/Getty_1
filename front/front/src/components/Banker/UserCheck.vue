@@ -47,6 +47,7 @@
         </tbody>
       </table>
     </div>
+    <hr style="border: solid 1px grey; width: 85%">
 
     <div class="row mt-5">
       <h5 class="col-5">대출신청한 상품</h5>
@@ -60,7 +61,10 @@
     </div>
 
     <div class="row mt-5">
-      <router-link :to="{ name: 'BankerLoan' }" class="pa-5 btn btn-secondary btn-sm col-2 offset-5">
+      <router-link :to="{ name: '#' }" class="pa-3 btn btn-primary btn-sm col-1 mr-4 offset-5">
+        수정
+      </router-link>
+      <router-link :to="{ name: 'BankerLoan' }" class="pa-3 btn btn-secondary btn-sm col-1">
         목록
       </router-link>
     </div>

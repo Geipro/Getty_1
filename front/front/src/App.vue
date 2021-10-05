@@ -1,6 +1,8 @@
 <template>
   <div class="h-100" id="app">
-    <router-view/>
+    <section>
+      <router-view/>
+    </section>
     <footer class="d-flex justify-content-center align-items-center text-white-50 bg-secondary py-4">
       <div class="float-right text-left col-md-7 row">
         <div class="text-left col-4">
@@ -24,6 +26,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
 }
 
 #nav {
@@ -47,5 +52,8 @@ footer {
   padding-top: 15px;
   color: #808080;
   font-size: 11px;
+}
+section {
+  padding-bottom: 105px;
 }
 </style>

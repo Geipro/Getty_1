@@ -56,6 +56,18 @@ def get_loan_by_user(db: Session, user_id: str):
     return db.query(models.LoanProduct).filter()
 
 
+def get_user_loan(db: Session, user: schemas.User):
+    # return db.query(models.LoanProduct).all()
+    return (
+        db.query(models.LoanProduct)
+        .filter(
+            models.LoanProduct.loan_age <= date.today().year - int(user.birth[0:4]),
+            models.LoanProduct.loan_salary <= int(user.salary),
+        )
+        .all()
+    )
+
+
 def get_banker(db: Session):
     return db.query(models.Banker).all()
 

@@ -54,6 +54,11 @@ const routes = [
     path: '/mypage',
     name: 'Mypage',
     component: () => import('../components/Main/Mypage.vue')
+  },
+  {
+    path: '/submitDoc',
+    name: 'SubmitDoc',
+    component: () => import('../components/User/Submit.vue')
   }
 ]
 

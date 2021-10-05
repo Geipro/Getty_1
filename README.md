@@ -66,14 +66,57 @@ https://ichi.pro/ko/chobojaleul-wihan-keras-ui-dangyebyeol-vgg16-guhyeon-1849403
 ![DB 이미지](./img/DB이미지.JPG)
 
 2. UI 디자인
-![UI 이미지](./UI-mockup/customer/01_홈화면.png)
-![UI 이미지](./UI-mockup/customer/02_로그인화면.png)
-![UI 이미지](./UI-mockup/customer/03_대출상품화면.png)
-![UI 이미지](./UI-mockup/customer/04_신청화면1.png)
-![UI 이미지](./UI-mockup/customer/05_신청화면2.png)
-![UI 이미지](./UI-mockup/bank/06_행원화면.png)
-![UI 이미지](./UI-mockup/bank/07_고객정보확인.png)
-![UI 이미지](./UI-mockup/bank/08_제출서류확인.png)
+
+  ### 홈화면
+
+  ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\01_홈화면.png)
+
+  ### 고객
+
+  1. 로그인화면
+
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\02_로그인화면.png)
+
+  2. 대출상품화면
+
+     - "서류 제출 전" 화면
+
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\03_대출상품화면2.png)
+
+     - "서류 제출 후" 화면
+
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\06_대출상품화면(나의조건에맞는).png)
+
+     
+
+  3. 서류제출화면
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\04_서류제출화면1.png)
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\05_서류제출화면2.png)
+
+  
+
+  4. 마이페이지
+
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\customer\07_마이페이지.png)
+
+  
+
+  
+
+  ### 은행 (주기능)
+
+  1. 행원화면
+
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\bank\08_행원화면.png)
+
+  2. 고객정보확인
+
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\bank\09_고객정보확인.png)
+
+  3. 제출서류확인
+     ![홈화면](C:\Users\multicampus\Documents\PJT2-ai\PJT1\S05P21A205\UI-mockup\bank\10_제출서류확인.png)
+
+  
 
 
 
@@ -89,4 +132,5 @@ QnA
 프로젝트를 진행 시 주의해야 할 점 혹은 어려울 것으로 예상되는 부분이 있는지 궁금합니다.
 
 
-###감사합니다
+
+### 감사합니다

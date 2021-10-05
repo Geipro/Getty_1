@@ -18,7 +18,23 @@
           </div>
         </nav>
         <div class="container">
-          <div class="logo mt-5 md-5 mb-5 text-left">
+          <div class="text-center mt-5 pb-2">
+            <div class="custom-file form-check form-check-inline mb-5">
+              <div class="float-left text-right col-md-5">
+                <b-button class="btn btn-warning btn-lg" v-if="hasFile"><router-link :to="{ name: 'Mypage'}" class="text-light">서류 확인하기</router-link></b-button>
+                <b-button class="btn btn-warning btn-lg" v-else><router-link :to="{ name: 'SubmitDoc' }" class="text-light">서류 제출하기</router-link></b-button>
+              </div>
+              <div class="float-right text-left col-md-7">
+                <div class="text-left">
+                  <h6>서류를 무작위로 제출하여</h6>
+                </div>
+                <div class="text-left">
+                  <h5 class="ml-5">"나의 조건"에 맞는 대출상품을 확인해보세요!</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="logo md-5 mb-5 text-left">
               <h1>★ 신용 대출 상품</h1>
           </div>
           <div v-for="(item, idx) in this.loanlist"
@@ -36,16 +52,16 @@
                     <h5>지정업체에 재직중인 직장인에게 한도와 금리를 우대해드리는 신용대출</h5>
                 </div>
                 <div class="row">
-                  <b-button pill variant="secondary" class="text-left">
+                  <b-button pill variant="secondary" class="text-left ml-3">
                       대출조건>
                   </b-button>
-                  <router-link :to="{ name: 'ProductApply' }" class="pa-5 mr-3 btn btn-primary btn-md offset-8">
+                  <router-link :to="{ name: 'ProductApply' }" class="pa-5 mr-2 btn btn-primary btn-md offset-8">
                     신청하기
                   </router-link>
-                  <b-button variant="dark" class="mr-3">
+                  <b-button variant="dark" class="mr-2 ml-1">
                       상세보기
                   </b-button>
-                  <b-button variant="secondary">
+                  <b-button variant="secondary" class="ml-1">
                       ♡
                   </b-button>
                 </div>
@@ -74,20 +90,51 @@ export default {
     },
     data: function(){
       return{
-        loanlist: []
+        loanlist: [],
+        hasFile : false,
+        token:{
+          token : localStorage.getItem('Token'),
+        },
       }
+    },
+    created(){
+      // axios({
+      //   method: 'get',
+      //   url: 'http://j5a205.p.ssafy.io/user/info',
+      //   data: this.token
+      // }).then((res) =>{
+      //   console.log(res.data)
+      //   alert(res.data.user_files)
+      //   if(res.data.user_files != null){
+      //     this.hasFile = true
+      //   }
+      // }).catch((err) =>{
+      //   alert(this.token)
+      //   alert(err)
+      // })
     },
     mounted(){
       axios({
         method: 'get',
-        url: `http://j5a205.p.ssafy.io/read_loan`,
+        url: `http://j5a205.p.ssafy.io/loan`,
       }).then((res) => {
-        alert("성공")
         this.loanlist = res.data
-        console.log(this.loanlist)
       }).catch((err) => {
         console.log(err.headers)
-      })
+      }),
+
+        axios({
+          method: 'get',
+          url: 'http://j5a205.p.ssafy.io/user/info',
+          headers : {"token" : `${this.token.token}`}
+        }).then((res) =>{
+          console.log(res.data)
+          if(res.data.user_files[0] != null){
+            this.hasFile = true
+          }
+        }).catch((err) =>{
+          console.log(err)
+        })
     },
     methods:{
 

@@ -235,20 +235,20 @@ def createDataSets():
         cmd2 = int(input())
         if cmd2 == 1:
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
-            for i in tqdm(range(1000)):
+            for i in tqdm(range(10)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
                 form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[i], company=newComp[i],
                                 num1=newNum3[i], tax1=str(geonbo[i]), tax2=str(yobo[i]), index=i)
         elif cmd2 == 2:
             print('건강보험자격득실 확인서, 건강장기요양보험료 납부확인서 생성')
-            for i in tqdm(range(1000)):
+            for i in tqdm(range(10)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
                 form2.makedata2(number=newNum2[i], name=newName[i], personal=newPer2[i], company=newComp[i],
                                 num1=newNum3[i], tax1=str(geonbo[i]), tax2=str(yobo[i]), index=i)
 
         elif cmd2 == 3:
             print('건강보험자격득실 확인서, 소득금액증명원, 근로소득원천징수영수증 생성')
-            for i in tqdm(range(1000)):
+            for i in tqdm(range(10)):
                 form1.makedata1(number=newNum[i], name=newName[i], personal=newPer[i], company=newComp[i], index=i)
                 form3.makedata3(name=newName[i], personal=newPer[i], company=newComp[i],
                                 income=str(int(newTotal[i])//12), tax=newtotTax[i], index=i)
@@ -260,7 +260,7 @@ def createDataSets():
         cmd2 = int(input())
         if cmd2 == 1:
             print('자동차 매매 계약서, 자동차 등록원부 생성')
-            for i in tqdm(range(1000)):
+            for i in tqdm(range(10)):
                 form6.makedata6(name=newName[i], name2=newName2[i], address=newAddr[i], address2=newAddr2[i],
                                 personal=newPer[i], personal2=newPer3[i], phone=newPhoneNum1[i], phone2=newPhoneNum2[i],
                               carnum=newCarNum[i], carlist=newCarList[i], chadae=chaDaeNum[i], index=i)
@@ -272,7 +272,7 @@ def createDataSets():
 
         elif cmd2 == 2:
             print('자동차 매매 계약서, 자동차 등록증 생성')
-            for i in tqdm(range(1000)):
+            for i in tqdm(range(10)):
                 form6.makedata6(name=newName[i], name2=newName2[i], address=newAddr[i], address2=newAddr2[i],
                                 personal=newPer[i], personal2=newPer3[i], phone=newPhoneNum1[i], phone2=newPhoneNum2[i],
                                 carnum=newCarNum[i], carlist=newCarList[i], chadae=chaDaeNum[i], index=i)

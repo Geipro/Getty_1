@@ -6,48 +6,37 @@
     </div>
     <!-- 고객데이터 table -->
     <div  class="row mt-3">
-      <table class="table offset-1 col-5 ">
+      <table class="table offset-1 col-10 ">
         <tbody>
           <tr>
-            <th scope="row" class="table-active">이름</th>
-            <td>Mark</td>
+            <th scope="row" class="table-active col-3">이름</th>
+            <!-- <td>{{ userinfo.user_name }}</td> -->
+            <td>이름</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">연락처</th>
-            <td>010-1234-5678</td>
+            <!-- <td>{{ userinfo.phone_number }}</td> -->
+            <td>연락처</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">주소</th>
-            <td>서울특별시 강남구 역삼동 701</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">직장전화번호</th>
-            <td>02-1544-9001</td>
+            <td>주소</td>
+            <!-- <td>{{ userinfo.address }}</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
-            <td>싸피금융/SW개발</td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table offset-1 col-4">
-        <tbody>
-          <tr>
-            <th scope="row" class="table-active">신용등급</th>
-            <td>2등급 우량신용자</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">자산규모</th>
-            <td>554,500,000원 (상위 5%)</td>
+            <!-- <td>{{ userinfo.job }}</td> -->
+            <td>직장</td>
           </tr>
           <tr>
             <th scope="row" class="table-active">소득규모</th>
-            <td>6500만원/년</td>
+            <!-- <td>{{ userinfo.salary }}</td> -->
+            <td>소득규모</td>
           </tr>
         </tbody>
       </table>
     </div>
-
+    <hr style="border: solid 1px grey; width: 85%">
     <div class="row mt-5">
       <h5 class="col-5">대출신청한 상품</h5>
     </div>
@@ -56,11 +45,24 @@
       <router-link :to="{ name: 'FileCheck' }" class="pa-5 btn btn-danger btn-sm">
         제출서류 확인
       </router-link>
-      <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a>
+      <!-- <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a> -->
+      <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div> -->
     </div>
 
     <div class="row mt-5">
-      <router-link :to="{ name: 'BankerLoan' }" class="pa-5 btn btn-secondary btn-sm col-2 offset-5">
+      <router-link :to="{ name: '#' }" class="pa-3 btn btn-primary btn-sm col-1 mr-4 offset-5">
+        수정
+      </router-link>
+      <router-link :to="{ name: 'BankerLoan' }" class="pa-3 btn btn-secondary btn-sm col-1">
         목록
       </router-link>
     </div>
@@ -70,12 +72,36 @@
 
 <script>
 import BankerNavbar from '@/components/Banker/BankerNavbar.vue'
+import axios from 'axios';
 
 export default {
   name: 'UserCheck',
   components: {
     BankerNavbar,
-  }
+  },
+  data: function () {
+    return {
+      userdata:{
+        user_name:'',
+        loan_name:'',
+        lid:'',
+        cid:'',
+        is_suitable: "",
+      },
+    };
+  },
+  mounted(){
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io/loan/user/list',
+    })
+    .then((res) =>{
+      console.log(res.data)
+      // this.userdata = res.data.user
+    }).catch((err) =>{
+      console.log(err)
+    })
+  },
 }
 </script>
 

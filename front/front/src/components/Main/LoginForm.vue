@@ -89,7 +89,9 @@ export default {
                 data: this.credential
             }).then((res) => {
                 console.log(res)
+                var token = res.data.Authorization
                 localStorage.setItem('ID', this.credential.user_id)
+                localStorage.setItem('Token', token)
                 alert(`${localStorage.getItem('ID')} 님 반갑습니다!`)
                 this.$router.push('/')
             }).catch((err) => {
@@ -114,9 +116,3 @@ export default {
     }
 }
 </script>
-<style>
-@import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
-span.error {
-    color: #9F3A38;
-}
-</style>

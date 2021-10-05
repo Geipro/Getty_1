@@ -8,7 +8,14 @@ from fastapi import Depends, FastAPI, HTTPException, Header, UploadFile, File, B
 from sqlalchemy.orm import Session
 
 from database import crud, schemas, models, s3_utils
-from common.consts import JWT_SECRET, JWT_ALGORITHM, AWS_ACCESS_KEY_ID, AWS_REGION, AWS_SECRET_ACCESS_KEY, S3_Bucket
+from common.consts import (
+    JWT_SECRET,
+    JWT_ALGORITHM,
+    AWS_ACCESS_KEY_ID,
+    AWS_REGION,
+    AWS_SECRET_ACCESS_KEY,
+    S3_Bucket,
+)
 from database.database import SessionLocal, engine
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -43,8 +50,10 @@ def get_db():
     finally:
         db.close()
 
+
 # Object of S3_SERVICE Class
 s3_client = s3_utils.S3_SERVICE(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION)
+
 
 @app.post("/signup", status_code=200, response_model=schemas.User)
 async def signup(user_info: schemas.UserCreate, db: Session = Depends(get_db)):
@@ -109,7 +118,7 @@ async def get_user(db: Session = Depends(get_db), token: str = Header(None)):
     user_id = payload.get("user_id")
     if user_id is None:
         raise HTTPException(status_code=400, detail="NO_MATCH_USER")
-    user = crud.get_user_by_userid(db,user_id=user_id)
+    user = crud.get_user_by_userid(db, user_id=user_id)
     return user
 
 
@@ -122,17 +131,24 @@ async def upload(fileobject: UploadFile = File(...)):
     """
     filename = fileobject.filename
     current_time = datetime.now()
-    split_file_name = os.path.splitext(filename)   #split the file name into two different path (string + extention)
-    file_name_unique = str(current_time.timestamp()).replace('.','')  #for realtime application you must have genertae unique name for the file
-    file_extension = split_file_name[1]  #file extention
-    data = fileobject.file._file  # Converting tempfile.SpooledTemporaryFile to io.BytesIO
-    uploads3 = await s3_client.upload_fileobj(bucket=S3_Bucket, key=file_name_unique+  file_extension, fileobject=data)
+    split_file_name = os.path.splitext(
+        filename
+    )  # split the file name into two different path (string + extention)
+    file_name_unique = str(current_time.timestamp()).replace(
+        ".", ""
+    )  # for realtime application you must have genertae unique name for the file
+    file_extension = split_file_name[1]  # file extention
+    data = (
+        fileobject.file._file
+    )  # Converting tempfile.SpooledTemporaryFile to io.BytesIO
+    uploads3 = await s3_client.upload_fileobj(
+        bucket=S3_Bucket, key=file_name_unique + file_extension, fileobject=data
+    )
     if uploads3:
         s3_url = f"https://{S3_Bucket}.s3.{AWS_REGION}.amazonaws.com/{file_name_unique +  file_extension}"
-        return {"status": "success", "image_url": s3_url}  #response added 
+        return {"status": "success", "image_url": s3_url}  # response added
     else:
         raise HTTPException(status_code=400, detail="Failed to upload in S3")
-
 
 
 @app.get("/read_loan", status_code=200)
@@ -143,10 +159,31 @@ async def read_loan(db: Session = Depends(get_db)):
     :return:
     """
     db_loan_list = crud.get_loan(db)
-    # print(db_loan_list)
     if not db_loan_list:
         raise HTTPException(status_code=400, detail="loan error")
     return db_loan_list
+
+
+@app.get("/read_user_loan", status_code=200)
+async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None)):
+    """
+    `대출 상품 리스트 가져오기`
+    :param db:
+    :return:
+    """
+    if token == None:
+        raise HTTPException(status_code=400, detail="Header doesn't have Auth Token")
+    payload = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
+    user_id = payload.get("user_id")
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="NO_MATCH_USER")
+    user = crud.get_user_by_userid(db, user_id=user_id)
+
+    db_user_loan_list = crud.get_user_loan(db, user)
+    # print(db_loan_list)
+    if not db_user_loan_list:
+        raise HTTPException(status_code=400, detail="loan error")
+    return db_user_loan_list
     # return {}
 
 

@@ -136,7 +136,7 @@ class UserInfo(BaseModel):
     bid: int
 
 
-# 고객이 신청한 대출 
+# 고객이 신청한 대출
 class UserLoan(BaseModel):
     cid: int
     lid: int

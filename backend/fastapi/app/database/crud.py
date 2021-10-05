@@ -12,15 +12,18 @@ def get_user(db: Session, user_id: int):
 def get_user_by_userid(db: Session, user_id: str):
     return db.query(models.Client).filter(models.Client.user_id == user_id).first()
 
+
 def get_user_info_by_cid(db: Session, cid: int):
     return db.query(models.Client).filter(models.Client.cid == cid).first()
-    
+
+
 def get_user_files_by_cid(db: Session, cid: int):
     return db.query(models.ClientFile).filter(models.ClientFile.cid == cid).all()
-    
+
+
 def get_user_loan_by_cid(db: Session, cid: int):
     return db.query(models.UserLoan).filter(models.UserLoan.cid == cid).all()
-    
+
 
 def create_user(db: Session, user: schemas.UserCreate):
     # fake_hashed_password = user.user_pw + "notreallyhashed"
@@ -116,27 +119,30 @@ def create_user_loan(db: Session, id_info: schemas.CombineID):
     db.refresh(db_user_loan)
     return db_user_loan
 
+
 # 고객 파일 저장
-def create_user_files(db:Session, cid:int, file_url:str):
-    db_user_file = models.ClientFile(
-        cid=cid,
-        file_url=file_url
-    )
+def create_user_files(db: Session, cid: int, file_url: str):
+    db_user_file = models.ClientFile(cid=cid, file_url=file_url)
     db.add(db_user_file)
     db.commit()
     db.refresh(db_user_file)
     return db_user_file
 
+
 # 고객 파일 수정
-def update_user_files(db:Session, user_file:schemas.UserFile):
-    file_data = db.query(models.ClientFile).filter(
-        models.ClientFile.cid==user_file.cid,
-        models.ClientFile.file_url==user_file.file_url
-    ).first()
+def update_user_files(db: Session, user_file: schemas.UserFile):
+    file_data = (
+        db.query(models.ClientFile)
+        .filter(
+            models.ClientFile.cid == user_file.cid,
+            models.ClientFile.file_url == user_file.file_url,
+        )
+        .first()
+    )
     req_dict = user_file.dict()
-    req_dict['cid'] = user_file.cid
-    req = {k:v for k,v in req_dict.items()}
-    for key,value in req.items():
+    req_dict["cid"] = user_file.cid
+    req = {k: v for k, v in req_dict.items()}
+    for key, value in req.items():
         setattr(file_data, key, value)
     db.commit()
     return file_data
@@ -171,15 +177,19 @@ def create_relation(
 
 
 # 고객 대출 적부판정 수정
-def update_user_status(db:Session, status_info:schemas.UserLoan):
-    loan_data = db.query(models.UserLoan).filter(
-        models.UserLoan.cid==status_info.cid,
-        models.UserLoan.lid==status_info.lid
-    ).first()
+def update_user_status(db: Session, status_info: schemas.UserLoan):
+    loan_data = (
+        db.query(models.UserLoan)
+        .filter(
+            models.UserLoan.cid == status_info.cid,
+            models.UserLoan.lid == status_info.lid,
+        )
+        .first()
+    )
     req_dict = status_info.dict()
-    req_dict['cid'] = status_info.cid
-    req = {k:v for k,v in req_dict.items()}
-    for key,value in req.items():
+    req_dict["cid"] = status_info.cid
+    req = {k: v for k, v in req_dict.items()}
+    for key, value in req.items():
         setattr(loan_data, key, value)
     db.commit()
     return loan_data

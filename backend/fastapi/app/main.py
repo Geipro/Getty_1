@@ -132,16 +132,18 @@ async def upload(fileobject: UploadFile = File(...)):
     """
     filename = fileobject.filename
     current_time = datetime.now()
-    split_file_name = os.path.splitext(
-        filename
-    )  # split the file name into two different path (string + extention)
-    file_name_unique = str(current_time.timestamp()).replace(
-        ".", ""
-    )  # for realtime application you must have genertae unique name for the file
+
+    # split the file name into two different path (string + extention)
+    split_file_name = os.path.splitext(filename)
+
+    # for realtime application you must have genertae unique name for the file
+    file_name_unique = str(current_time.timestamp()).replace(".", "")
+
     file_extension = split_file_name[1]  # file extention
-    data = (
-        fileobject.file._file
-    )  # Converting tempfile.SpooledTemporaryFile to io.BytesIO
+
+    # Converting tempfile.SpooledTemporaryFile to io.BytesIO
+    data = fileobject.file._file
+
     uploads3 = await s3_client.upload_fileobj(
         bucket=S3_Bucket, key=file_name_unique + file_extension, fileobject=data
     )
@@ -173,16 +175,18 @@ async def upload(
 
     filename = fileobject.filename
     current_time = datetime.now()
-    split_file_name = os.path.splitext(
-        filename
-    )  # split the file name into two different path (string + extention)
-    file_name_unique = str(current_time.timestamp()).replace(
-        ".", ""
-    )  # for realtime application you must have genertae unique name for the file
+
+    # split the file name into two different path (string + extention)
+    split_file_name = os.path.splitext(filename)
+
+    # for realtime application you must have genertae unique name for the file
+    file_name_unique = str(current_time.timestamp()).replace(".", "")
+
     file_extension = split_file_name[1]  # file extention
-    data = (
-        fileobject.file._file
-    )  # Converting tempfile.SpooledTemporaryFile to io.BytesIO
+
+    # Converting tempfile.SpooledTemporaryFile to io.BytesIO
+    data = fileobject.file._file
+
     uploads3 = await s3_client.upload_fileobj(
         bucket=S3_Bucket, key=file_name_unique + file_extension, fileobject=data
     )
@@ -256,11 +260,9 @@ async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None
     user = crud.get_user_by_userid(db, user_id=user_id)
 
     db_user_loan_list = crud.get_user_loan(db, user)
-    # print(db_loan_list)
     if not db_user_loan_list:
         raise HTTPException(status_code=400, detail="loan error")
     return db_user_loan_list
-    # return {}
 
 
 @app.get("/user/loan/list", status_code=200)

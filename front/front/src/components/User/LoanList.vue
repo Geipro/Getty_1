@@ -122,19 +122,19 @@ export default {
       }).catch((err) => {
         console.log(err.headers)
       }),
-      axios({
-        method: 'get',
-        url: 'http://j5a205.p.ssafy.io/user/info',
-        headers : {"token" : `${this.token.token}`}
-      }).then((res) =>{
-        console.log(res.data)
-        if(res.data.user_files != null){
-          this.hasFile = true
-        }
-      }).catch((err) =>{
-        alert(this.token.token)
-        alert(err)
-      })
+      
+        axios({
+          method: 'get',
+          url: 'http://j5a205.p.ssafy.io/user/info',
+          headers : {"token" : `${this.token.token}`}
+        }).then((res) =>{
+          console.log(res.data)
+          if(res.data.user_files[0] != null){
+            this.hasFile = true
+          }
+        }).catch((err) =>{
+          console.log(err)
+        })
     },
     methods:{
 

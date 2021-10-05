@@ -45,7 +45,17 @@
       <router-link :to="{ name: 'FileCheck' }" class="pa-5 btn btn-danger btn-sm">
         제출서류 확인
       </router-link>
-      <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a>
+      <!-- <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a> -->
+      <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div> -->
     </div>
 
     <div class="row mt-5">
@@ -62,13 +72,36 @@
 
 <script>
 import BankerNavbar from '@/components/Banker/BankerNavbar.vue'
-
+import axios from 'axios';
 
 export default {
   name: 'UserCheck',
   components: {
     BankerNavbar,
-  }
+  },
+  data: function () {
+    return {
+      userdata:{
+        user_name:'',
+        loan_name:'',
+        lid:'',
+        cid:'',
+        is_suitable: "",
+      },
+    };
+  },
+  mounted(){
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io/loan/user/list',
+    })
+    .then((res) =>{
+      console.log(res.data)
+      // this.userdata = res.data.user
+    }).catch((err) =>{
+      console.log(err)
+    })
+  },
 }
 </script>
 

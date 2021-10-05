@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'Home' }">
         <img src="@/assets/logo.png" style="width:70px">
       </router-link>
-      <!-- 싸피은행 -->
+      싸피은행
     </div>
     <!-- 없어도 될 듯 -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

@@ -35,6 +35,13 @@ class Client(Base):
 class ClientFile(Base):
     __tablename__ = "client_file"
 
+    fid = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+        nullable=False,
+        comment="파일 고유 ID",
+    )
     cid = Column(
         Integer,
         ForeignKey("client.cid", ondelete="RESTRICT", onupdate="RESTRICT"),

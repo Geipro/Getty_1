@@ -347,8 +347,8 @@ async def read_banker(db: Session = Depends(get_db)):
     :return:
     """
     db_banker_list = crud.get_banker(db)
-    if not db_banker_list:
-        raise HTTPException(status_code=400, detail="banker error")
+    # if not db_banker_list:
+    #     raise HTTPException(status_code=400, detail="banker error")
     return db_banker_list
 
 

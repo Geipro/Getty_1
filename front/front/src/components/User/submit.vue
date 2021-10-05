@@ -68,7 +68,7 @@
             <br><br><br>
             <div class="text-center">
                 <b-button class="btn btn-secondary pa-5 mr-2" onclick="window.open('https://www.shinhan.com/hpe/index.jsp#050404040000')">상세보기</b-button>
-                <router-link :to="{ name: '' }" class="pa-5 mr-2 btn btn-primary btn-md">
+                <router-link :to="{ name: 'ApplyDetail' }" class="pa-5 mr-2 btn btn-primary btn-md">
                     동의하기
                 </router-link>
                 <router-link :to="{ name: 'LoanList' }" class="pa-5 mr-2 btn btn-dark btn-md">

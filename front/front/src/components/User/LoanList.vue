@@ -116,13 +116,13 @@ export default {
     mounted(){
       axios({
         method: 'get',
-        url: `http://j5a205.p.ssafy.io/read_loan`,
+        url: `http://j5a205.p.ssafy.io/loan`,
       }).then((res) => {
         this.loanlist = res.data
       }).catch((err) => {
         console.log(err.headers)
       }),
-      
+
         axios({
           method: 'get',
           url: 'http://j5a205.p.ssafy.io/user/info',

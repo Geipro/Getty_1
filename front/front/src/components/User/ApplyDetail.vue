@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <nav nav class="bg-primary">
+    <!-- <nav nav class="bg-primary">
       <div style="height: 30px">
         <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
           신용대출
@@ -16,7 +16,7 @@
           MY CAR
         </router-link>
       </div>
-    </nav>
+    </nav> -->
     <div class="container mt-5">
       <div class="text-left ml-10 mr-10" id="first">
           <div class="logo mt-3 mb-5">
@@ -124,9 +124,9 @@ import axios from 'axios';
                 method: "post",
                 url: `http://j5a205.p.ssafy.io/user/file`,
                 data: formData,
-                headers: { 
+                headers: {
                   "token" : this.token.token,
-                  "Content-Type": "multipart/form-data" 
+                  "Content-Type": "multipart/form-data"
                 },
               })
               .then(function (res) {

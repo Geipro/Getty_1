@@ -1,7 +1,7 @@
 <template>
     <div id="sumbitPage">
         <Navbar />
-        <nav nav class="bg-primary">
+        <!-- <nav nav class="bg-primary">
             <div style="height: 30px">
                 <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
                     신용대출
@@ -16,7 +16,7 @@
                     Y CAR
                 </router-link>
             </div>
-        </nav>
+        </nav> -->
         <div class="container mt-5">
             <div class="logo md-5 mb-5 text-left">
                 <h1>★ 나의 서류 제출하기</h1>

@@ -1,7 +1,7 @@
 <template>
     <div id="first">
       <Navbar />
-      <nav nav class="bg-primary">
+      <!-- <nav nav class="bg-primary">
         <div style="height: 30px">
           <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
             신용대출
@@ -16,7 +16,7 @@
             MY CAR
           </router-link>
         </div>
-      </nav>
+      </nav> -->
       <div class="container text-left">
         <div class="logo mt-5 md-5 mb-5">
             <h1>★ 대출 신청하기</h1>

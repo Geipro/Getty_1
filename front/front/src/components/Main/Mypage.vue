@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <nav nav class="bg-primary">
+    <!-- <nav nav class="bg-primary">
       <div style="height: 30px">
         <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
           신용대출
@@ -16,7 +16,7 @@
           MY CAR
         </router-link>
       </div>
-    </nav>
+    </nav> -->
     <div class="row mt-4">
       <h4 class="col-5">마이페이지</h4>
     </div>
@@ -32,10 +32,10 @@
             <th scope="row" class="table-active">연락처</th>
             <td>{{ userinfo.phone_number }}</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <th scope="row" class="table-active">주소</th>
             <td>{{ userinfo.address }}</td>
-          </tr>
+          </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
             <td>{{ userinfo.job }}</td>
@@ -71,16 +71,6 @@
             <td>소득증명서</td>
             <td><button type="button" class="btn btn-warning">확인하기</button></td>
           </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">3</th>
-            <td>건강보험자격득실증명서</td>
-            <td>건강보험자격득실확인서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">4</th>
-            <td>건강장기요양보험료 납부확인서</td>
-            <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr> -->
         </tbody>
       </table>
     </div>
@@ -99,26 +89,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="table-active">1</th>
-            <td>재직증명서</td>
-            <td><button type="button" class="btn btn-primary">적합</button></td>
+          <tr v-for="(name, index) in loaninfo" :key="index">
+            <th scope="row" class="table-active">{{ index + 1 }}</th>
+            <td>{{ name[0].loan_name }}</td>
+            <td>{{ name[0].is_suitable }}</td>
           </tr>
-          <tr>
-            <th scope="row" class="table-active">2</th>
-            <td>소득증명서</td>
-            <td><button type="button" class="btn btn-danger">부적합</button></td>
-          </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">3</th>
-            <td>건강보험자격득실증명서</td>
-            <td>건강보험자격득실확인서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">4</th>
-            <td>건강장기요양보험료 납부확인서</td>
-            <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr> -->
         </tbody>
       </table>
     </div>
@@ -152,7 +127,8 @@ export default {
         phone_number:'',
         address: "",
       },
-    };
+      loaninfo:[]
+    }
   },
   mounted(){
     axios({
@@ -163,6 +139,18 @@ export default {
     .then((res) =>{
       this.userinfo = res.data.user
       // console.log(this.userinfo)
+    }).catch((err) =>{
+      console.log(err)
+    })
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io/user/loan/list',
+      headers : {"token" : `${this.token.token}`}
+    })
+    .then((res) =>{
+      this.loaninfo = res.data
+      // this.loaninfo = res.data[1][0]
+      // console.log(res.data)
     }).catch((err) =>{
       console.log(err)
     })

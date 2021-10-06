@@ -22,15 +22,9 @@
                         <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
                     </div>
                     <div class="text-center">
-                        <!--
-                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" @click.prevent="getJWT">Login</button>
-                        -->
                         <button type="submit" @click="loginCheck" class="btn btn-block mybtn btn-primary tx-tfm">Login</button>
                     </div>
                     <div class="links">
-                        <!--
-                        <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
-                        -->
                         <div class="member text-center mt-3">
                             <router-link  :to="{ name: 'SignupMerge' }">
                                 <a id="goSignup">  회원가입</a>
@@ -73,15 +67,6 @@ export default {
         }
     },
     methods: {
-        // change: function () {
-        //     this.$emit('change')
-        // },
-        // signup: function(){
-        //     this.$emit('signup')
-        // },
-        // changePw: function(){
-        //     this.$emit('pw')
-        // },
         getJWT: function () {
             axios({
                 method: 'post',

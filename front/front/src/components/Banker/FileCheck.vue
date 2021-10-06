@@ -10,28 +10,28 @@
         <tbody>
           <tr>
             <th scope="row" class="table-active col-3">이름</th>
-            <!-- <td>{{ userinfo.user_name }}</td> -->
-            <td>이름</td>
+            <td>{{ userInfo.user_name }}</td>
+            <!-- <td>이름</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">연락처</th>
-            <!-- <td>{{ userinfo.phone_number }}</td> -->
-            <td>연락처</td>
+            <td>{{ userInfo.phone_number }}</td>
+            <!-- <td>연락처</td> -->
           </tr>
-          <tr>
+          <!-- <tr>
             <th scope="row" class="table-active">주소</th>
+            <td>{{ userInfo.address }}</td>
             <td>주소</td>
-            <!-- <td>{{ userinfo.address }}</td> -->
-          </tr>
+          </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
-            <!-- <td>{{ userinfo.job }}</td> -->
-            <td>직장</td>
+            <td>{{ userInfo.job }}</td>
+            <!-- <td>직장</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">소득규모</th>
-            <!-- <td>{{ userinfo.salary }}</td> -->
-            <td>소득규모</td>
+            <td>{{ userInfo.salary }}</td>
+            <!-- <td>소득규모</td> -->
           </tr>
         </tbody>
       </table>
@@ -49,7 +49,16 @@
       >
         제출서류 확인
       </router-link>
+<<<<<<< HEAD
 
+=======
+      <div class="">
+        <select class="form-control ml-3" aria-label="Is_Suitable" v-model="checkSuitable" @change="changeSuit">
+          <option value="yes">적합 판정</option>
+          <option value="no">부적합 판정</option>
+        </select>
+      </div>
+>>>>>>> 8e4de85a794e0a5b7fa956f26ae0cd37c1b2cc56
     </div>
 
     <div class="row mt-3">
@@ -62,7 +71,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr
+            v-for="(item, idx) in this.userInfo.user_file"
+            :key="idx"
+            :value="item.value"
+            scope="row"
+            class="table-active align-self-center align-items-center"
+          >
+            <th scope="row" class="table-active align-self-center align-items-center">{{ idx + 1 }}</th>
+            <td class="align-self-center align-items-center">{{ item.file_name }}</td>
+            <b-button variant="gray"  class="btn align-self-center align-items-center" v-on:click="download(item.file_url)">다운로드 받기</b-button>
+          </tr>
+          <!-- <tr>
             <th scope="row" class="table-active">1</th>
             <td>재직증명서</td>
             <td>싸피금융_재직증명서.pdf</td>
@@ -81,17 +101,14 @@
             <th scope="row" class="table-active">4</th>
             <td>건강장기요양보험료 납부확인서</td>
             <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
     <div class="row mt-5">
-      <router-link
-        :to="{ name: '#' }"
-        class="pa-3 btn btn-primary btn-sm col-1 mr-4 offset-5"
-      >
+      <b-button variant="primary" class="pa-3 btn col-1 mr-4 offset-5" @click="modify">
         수정
-      </router-link>
+      </b-button>
       <router-link
         :to="{ name: 'BankerLoan' }"
         class="pa-3 btn btn-secondary btn-sm col-1"
@@ -123,8 +140,18 @@ export default {
         address: "",
         job: "",
         salary: "",
+        user_file: [],
       },
+<<<<<<< HEAD
 
+=======
+      checkSuitable:'check',
+      send_data :{
+        cid : localStorage.getItem("cid"),
+        lid : localStorage.getItem("lid"),
+        is_suitable : ''
+      }
+>>>>>>> 8e4de85a794e0a5b7fa956f26ae0cd37c1b2cc56
     };
   },
   mounted() {
@@ -140,6 +167,7 @@ export default {
       )}/loan/${localStorage.getItem("lid")}`,
     })
       .then((res) => {
+        console.log(res.data);
         this.userInfo.user_name = res.data.user_detail.user_name;
         this.userInfo.loan_name = res.data.user_detail.loan_name;
         this.userInfo.cid = localStorage.getItem("cid");
@@ -149,10 +177,45 @@ export default {
         this.userInfo.address = res.data.user_detail.address;
         this.userInfo.job = res.data.user_detail.job;
         this.userInfo.salary = res.data.user_detail.salary;
+
+        res.data.user_files.forEach((element) => {
+          this.userInfo.user_file.push(element);
+        });
+
+        console.log(this.userInfo.user_file);
       })
       .catch((err) => {
         console.log(err);
       });
+  },
+  methods: {
+    download(url) {
+      window.open(url);
+    },
+    
+    changeSuit(){
+      if(this.checkSuitable == "yes"){
+        this.send_data.is_suitable = "적합 판정"
+      }else if(this.checkSuitable == "no"){
+        this.send_data.is_suitable = "부적합 판정"
+      }else{
+        alert("적합 판정을 선택해주세요! " + this.checkSuitable)
+      }
+    },
+    modify(){
+      if(this.send_data != null){
+        axios({
+          method:"PATCH",
+          url:`http://j5a205.p.ssafy.io/user/loan/status`,
+          data : this.send_data
+        }).then(res =>{
+          console.log(res)
+          alert("적합 판정이 완료되었습니다!")
+        })
+      }else{
+        alert("적합 판정을 해주셔야 합니다!")
+      }
+    }
   },
 };
 </script>

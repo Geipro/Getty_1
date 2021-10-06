@@ -2,7 +2,7 @@
   <div>
     <!-- <b-button pill variant="secondary" class="mr-1">대출 신청 대상자</b-button> -->
     <h2>대출 신청 대상자</h2>
-    <hr>
+    <hr />
     <!-- <b-button-group>
       <b-button pill variant="secondary" class="mr-1">주택자금대출</b-button>
       <b-button pill variant="secondary" class="mr-1">예/적금 담보대출</b-button>
@@ -12,17 +12,45 @@
     <div class="card text-center mt-5">
       <div class="card-header row">
         <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="true" href="#">전체 신청 고객</a>
+          <li v-on:click="changeCase(1)" class="nav-item">
+            <a
+              v-if="this.case === 1"
+              class="nav-link active"
+              aria-current="true"
+              href="#"
+              >전체 신청 고객</a
+            >
+            <a v-else class="nav-link" href="#">전체 신청 고객</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">적합 대상</a>
+          <li v-on:click="changeCase(2)" class="nav-item">
+            <a
+              v-if="this.case === 2"
+              class="nav-link active"
+              aria-current="true"
+              href="#"
+              >적합 대상</a
+            >
+            <a v-else class="nav-link" href="#">적합 대상</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">확인중 대상</a>
+          <li v-on:click="changeCase(3)" class="nav-item">
+            <a
+              v-if="this.case === 3"
+              class="nav-link active"
+              aria-current="true"
+              href="#"
+              >확인중 대상</a
+            >
+            <a v-else class="nav-link" href="#">확인중 대상</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">부적합 대상</a>
+          <li v-on:click="changeCase(4)" class="nav-item">
+            <a
+              v-if="this.case === 4"
+              class="nav-link active"
+              aria-current="true"
+              href="#"
+              >부적합 대상</a
+            >
+            <a v-else class="nav-link" href="#">부적합 대상</a>
           </li>
         </ul>
       </div>
@@ -30,14 +58,20 @@
       <div v-for="(product, index) in loanlist" :key="index">
         <div class="card mt-4">
           <div class="row mb-4">
-            <div v-if="product.is_suitable == '부적합 판정'" class="col-2 offset-1 bg-danger content">
-              <br>
-              <br>
+            <div
+              v-if="product.is_suitable == '부적합 판정'"
+              class="col-2 offset-1 bg-danger content"
+            >
+              <br />
+              <br />
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div v-else-if="product.is_suitable == 'c'" class="col-2 offset-1 bg-primary content">
-              <br>
-              <br>
+            <div
+              v-else-if="product.is_suitable == 'c'"
+              class="col-2 offset-1 bg-primary content"
+            >
+              <br />
+              <br />
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
             <div class="col-2 offset-1 bg-warning content" v-else>
@@ -98,21 +132,22 @@ import axios from "axios";
 
 export default {
   name: "LoanCheck",
-  data: function () {
+  data: function() {
     return {
-      loanlist: [],
+      case: 1,
+      loanlist: []
     };
   },
   mounted() {
     axios({
       method: "get",
-      url: "http://j5a205.p.ssafy.io/loan/user/list",
+      url: "http://j5a205.p.ssafy.io/loan/user/list"
     })
-      .then((res) => {
+      .then(res => {
         this.loanlist = res.data;
         // console.log(this.loanlist)
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   },
@@ -120,13 +155,13 @@ export default {
     saveClientID(cid, lid) {
       axios({
         method: "get",
-        url: "http://j5a205.p.ssafy.io/loan/user/list",
+        url: "http://j5a205.p.ssafy.io/loan/user/list"
       })
-        .then((res) => {
+        .then(res => {
           this.loanlist = res.data;
           // console.log(this.loanlist)
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
       localStorage.setItem("cid", cid);
@@ -134,7 +169,11 @@ export default {
       // console.log(localStorage.getItem("cid")); // Print cid
       // console.log(localStorage.getItem("lid")); // Print lid
     },
-  },
+    changeCase(num) {
+      this.case = num;
+      console.log(`Case Change -> ${num}`);
+    }
+  }
 };
 </script>
 

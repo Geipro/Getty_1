@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="logo md-5 mb-5 text-left">
-        <h1>★ 신용 대출 상품</h1>
+        <h1>{{ this.title }}</h1>
       </div>
       <div v-for="(item, idx) in this.loanlist" :key="idx" :value="item.value">
         <div class="text-left">
@@ -63,12 +63,9 @@
             <b-button pill variant="secondary" class="text-left ml-3">
               대출조건>
             </b-button>
-            <router-link
-              :to="{ name: 'ProductApply' }"
-              class="pa-5 mr-2 btn btn-primary btn-md offset-8"
-            >
+            <b-button variant="primary" class="pa-5 mr-2 btn-md offset-8" v-on:click="applyPd(event, item.lid)">
               신청하기
-            </router-link>
+            </b-button>
             <b-button variant="dark" class="mr-2 ml-1"> 상세보기 </b-button>
             <b-button variant="secondary" class="ml-1"> ♡ </b-button>
           </div>
@@ -102,6 +99,8 @@ export default {
       token: {
         token: localStorage.getItem("Token"),
       },
+      title: '',
+      apply: '',
     };
   },
   mounted() {
@@ -118,6 +117,7 @@ export default {
         .catch((err) => {
           console.log(err.headers);
         });
+        this.title = "★ 신용 대출 상품"
     } else {
       axios({
         method: "get",
@@ -140,12 +140,33 @@ export default {
             if (res.data.user_files[0] != null) {
               this.hasFile = true;
             }
+            this.title = "★ 신청 가능한 신용 대출 상품"
           })
           .catch((err) => {
             console.log(err);
           });
     }
   },
-  methods: {},
+  methods: {
+    applyPd(event, id){
+      if(this.token.token != null){
+        axios({
+          method: 'post',
+          url: `http://j5a205.p.ssafy.io/user/loan/request/${id}`,
+          data: id,
+          headers:{
+            "token" : localStorage.getItem("Token")
+          }
+        }).then((res) =>{
+          alert("신청완료!!")
+          console.log(res)
+        }).catch((err) =>{
+          console.log(err)
+        })
+      }else{
+        alert("대출 상품을 신청하려면 로그인 해 주세요!")
+      }
+    }
+  },
 };
 </script>

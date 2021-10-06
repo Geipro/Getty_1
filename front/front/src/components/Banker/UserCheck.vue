@@ -1,7 +1,7 @@
 <template>
   <div>
     <BankerNavbar />
-    <div class="row mt-3">
+    <div class="row mt-5">
       <h3 class="col-5">고객정보확인</h3>
     </div>
     <!-- 고객데이터 table -->

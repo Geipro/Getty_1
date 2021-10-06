@@ -18,7 +18,7 @@
       </div>
     </nav> -->
     <div class="row mt-4">
-      <h4 class="col-5">마이페이지</h4>
+      <h4 class="col-4">마이페이지</h4>
     </div>
     <!-- 고객데이터 table -->
     <div  class="row mt-3">

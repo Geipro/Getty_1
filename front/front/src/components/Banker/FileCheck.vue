@@ -53,7 +53,7 @@
     </div>
 
     <div class="row mt-3">
-      <table class="table offset-1">
+      <table class="table offset-1 col-10">
         <thead>
           <tr class="table-active">
             <th scope="col">No.</th>

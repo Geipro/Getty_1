@@ -1,9 +1,9 @@
 <template>
   <div>
-    <b-button pill variant="secondary" class="mr-1">대출 신청 대상자</b-button>
+    <!-- <b-button pill variant="secondary" class="mr-1">대출 신청 대상자</b-button> -->
     <h2>대출 신청 대상자</h2>
-    <!-- <hr>
-     <b-button-group>
+    <hr>
+    <!-- <b-button-group>
       <b-button pill variant="secondary" class="mr-1">주택자금대출</b-button>
       <b-button pill variant="secondary" class="mr-1">예/적금 담보대출</b-button>
       <b-button pill variant="secondary" class="mr-1">MY CAR</b-button>

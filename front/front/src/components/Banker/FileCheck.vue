@@ -78,26 +78,6 @@
             <td class="align-self-center align-items-center">{{ item.file_name }}</td>
             <b-button variant="gray"  class="btn align-self-center align-items-center" v-on:click="download(item.file_url)">다운로드 받기</b-button>
           </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">1</th>
-            <td>재직증명서</td>
-            <td>싸피금융_재직증명서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">2</th>
-            <td>소득증명서</td>
-            <td>김싸피_소득증명서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">3</th>
-            <td>건강보험자격득실증명서</td>
-            <td>건강보험자격득실확인서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">4</th>
-            <td>건강장기요양보험료 납부확인서</td>
-            <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr> -->
         </tbody>
       </table>
     </div>

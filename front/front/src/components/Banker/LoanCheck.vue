@@ -35,7 +35,7 @@
               <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div v-else-if="product.is_suitable == 'c'" class="col-2 offset-1 bg-primary content">
+            <div v-else-if="product.is_suitable == '적합 판정'" class="col-2 offset-1 bg-primary content">
               <br>
               <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>

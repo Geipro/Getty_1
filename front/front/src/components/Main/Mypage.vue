@@ -89,8 +89,11 @@
             <td>{{ loaninfo_name[index].loan_name }}</td>
             <td v-if="loaninfo[index].is_suitable == '부적합'">
               <button type="button" class="btn btn-danger">{{ loaninfo[index].is_suitable }}</button>
-            <td v-else>
+            <td v-else-if="loaninfo[index].is_suitable == '적합'">
               <button type="button" class="btn btn-primary">{{ loaninfo[index].is_suitable }}</button>
+            </td>
+            <td v-else>
+              <button type="button" class="btn btn-warning">{{ loaninfo[index].is_suitable }}</button>
             </td>
           </tr>
         </tbody>

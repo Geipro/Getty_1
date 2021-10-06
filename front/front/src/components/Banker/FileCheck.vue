@@ -49,16 +49,12 @@
       >
         제출서류 확인
       </router-link>
-<<<<<<< HEAD
-
-=======
       <div class="">
         <select class="form-control ml-3" aria-label="Is_Suitable" v-model="checkSuitable" @change="changeSuit">
           <option value="yes">적합 판정</option>
           <option value="no">부적합 판정</option>
         </select>
       </div>
->>>>>>> 8e4de85a794e0a5b7fa956f26ae0cd37c1b2cc56
     </div>
 
     <div class="row mt-3">
@@ -142,16 +138,12 @@ export default {
         salary: "",
         user_file: [],
       },
-<<<<<<< HEAD
-
-=======
       checkSuitable:'check',
       send_data :{
         cid : localStorage.getItem("cid"),
         lid : localStorage.getItem("lid"),
         is_suitable : ''
       }
->>>>>>> 8e4de85a794e0a5b7fa956f26ae0cd37c1b2cc56
     };
   },
   mounted() {
@@ -192,7 +184,7 @@ export default {
     download(url) {
       window.open(url);
     },
-    
+
     changeSuit(){
       if(this.checkSuitable == "yes"){
         this.send_data.is_suitable = "적합 판정"

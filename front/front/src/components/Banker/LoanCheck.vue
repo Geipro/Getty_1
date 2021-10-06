@@ -50,10 +50,17 @@
               <div class="card-body">
                 <h5 class="card-title">{{ product.user_name }} 고객님</h5>
                 <p class="card-text">{{ product.loan_name }} 상품 신청</p>
-                <router-link :to="{ name: 'UserCheck' }" class="pa-5 btn btn-primary btn-sm">
+                <router-link
+                  :to="{ name: 'UserCheck' }"
+                  class="pa-5 btn btn-primary btn-sm"
+                  @click.native="saveClientID(product.cid, product.lid)"
+                >
                   고객정보 확인
                 </router-link>
-                <router-link :to="{ name: 'FileCheck' }" class="pa-5 btn btn-danger btn-sm offset-1">
+                <router-link
+                  :to="{ name: 'FileCheck' }"
+                  class="pa-5 btn btn-danger btn-sm offset-1"
+                >
                   제출서류 확인
                 </router-link>
               </div>
@@ -64,10 +71,10 @@
     </div>
   </div>
 
-    <!-- pagination -->
-    <!-- footer 겹쳐서 제외 우선순위가 낮아서 일단 제외 -->
-    <!-- footer 하단 고정하기  -->
-    <!-- <footer class="fixed-bottom d-flex justify-content-center align-items-center text-white-50 py-2">
+  <!-- pagination -->
+  <!-- footer 겹쳐서 제외 우선순위가 낮아서 일단 제외 -->
+  <!-- footer 하단 고정하기  -->
+  <!-- <footer class="fixed-bottom d-flex justify-content-center align-items-center text-white-50 py-2">
       <nav nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item">
@@ -86,46 +93,63 @@
         </ul>
       </nav>
     </footer> -->
-
-
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'LoanCheck',
-   data: function () {
+  name: "LoanCheck",
+  data: function () {
     return {
-      loanlist:[],
-    }
+      loanlist: [],
+    };
   },
-  mounted(){
+  mounted() {
     axios({
-      method: 'get',
-      url: 'http://j5a205.p.ssafy.io/loan/user/list',
+      method: "get",
+      url: "http://j5a205.p.ssafy.io/loan/user/list",
     })
-    .then((res) =>{
-      this.loanlist = res.data
-      // console.log(this.loanlist)
-    }).catch((err) =>{
-      console.log(err)
-    })
+      .then((res) => {
+        this.loanlist = res.data;
+        // console.log(this.loanlist)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
-}
-
+  methods: {
+    saveClientID(cid, lid) {
+      axios({
+        method: "get",
+        url: "http://j5a205.p.ssafy.io/loan/user/list",
+      })
+        .then((res) => {
+          this.loanlist = res.data;
+          // console.log(this.loanlist)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      localStorage.setItem("cid", cid);
+      localStorage.setItem("lid", lid);
+      // console.log(localStorage.getItem("cid")); // Print cid
+      // console.log(localStorage.getItem("lid")); // Print lid
+    },
+  },
+};
 </script>
 
 <style>
 .card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
+  display: flex;
+  flex: 1 1 auto;
 }
 .content {
-    /* background: #f2f2f2; */
-    padding: 50px;
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+  /* background: #f2f2f2; */
+  padding: 50px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
 }
 </style>

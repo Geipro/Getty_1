@@ -20,19 +20,16 @@
     <div class="container mt-5">
       <div class="text-left ml-10 mr-10" id="first">
           <div class="logo mt-3 mb-5">
-              <h1>★ 대출 신청하기</h1>
+              <h1>★ 서류 제출하기</h1>
           </div>
           <div class="row mt-3">
-              <p class="text-secondary mr-3">신청 상품 : </p>
-              <!-- 아래는 후에 '신청하기' 버튼 클릭 후 해당하는 이름 전달하기.  -->
-              <h5> 싹편한 직장인 대출 </h5>
           </div>
-          <div class="mt-3">
-              <h5>02. 필요한 서류를 첨부해주세요.</h5>
+          <div class="mt-3 pb-3">
+              <h5 class="ml-5">제출할 서류들을 첨부해주세요.</h5>
               <h6 class="text-secondary offset-1" style="font-size: 0.8rem">파일 용량은 최대 200MB입니다.</h6>
               <h6 class="text-secondary offset-1" style="font-size: 0.8rem">업로드할 수 있는 확장자는 이미지 파일(jpg, png), PDF입니다.</h6>
           </div>
-          <div class="ml-5 mt-4">
+          <div class="ml-5 mt-5">
             <b-form>
               <div>
                 <div class="mt-4 mb-3">

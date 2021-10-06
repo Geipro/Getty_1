@@ -32,11 +32,17 @@
             <!-- <div class="col-2 offset-1 bg-primary"> -->
               <br>
               <br>
-                <h3 style="color:white">{{ product.is_suitable }}</h3>
-              <div v-else>
-                <h3 class="col-2 offset-1 bg-primary" style="color:white">{{ product.is_suitable }}</h3>
-              </div>
+              <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
+            <div v-if="product.is_suitable == '적합 판정'" class="col-2 offset-1 bg-primary">
+              <br>
+              <br>
+              <h3 style="color:white">{{ product.is_suitable }}</h3>
+            </div>
+            <div v-else>
+                <h3 class="col-2 offset-1 bg-warning" style="color:white">{{ product.is_suitable }}</h3>
+            </div>
+
             <div class="col-8">
               <div class="card-body">
                 <h5 class="card-title">{{ product.user_name }} 고객님</h5>

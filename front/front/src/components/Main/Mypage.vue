@@ -92,7 +92,11 @@
           <tr v-for="(name, index) in loaninfo" :key="index">
             <th scope="row" class="table-active">{{ index + 1 }}</th>
             <td>{{ loaninfo_name[index].loan_name }}</td>
-            <td>{{ loaninfo[index].is_suitable }}</td>
+            <td v-if="loaninfo[index].is_suitable == '부적합'">
+              <button type="button" class="btn btn-danger">{{ loaninfo[index].is_suitable }}</button>
+            <td v-else>
+              <button type="button" class="btn btn-primary">{{ loaninfo[index].is_suitable }}</button>
+            </td>
           </tr>
         </tbody>
       </table>

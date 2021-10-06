@@ -132,11 +132,11 @@ import axios from 'axios';
               .then(function (res) {
                 console.log(res);
                 console.log("SUCCESS!!");
+                this.$router.push({ name: "LoanList" });
               })
               .catch(function (err) {
-                console.log(err);
+                alert(err);
               });
-              this.$router.push({ name: "LoanList" });
             }
           },
           handleFileUpload(){

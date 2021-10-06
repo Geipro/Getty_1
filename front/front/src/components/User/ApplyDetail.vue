@@ -51,26 +51,6 @@
                   />
                 </div>
               </div>
-              <!-- <div>
-                <div class="mt-4 mb-3">
-                    <h4 class="text-left">● 서류 2</h4>
-                </div>
-                <div class="custom-file form-check form-check-inline">
-                  <label class="custom-file-label col-6" for="customFile">Choose file</label>
-                  <input type="file" class="custom-file-input" id="customFile2" style="width: 60%">
-                </div>
-              </div> -->
-              <!-- <div>
-                  <div class="mt-4 mb-3">
-                      <h4>● 건강장기요양보혐료 납부확인서</h4>
-                  </div>
-                  <div class="custom-file form-check form-check-inline mb-5">
-                    <label class="custom-file-label col-6" for="customFile">Choose file</label>
-                    <input type="file" class="custom-file-input" id="customFile" style="width: 60%">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">해당없음</label>
-                  </div>
-              </div> -->
             </b-form>
           </div>
           <div class="text-center mt-5">

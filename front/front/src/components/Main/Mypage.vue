@@ -92,7 +92,7 @@
           <tr v-for="(name, index) in loaninfo" :key="index">
             <th scope="row" class="table-active">{{ index + 1 }}</th>
             <td>{{ name[0].loan_name }}</td>
-            <td>{{ name[0].is_suitable }}</td>
+            <td><button type="button" class="btn btn-warning">{{ name[0].is_suitable }}</button></td>
           </tr>
         </tbody>
       </table>
@@ -150,7 +150,7 @@ export default {
     .then((res) =>{
       this.loaninfo = res.data
       // this.loaninfo = res.data[1][0]
-      // console.log(res.data)
+      console.log(res.data)
     }).catch((err) =>{
       console.log(err)
     })

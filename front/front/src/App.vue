@@ -43,9 +43,10 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 footer {
   width: 100%;
-  height: 100px;
+  height: 80px;
   bottom: 0px;
   position: absolute;
   border-top: 1px solid #c4c4c4;
@@ -53,7 +54,8 @@ footer {
   color: #808080;
   font-size: 11px;
 }
+
 section {
-  padding-bottom: 105px;
+  padding-bottom: 80px;
 }
 </style>

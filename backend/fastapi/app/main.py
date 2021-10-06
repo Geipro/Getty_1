@@ -285,7 +285,14 @@ async def user_loan_list(db: Session = Depends(get_db), token: str = Header(None
     db_loan_by_user_list = crud.get_user_loan_by_cid(db, user.cid)
     if not db_loan_by_user_list:
         raise HTTPException(status_code=400, detail="user_loan_list error")
-    return db_loan_by_user_list
+
+    return [
+        db_loan_by_user_list,
+        [
+            crud.get_loan_by_lid(db, lid=loan_by_user.lid)
+            for loan_by_user in db_loan_by_user_list
+        ],
+    ]
 
 
 @app.post("/user/loan/request/{lid}", status_code=200)

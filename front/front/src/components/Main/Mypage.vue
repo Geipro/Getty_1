@@ -149,21 +149,8 @@ export default {
       headers : {"token" : `${this.token.token}`}
     })
     .then((res) =>{
-      alert(res.data[0])
-      console.log("loan_info")
-      console.log(res.data[0])
-      alert(res.data[1])
-      console.log("loan_info_name")
-      console.log(res.data[1])
-
       this.loaninfo = res.data[0]
       this.loaninfo_name = res.data[1]
-      
-      // this.loaninfo = res.data[1][0]
-      // console.log(res.data)
-      console.log("check in data")
-      console.log(this.loaninfo[0])
-      console.log(this.loaninfo_name[0])
     }).catch((err) =>{
       console.log(err)
     })

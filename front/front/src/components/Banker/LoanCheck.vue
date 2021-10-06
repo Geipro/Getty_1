@@ -14,7 +14,7 @@
         <ul class="nav nav-tabs card-header-tabs">
           <li v-on:click="changeCase(1)" class="nav-item">
             <a
-              v-if="this.case === 1"
+              v-if="this.cur === '1'"
               class="nav-link active"
               aria-current="true"
               href="#"
@@ -24,7 +24,7 @@
           </li>
           <li v-on:click="changeCase(2)" class="nav-item">
             <a
-              v-if="this.case === 2"
+              v-if="this.cur === '2'"
               class="nav-link active"
               aria-current="true"
               href="#"
@@ -34,7 +34,7 @@
           </li>
           <li v-on:click="changeCase(3)" class="nav-item">
             <a
-              v-if="this.case === 3"
+              v-if="this.cur === '3'"
               class="nav-link active"
               aria-current="true"
               href="#"
@@ -44,7 +44,7 @@
           </li>
           <li v-on:click="changeCase(4)" class="nav-item">
             <a
-              v-if="this.case === 4"
+              v-if="this.cur === '4'"
               class="nav-link active"
               aria-current="true"
               href="#"
@@ -56,10 +56,10 @@
       </div>
 
       <div v-for="(product, index) in loanlist" :key="index">
-        <div class="card mt-4">
+        <div v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))" class="card mt-4">
           <div class="row mb-4">
             <div
-              v-if="product.is_suitable == '부적합 판정'"
+              v-if="product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')"
               class="col-2 offset-1 bg-danger content"
             >
               <br />
@@ -67,22 +67,28 @@
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
             <div
-              v-else-if="product.is_suitable == 'c'"
+              v-else-if="product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')"
               class="col-2 offset-1 bg-primary content"
             >
               <br />
               <br />
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div class="col-2 offset-1 bg-warning content" v-else>
+            <div
+              v-else-if="product.is_suitable == '확인중' && (cur === '1' || cur === '3')"
+              class="col-2 offset-1 bg-warning content"
+            >
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
 
             <div class="col-8">
               <div class="card-body">
-                <h5 class="card-title">{{ product.user_name }} 고객님</h5>
-                <p class="card-text">{{ product.loan_name }} 상품 신청</p>
+                <h5
+                v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
+                class="card-title">{{ product.user_name }} 고객님</h5>
+                <p v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))" class="card-text">{{ product.loan_name }} 상품 신청</p>
                 <router-link
+                  v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
                   :to="{ name: 'UserCheck' }"
                   class="pa-5 btn btn-primary btn-sm"
                   @click.native="saveClientID(product.cid, product.lid)"
@@ -90,6 +96,7 @@
                   고객정보 확인
                 </router-link>
                 <router-link
+                  v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
                   :to="{ name: 'FileCheck' }"
                   class="pa-5 btn btn-danger btn-sm offset-1"
                 >
@@ -134,8 +141,8 @@ export default {
   name: "LoanCheck",
   data: function() {
     return {
-      case: 1,
-      loanlist: []
+      cur: '1',
+      loanlist: [],
     };
   },
   mounted() {
@@ -144,6 +151,7 @@ export default {
       url: "http://j5a205.p.ssafy.io/loan/user/list"
     })
       .then(res => {
+        console.log(`this.cur = ${this.cur}`)
         this.loanlist = res.data;
         // console.log(this.loanlist)
       })
@@ -170,10 +178,10 @@ export default {
       // console.log(localStorage.getItem("lid")); // Print lid
     },
     changeCase(num) {
-      this.case = num;
-      console.log(`Case Change -> ${num}`);
-    }
-  }
+      this.cur = String(num);
+      console.log(`Case Change -> ${this.cur}`);
+    },
+  },
 };
 </script>
 

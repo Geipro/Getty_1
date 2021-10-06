@@ -67,7 +67,7 @@ class LoanProduct(Base):
     loan_salary = Column(String(45), nullable=True, comment="연봉 조건")
     loan_address = Column(String(45), nullable=True, comment="지역 조건")
     loan_job = Column(String(45), nullable=True, comment="직업 조건")
-    interest_rate = Column(Integer, nullable=True, comment="금리")
+    interest_rate = Column(String(45), nullable=True, comment="금리")
     loan_amount = Column(Integer, nullable=True, comment="대출 가능 금액")
 
 
@@ -90,7 +90,7 @@ class Banker(Base):
 
 class UserLoan(Base):
     __tablename__ = "user_loan"
-    
+
     ulid = Column(
         Integer,
         primary_key=True,

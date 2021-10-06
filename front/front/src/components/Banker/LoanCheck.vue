@@ -12,6 +12,7 @@
     <div class="card text-center mt-5">
       <div class="card-header row">
         <ul class="nav nav-tabs card-header-tabs">
+          <!-- v-if로 분류? -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="true" href="#">신청 고객</a>
           </li>
@@ -27,20 +28,18 @@
       <div v-for="(product, index) in loanlist" :key="index">
         <div class="card mt-4">
           <div class="row mb-4">
-            <div v-if="product.is_suitable == '부적합 판정'" class="col-2 offset-1 bg-danger">
-            <!-- <span v-if="product.is_suitable == '부적합'" class="col-2 offset-1 bg-danger"> -->
-            <!-- <div class="col-2 offset-1 bg-primary"> -->
+            <div v-if="product.is_suitable == '부적합 판정'" class="col-3 offset-1 bg-danger content">
               <br>
               <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div v-if="product.is_suitable == '적합 판정'" class="col-2 offset-1 bg-primary">
+            <div v-else-if="product.is_suitable == '적합 판정'" class="col-3 offset-1 bg-primary content">
               <br>
               <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div v-else>
-                <h3 class="col-2 offset-1 bg-warning" style="color:white">{{ product.is_suitable }}</h3>
+            <div class="col-3 offset-1 bg-warning content" v-else>
+              <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
 
             <div class="col-8">
@@ -118,5 +117,11 @@ export default {
     display: flex;
     flex: 1 1 auto;
 }
-
+.content {
+    /* background: #f2f2f2; */
+    padding: 50px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
 </style>

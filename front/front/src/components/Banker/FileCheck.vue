@@ -10,28 +10,28 @@
         <tbody>
           <tr>
             <th scope="row" class="table-active col-3">이름</th>
-            <!-- <td>{{ userinfo.user_name }}</td> -->
-            <td>이름</td>
+            <td>{{ userInfo.user_name }}</td>
+            <!-- <td>이름</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">연락처</th>
-            <!-- <td>{{ userinfo.phone_number }}</td> -->
-            <td>연락처</td>
+            <td>{{ userInfo.phone_number }}</td>
+            <!-- <td>연락처</td> -->
           </tr>
-          <tr>
+          <!-- <tr>
             <th scope="row" class="table-active">주소</th>
+            <td>{{ userInfo.address }}</td>
             <td>주소</td>
-            <!-- <td>{{ userinfo.address }}</td> -->
-          </tr>
+          </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
-            <!-- <td>{{ userinfo.job }}</td> -->
-            <td>직장</td>
+            <td>{{ userInfo.job }}</td>
+            <!-- <td>직장</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">소득규모</th>
-            <!-- <td>{{ userinfo.salary }}</td> -->
-            <td>소득규모</td>
+            <td>{{ userInfo.salary }}</td>
+            <!-- <td>소득규모</td> -->
           </tr>
         </tbody>
       </table>
@@ -62,7 +62,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr
+            v-for="(item, idx) in this.userInfo.user_file"
+            :key="idx"
+            :value="item.value"
+            scope="row"
+            class="table-active"
+          >
+            <th scope="row" class="table-active">{{ idx + 1 }}</th>
+            <td>{{ item.file_name }}</td>
+            <button v-on:click="download(item.file_url)">다운로드 받기</button>
+          </tr>
+          <!-- <tr>
             <th scope="row" class="table-active">1</th>
             <td>재직증명서</td>
             <td>싸피금융_재직증명서.pdf</td>
@@ -81,7 +92,7 @@
             <th scope="row" class="table-active">4</th>
             <td>건강장기요양보험료 납부확인서</td>
             <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -123,6 +134,7 @@ export default {
         address: "",
         job: "",
         salary: "",
+        user_file: [],
       },
     };
   },
@@ -139,6 +151,7 @@ export default {
       )}/loan/${localStorage.getItem("lid")}`,
     })
       .then((res) => {
+        console.log(res.data);
         this.userInfo.user_name = res.data.user_detail.user_name;
         this.userInfo.loan_name = res.data.user_detail.loan_name;
         this.userInfo.cid = localStorage.getItem("cid");
@@ -148,10 +161,21 @@ export default {
         this.userInfo.address = res.data.user_detail.address;
         this.userInfo.job = res.data.user_detail.job;
         this.userInfo.salary = res.data.user_detail.salary;
+
+        res.data.user_files.forEach((element) => {
+          this.userInfo.user_file.push(element);
+        });
+
+        console.log(this.userInfo.user_file);
       })
       .catch((err) => {
         console.log(err);
       });
+  },
+  methods: {
+    download(url) {
+      window.open(url);
+    },
   },
 };
 </script>

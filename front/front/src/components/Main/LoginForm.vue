@@ -1,5 +1,5 @@
 <template>
-    <div id="first" class="row h-50 align-items-center">
+    <div id="first" class="row h-50 align-items-center wrapper">
         <div class="mx-auto col-md-4 h-50">
             <div class="myform form">
                 <div class="logo mb-3">
@@ -81,7 +81,7 @@ export default {
         // },
         // changePw: function(){
         //     this.$emit('pw')
-        // },        
+        // },
         getJWT: function () {
             axios({
                 method: 'post',
@@ -116,3 +116,11 @@ export default {
     }
 }
 </script>
+
+<style>
+/* .wrapper {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+} */
+</style>

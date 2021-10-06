@@ -17,47 +17,13 @@
           class="form-control" id="user_name" aria-describedby="nameHelp" placeholder="Enter Username">
           <span class="error" v-if="errors.has('user_name')">{{errors.first('user_name')}}</span>
         </div>
-        <!-- <div class="form-group">
-          <div class="d-flex justify-content-between">
-            <label for="exampleInputEmail1">닉네임</label> 
-            <button id="nicknameCheck" 
-              v-if="!duplicate.nicknameCheck" 
-              @click="nicknameDuplicateCheck" 
-              class="border-0 bg-transparent text-primary" 
-              v-bind="{ 'disabled' : duplicate.nicknameCheck }">
-              닉네임 중복확인
-            </button>
-            <button id="nicknameCheck"
-              v-if="duplicate.nicknameCheck"
-              class="border-0 bg-transparent text-success" disabled>
-              중복확인 완료
-            </button>
-          </div>
-          <input type="text"  name="nickname" v-model="credential.nickname"
-          class="form-control" id="nickname" aria-describedby="nicknameHelp" placeholder="Enter Nickname">
-        </div> -->
         <div class="form-group">
           <div class="d-flex justify-content-between">
             <label for="user_id">아이디</label>
-            <!-- <button id="emailCheck" 
-              v-if="!duplicate.emailCheck" 
-              @click="emailDuplicateCheck" 
-              class="border-0 bg-transparent text-primary" 
-              v-bind="{ 'disabled' : duplicate.emailCheck }">
-              이메일 중복확인
-            </button> -->
-            <!-- <button id="emailCheck"
-              v-if="duplicate.emailCheck"
-              class="border-0 bg-transparent text-success" disabled>
-              중복확인 완료
-            </button> -->
           </div>
           <input type="id" name="user_id" v-validate="'required'" v-model="userinfo.user_id" data-vv-as="ID"
           class="form-control" :class="{error: errors.has('user_id')}"  id="id" aria-describedby="UserIdHelp" placeholder="Enter ID">
           <span class="error" v-if="errors.has('user_id')">{{errors.first('user_id')}}</span>
-          <!-- <input type="email" name="email" v-validate="'required|email'" v-model="credential.email" data-vv-as="Email"
-          class="form-control" :class="{error: errors.has('email')}"  id="email" aria-describedby="emailHelp" placeholder="Enter email">
-          <span class="error" v-if="errors.has('email')">{{errors.first('email')}}</span> -->
         </div>
 
 
@@ -140,20 +106,6 @@
             <br>
             <span class="error" v-if="errors.has('sex')">{{errors.first('sex')}}</span>
           </div>
-
-          <!-- <div class="form-group text-left">
-            <label for="inlineRadio">성별</label><br> 
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sex" id="inlineRadio1" value="man" v-model="userinfo.sex">
-                <label class="form-check-label" for="inlineRadio1">남성</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sex" id="inlineRadio2" value="woman" v-model="userinfo.sex">
-                <label class="form-check-label" for="inlineRadio2">여성</label>
-              </div>
-          </div> -->
-
-
         <div class="form-group text-left">
           <label for="phone">전화번호</label> 
           <input type="tel" name="phone" v-validate="'required|digits:11'" v-model="userinfo.phone_number" data-vv-as="전화번호"

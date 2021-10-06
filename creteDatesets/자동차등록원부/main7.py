@@ -72,4 +72,4 @@ def makedata7(name, address, personal, carnum, carlist, cartype, chadae, jaewon,
     # 일자
     draw.text((550, 1231), "2019-12-21", (0, 0, 0), font=normal_font)
 
-    img.save(f"./자동차등록원부/datasets/자동차등록원부{index + 1}.jpg")
+    img.save(f"./자동차등록원부/datasets/자동차등록원부{index + 1}.png")

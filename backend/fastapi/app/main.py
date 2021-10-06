@@ -285,7 +285,14 @@ async def user_loan_list(db: Session = Depends(get_db), token: str = Header(None
     db_loan_by_user_list = crud.get_user_loan_by_cid(db, user.cid)
     if not db_loan_by_user_list:
         raise HTTPException(status_code=400, detail="user_loan_list error")
-    return db_loan_by_user_list
+
+    return [
+        db_loan_by_user_list,
+        [
+            crud.get_loan_by_lid(db, lid=loan_by_user.lid)
+            for loan_by_user in db_loan_by_user_list
+        ],
+    ]
 
 
 @app.post("/user/loan/request/{lid}", status_code=200)
@@ -309,20 +316,25 @@ async def user_loan_request(
     db_user_files_by_cid = crud.get_user_files_by_cid(db, cid=user_cid)
     if db_user_files_by_cid is None:
         raise HTTPException(status_code=400, detail="This user doesn't have file")
-    print(type(db_user_files_by_cid))
-    print(db_user_files_by_cid.cid)
+    user_loan = crud.get_user_loan_by_cid(db, cid=user_cid)
+    for cur in user_loan:
+        if cur.lid == lid and cur.is_suitable == "확인중":
+            return HTTPException(status_code=400, detail="Already checking")
 
     return [
-        crud.create_user_loan(db, user_loan={"cid": int(user_cid), "lid": lid}),
-        crud.create_user_loan_request(
-            db,
-            user_loan={
-                "cid": user_cid,
-                "lid": lid,
-                "file_name": db_user_files_by_cid.file_name,
-                "file_url": db_user_files_by_cid.file_url,
-            },
-        ),
+        crud.create_user_loan(db=db, user_loan={"cid": int(user_cid), "lid": lid}),
+        [
+            crud.create_user_loan_request(
+                db,
+                user_loan={
+                    "cid": user_cid,
+                    "lid": lid,
+                    "file_name": db_user_files_by_cid[idx].file_name,
+                    "file_url": db_user_files_by_cid[idx].file_url,
+                },
+            )
+            for idx in range(len(db_user_files_by_cid))
+        ],
     ]
 
     # return db_user_files_by_cid
@@ -347,8 +359,8 @@ async def read_banker(db: Session = Depends(get_db)):
     :return:
     """
     db_banker_list = crud.get_banker(db)
-    if not db_banker_list:
-        raise HTTPException(status_code=400, detail="banker error")
+    # if not db_banker_list:
+    #     raise HTTPException(status_code=400, detail="banker error")
     return db_banker_list
 
 
@@ -392,3 +404,26 @@ async def update_status(status_info: schemas.UserLoan, db: Session = Depends(get
         raise HTTPException(status_code=400, detail="Invaild Input")
     crud.update_user_status(db=db, status_info=status_info)
     return HTTPException(status_code=200, detail="success to update")
+
+
+@app.get("/loan/user/list", status_code=200)
+async def get_user_loan_list(db: Session = Depends(get_db)):
+    """
+    `고객이 신청한 대출 상품 리스트 API`\n
+    :param db:
+    :return:
+    """
+    return crud.get_loan_list(db=db)
+
+
+@app.get("/detail/user/{cid}/loan/{lid}", status_code=200)
+async def get_user_loan_detail(cid: int, lid: int, db: Session = Depends(get_db)):
+    """
+    `고객이 신청한 대출 세부정보`\n
+    :param db:
+    :return:
+    """
+    user_detail = crud.get_user_loan_detail(db=db, cid=cid, lid=lid)
+    user_files = crud.get_user_loan_files(db=db, cid=cid, lid=lid)
+
+    return {"user_detail": user_detail, "user_files": user_files}

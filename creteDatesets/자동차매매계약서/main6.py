@@ -66,4 +66,4 @@ def makedata6(name, name2, address, address2, personal, personal2, phone, phone2
     # 일자
     draw.text((1180, 1451), "15", (0, 0, 0), font=normal_font)
 
-    img.save(f"./자동차매매계약서/datasets/자동차매매계약서{index + 1}.jpg")
+    img.save(f"./자동차매매계약서/datasets/자동차매매계약서{index + 1}.png")

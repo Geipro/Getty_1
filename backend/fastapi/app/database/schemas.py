@@ -62,6 +62,7 @@ class LoanCreate(BaseModel):
     loan_job: str
     interest_rate: str
     loan_amount: int
+    loan_about: str
 
     class Config:
         orm_mode = True
@@ -140,6 +141,7 @@ class UserLoanInfo(BaseModel):
     loan_name: str
     user_name: str
     is_suitable: str
+
 
 # 고객 신청 상품 세부정보
 class UserLoanDetail(BaseModel):

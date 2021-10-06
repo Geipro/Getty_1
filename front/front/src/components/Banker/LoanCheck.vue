@@ -27,33 +27,39 @@
       <div v-for="(product, index) in loanlist" :key="index">
         <div class="card mt-4">
           <div class="row mb-4">
-          <div v-if="product.is_suitable == '부적합 판정'" class="col-2 offset-1 bg-danger">
-          <!-- <span v-if="product.is_suitable == '부적합'" class="col-2 offset-1 bg-danger"> -->
-          <!-- <div class="col-2 offset-1 bg-primary"> -->
-            <br>
-            <br>
+            <div v-if="product.is_suitable == '부적합 판정'" class="col-2 offset-1 bg-danger">
+            <!-- <span v-if="product.is_suitable == '부적합'" class="col-2 offset-1 bg-danger"> -->
+            <!-- <div class="col-2 offset-1 bg-primary"> -->
+              <br>
+              <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
-          </div>
-            <div v-else>
-                <h3 class="col-2 offset-1 bg-primary" style="color:white">{{ product.is_suitable }}</h3>
             </div>
-          </div>
-          <div class="col-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.user_name }} 고객님</h5>
-              <p class="card-text">{{ product.loan_name }} 상품 신청</p>
-              <router-link :to="{ name: 'UserCheck' }" class="pa-5 btn btn-primary btn-sm">
-                고객정보 확인
-              </router-link>
-              <router-link :to="{ name: 'FileCheck' }" class="pa-5 btn btn-danger btn-sm offset-1">
-                제출서류 확인
-              </router-link>
+            <div v-if="product.is_suitable == '적합 판정'" class="col-2 offset-1 bg-primary">
+              <br>
+              <br>
+              <h3 style="color:white">{{ product.is_suitable }}</h3>
+            </div>
+            <div v-else>
+                <h3 class="col-2 offset-1 bg-warning" style="color:white">{{ product.is_suitable }}</h3>
+            </div>
+
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.user_name }} 고객님</h5>
+                <p class="card-text">{{ product.loan_name }} 상품 신청</p>
+                <router-link :to="{ name: 'UserCheck' }" class="pa-5 btn btn-primary btn-sm">
+                  고객정보 확인
+                </router-link>
+                <router-link :to="{ name: 'FileCheck' }" class="pa-5 btn btn-danger btn-sm offset-1">
+                  제출서류 확인
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 
     <!-- pagination -->
     <!-- footer 겹쳐서 제외 우선순위가 낮아서 일단 제외 -->

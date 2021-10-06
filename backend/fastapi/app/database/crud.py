@@ -114,6 +114,7 @@ def create_loan(db: Session, loan: schemas.LoanCreate):
         loan_job=loan.loan_job,
         interest_rate=loan.interest_rate,
         loan_amount=loan.loan_amount,
+        loan_about=loan.loan_about,
     )
     db.add(db_loan)
     db.commit()

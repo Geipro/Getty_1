@@ -61,15 +61,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="table-active">1</th>
-            <td>재직증명서</td>
-            <td><button type="button" class="btn btn-warning">확인하기</button></td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">2</th>
-            <td>소득증명서</td>
-            <td><button type="button" class="btn btn-warning">확인하기</button></td>
+          <tr v-for="(name, idx) in uploadFiles" :key="idx">
+            <th scope="row" class="table-active">{{ idx + 1 }}</th>
+            <td>{{name.file_name}}</td>
+            <td><button type="button" class="btn btn-warning" v-on:click="viewFile(event, name.file_url)">다운로드</button></td>
           </tr>
         </tbody>
       </table>
@@ -132,7 +127,8 @@ export default {
         address: "",
       },
       loaninfo:[],
-      loaninfo_name:[]
+      loaninfo_name:[],
+      uploadFiles:[],
     }
   },
   mounted(){
@@ -143,7 +139,8 @@ export default {
     })
     .then((res) =>{
       this.userinfo = res.data.user
-      // console.log(this.userinfo)
+      this.uploadFiles = res.data.user_files
+      console.log(this.uploadFiles)
     }).catch((err) =>{
       console.log(err)
     }),
@@ -159,6 +156,11 @@ export default {
       console.log(err)
     })
   },
+  methods:{
+    viewFile(event, url){
+      window.open(url)
+    }
+  }
 }
 </script>
 

@@ -21,16 +21,25 @@
       <div class="text-center mt-5 pb-2">
         <div class="custom-file form-check form-check-inline mb-5">
           <div class="float-left text-right col-md-5">
-            <b-button class="btn btn-warning btn-lg" v-if="hasFile"
-              ><router-link :to="{ name: 'Mypage' }" class="text-light"
-                >서류 확인하기</router-link
-              ></b-button
-            >
-            <b-button class="btn btn-warning btn-lg" v-else
-              ><router-link :to="{ name: 'SubmitDoc' }" class="text-light"
-                >서류 제출하기</router-link
-              ></b-button
-            >
+            <div v-if="hasFile">
+              <b-button class="btn btn-warning btn-lg mr-3">
+                <router-link :to="{ name: 'Mypage' }" class="text-light"
+                  >서류 확인하기
+                </router-link>
+              </b-button>
+              <b-button class="btn btn-warning btn-lg"
+                ><router-link :to="{ name: 'SubmitDoc' }" class="text-light">
+                  서류 추가하기
+                </router-link>
+              </b-button>
+            </div>
+            <div v-else>
+              <b-button class="btn btn-warning btn-lg"
+                ><router-link :to="{ name: 'SubmitDoc' }" class="text-light"
+                  >서류 제출하기</router-link
+                ></b-button
+              >
+            </div>
           </div>
           <div class="float-right text-left col-md-7">
             <div class="text-left">
@@ -60,13 +69,12 @@
             </h5>
           </div>
           <div class="row">
-            <b-button pill variant="secondary" class="text-left ml-3">
-              대출조건>
-            </b-button>
-            <b-button variant="primary" class="pa-5 mr-2 btn-md offset-8" v-on:click="applyPd(event, item.lid)">
+            <b-button variant="primary" class="pa-5 mr-2 btn-md offset-5" v-on:click="applyPd(event, item.lid)">
               신청하기
             </b-button>
-            <b-button variant="dark" class="mr-2 ml-1"> 상세보기 </b-button>
+            <b-button variant="dark" class="mr-2 ml-1" v-on:click="linkDetail(event, item.loan_address)"> 
+              상세보기 
+            </b-button>
             <b-button variant="secondary" class="ml-1"> ♡ </b-button>
           </div>
         </div>
@@ -166,6 +174,9 @@ export default {
       }else{
         alert("대출 상품을 신청하려면 로그인 해 주세요!")
       }
+    },
+    linkDetail(event, addr){
+      window.open(addr)
     }
   },
 };

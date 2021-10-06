@@ -1,23 +1,27 @@
 <template>
   <div>
-    <b-button pill variant="secondary" class="mr-1">신용대출</b-button>
-    <hr>
-    <!-- <b-button-group>
+    <b-button pill variant="secondary" class="mr-1">대출 신청 대상자</b-button>
+    <h2>대출 신청 대상자</h2>
+    <!-- <hr>
+     <b-button-group>
       <b-button pill variant="secondary" class="mr-1">주택자금대출</b-button>
       <b-button pill variant="secondary" class="mr-1">예/적금 담보대출</b-button>
       <b-button pill variant="secondary" class="mr-1">MY CAR</b-button>
     </b-button-group> -->
     <!-- 대출별로 연동되고 고객별로 연동되는것 어려울 듯 -->
+          <!-- v-if로 분류? -->
 
     <div class="card text-center mt-5">
       <div class="card-header row">
         <ul class="nav nav-tabs card-header-tabs">
-          <!-- v-if로 분류? -->
           <li class="nav-item">
-            <a class="nav-link active" aria-current="true" href="#">신청 고객</a>
+            <a class="nav-link active" aria-current="true" href="#">전체 신청 고객</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">적합 대상</a>
+            <a class="nav-link" href="#">적합 대상</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">확인중 대상</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">부적합 대상</a>
@@ -28,17 +32,17 @@
       <div v-for="(product, index) in loanlist" :key="index">
         <div class="card mt-4">
           <div class="row mb-4">
-            <div v-if="product.is_suitable == '부적합 판정'" class="col-3 offset-1 bg-danger content">
+            <div v-if="product.is_suitable == '부적합 판정'" class="col-2 offset-1 bg-danger content">
               <br>
               <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div v-else-if="product.is_suitable == '적합 판정'" class="col-3 offset-1 bg-primary content">
+            <div v-else-if="product.is_suitable == '적합 판정'" class="col-2 offset-1 bg-primary content">
               <br>
               <br>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
-            <div class="col-3 offset-1 bg-warning content" v-else>
+            <div class="col-2 offset-1 bg-warning content" v-else>
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
 

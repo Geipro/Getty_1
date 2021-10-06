@@ -91,8 +91,8 @@
         <tbody>
           <tr v-for="(name, index) in loaninfo" :key="index">
             <th scope="row" class="table-active">{{ index + 1 }}</th>
-            <td>{{ name[0].loan_name }}</td>
-            <td>{{ name[0].is_suitable }}</td>
+            <td>{{ loaninfo_name[index].loan_name }}</td>
+            <td>{{ loaninfo[index].is_suitable }}</td>
           </tr>
         </tbody>
       </table>
@@ -127,7 +127,8 @@ export default {
         phone_number:'',
         address: "",
       },
-      loaninfo:[]
+      loaninfo:[],
+      loaninfo_name:[]
     }
   },
   mounted(){
@@ -141,16 +142,28 @@ export default {
       // console.log(this.userinfo)
     }).catch((err) =>{
       console.log(err)
-    })
+    }),
     axios({
       method: 'get',
       url: 'http://j5a205.p.ssafy.io/user/loan/list',
       headers : {"token" : `${this.token.token}`}
     })
     .then((res) =>{
-      this.loaninfo = res.data
+      alert(res.data[0])
+      console.log("loan_info")
+      console.log(res.data[0])
+      alert(res.data[1])
+      console.log("loan_info_name")
+      console.log(res.data[1])
+
+      this.loaninfo = res.data[0]
+      this.loaninfo_name = res.data[1]
+      
       // this.loaninfo = res.data[1][0]
       // console.log(res.data)
+      console.log("check in data")
+      console.log(this.loaninfo[0])
+      console.log(this.loaninfo_name[0])
     }).catch((err) =>{
       console.log(err)
     })

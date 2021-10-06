@@ -49,7 +49,12 @@
       >
         제출서류 확인
       </router-link>
-      <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a>
+      <div class="">
+        <select class="form-control ml-3" aria-label="Is_Suitable" v-model="checkSuitable" @change="changeSuit">
+          <option value="yes">적합 판정</option>
+          <option value="no">부적합 판정</option>
+        </select>
+      </div>
     </div>
 
     <div class="row mt-3">
@@ -67,11 +72,11 @@
             :key="idx"
             :value="item.value"
             scope="row"
-            class="table-active"
+            class="table-active align-self-center align-items-center"
           >
-            <th scope="row" class="table-active">{{ idx + 1 }}</th>
-            <td>{{ item.file_name }}</td>
-            <button v-on:click="download(item.file_url)">다운로드 받기</button>
+            <th scope="row" class="table-active align-self-center align-items-center">{{ idx + 1 }}</th>
+            <td class="align-self-center align-items-center">{{ item.file_name }}</td>
+            <b-button variant="gray"  class="btn align-self-center align-items-center" v-on:click="download(item.file_url)">다운로드 받기</b-button>
           </tr>
           <!-- <tr>
             <th scope="row" class="table-active">1</th>
@@ -97,12 +102,9 @@
       </table>
     </div>
     <div class="row mt-5">
-      <router-link
-        :to="{ name: '#' }"
-        class="pa-3 btn btn-primary btn-sm col-1 mr-4 offset-5"
-      >
+      <b-button variant="primary" class="pa-3 btn col-1 mr-4 offset-5" @click="modify">
         수정
-      </router-link>
+      </b-button>
       <router-link
         :to="{ name: 'BankerLoan' }"
         class="pa-3 btn btn-secondary btn-sm col-1"
@@ -136,6 +138,12 @@ export default {
         salary: "",
         user_file: [],
       },
+      checkSuitable:'check',
+      send_data :{
+        cid : localStorage.getItem("cid"),
+        lid : localStorage.getItem("lid"),
+        is_suitable : ''
+      }
     };
   },
   mounted() {
@@ -176,6 +184,30 @@ export default {
     download(url) {
       window.open(url);
     },
+    
+    changeSuit(){
+      if(this.checkSuitable == "yes"){
+        this.send_data.is_suitable = "적합 판정"
+      }else if(this.checkSuitable == "no"){
+        this.send_data.is_suitable = "부적합 판정"
+      }else{
+        alert("적합 판정을 선택해주세요! " + this.checkSuitable)
+      }
+    },
+    modify(){
+      if(this.send_data != null){
+        axios({
+          method:"PATCH",
+          url:`http://j5a205.p.ssafy.io/user/loan/status`,
+          data : this.send_data
+        }).then(res =>{
+          console.log(res)
+          alert("적합 판정이 완료되었습니다!")
+        })
+      }else{
+        alert("적합 판정을 해주셔야 합니다!")
+      }
+    }
   },
 };
 </script>

@@ -37,11 +37,11 @@
                   <span class="">
                     <select
                     id="yy"
-                    class="form-select form-select-sm"
+                    class="form-control float-left"
                     v-model="userinfo.year"
                     @focus="checkFlag = false"
                     >
-                      <option value="">2021</option>
+                      <option value="">년도</option>
                       <option
                       v-for="(yy, index) in yyyyList"
                       :key="index"
@@ -51,17 +51,16 @@
                       </option>
                     </select>
                   </span>
-                  년
                 </div>
                 <div class="float-left mr-3 ml-3">
                   <span class="form-select">
                     <select
                     id="mm"
-                    class="selectpicker"
+                    class="form-control"
                     v-model="userinfo.month"
                     @focus="checkFlag = false"
                     >
-                      <option value="01">01</option>
+                      <option value="">월</option>
                       <option
                       v-for="(mm, index) in mmlist"
                       :key="index"
@@ -71,17 +70,16 @@
                       </option>
                     </select>
                   </span>
-                  월
                 </div>
                 <div class="float-left mr-3">
                   <span class="form-select">
                     <select
                     id="dd"
-                    class="selectpicker"
+                    class="form-control"
                     v-model="userinfo.day"
                     @focus="checkFlag = false"
                     >
-                      <option value="01">01</option>
+                      <option value="">일</option>
                       <option
                       v-for="(dd, idx) in ddlist"
                       :key="idx"
@@ -91,14 +89,14 @@
                       </option>
                     </select>
                   </span>
-                  일
                 </div>
               </div>
             </div>
           </div>
           <br>
+          <br>
           <div class="form-group text-left">
-            <label for="sex">성별</label><br> 
+            <label class="mr-5" for="sex">성별</label>
             <label class="radio is-inline" v-for="sex in sexs" :key="sex">
               <input type="radio" :value="sex.value" class="radio-input" v-validate="'required'" data-vv-as="성별" v-model="userinfo.sex" name="sex">
               <span class="radio-label mr-3"> {{ sex.text }} </span>
@@ -155,8 +153,6 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-
-// const AUTH_SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 import VeeValidate from 'vee-validate';
 import ko from 'vee-validate/dist/locale/ko.js'
@@ -222,11 +218,11 @@ export default {
   },
   created() {
     const nowYear = new Date().getFullYear();
-    for (let i = 1; i < 100; i++) {
+    for (let i = 0; i <= 100; i++) {
       let date = nowYear - i;
       this.yyyyList.push({ value: date, text: date });
     }
-    for (let i = 2; i < 13; i++) {
+    for (let i = 1; i < 13; i++) {
       if(i > 9){
         this.mmlist.push({
           value: i,
@@ -239,7 +235,7 @@ export default {
         });
       }
     }
-    for(let i = 2; i < 32; i++){
+    for(let i = 1; i < 32; i++){
       if(i > 9){
         this.ddlist.push({
           value:i,
@@ -261,40 +257,6 @@ export default {
       }
       return false
     },
-
-    // nicknameDuplicateCheck() {
-    //   axios({
-    //     method: 'get',
-    //     url: `${VUE_APP_SERVER_URL}:8000/api/auth/checkNickname/${this.credential.nickname}`,
-    //     data: this.credential.nickname
-    //   })
-    //     .then((res) => {
-    //       if (!res.data) {
-    //         this.duplicate.nicknameCheck = true
-    //         alert('닉네임 중복체크 완료!')
-    //       }
-    //       else {
-    //         alert('다른 닉네임을 입력해주세요!')
-    //       }
-    //     })
-    // },
-    
-    // emailDuplicateCheck() {
-    //   axios({
-    //     method: 'get',
-    //     url: `${VUE_APP_SERVER_URL}:8000/api/auth/checkEmail/${this.credential.email}`,
-    //   })
-    //     .then((res) => {
-    //       if (!res.data) {
-    //         this.duplicate.emailCheck = true
-    //         alert('이메일 중복체크 완료!')
-    //       }
-    //       else {
-    //         alert('다른 이메일을 입력해주세요!')
-    //       }
-    //     })
-    // },
-
     signupCheck() {
       var sumDate = this.userinfo.year
       sumDate = String(sumDate) + String(this.userinfo.month) + String(this.userinfo.day)
@@ -308,11 +270,6 @@ export default {
       this.sendData.job = this.userinfo.job
       this.sendData.salary = this.userinfo.salary
       this.sendData.phone_number = this.userinfo.phone_number
-      // alert("이름 : " + this.userinfo.user_name)
-      // alert("아이디 : " + this.userinfo.user_id)
-      // alert("생년월일 : " + this.userinfo.year + "년" + this.userinfo.month + "월" + this.userinfo.day + "일")
-      // alert("성별 : " + this.userinfo.sex)
-      // alert("생년월일2 : " + this.userinfo.birth)
       if (this.onSubmit()) {
         if (this.userinfo.passwordConfirmation) {
           axios({

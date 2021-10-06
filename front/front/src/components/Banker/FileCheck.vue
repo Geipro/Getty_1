@@ -45,11 +45,11 @@
       <h6 class="col-3 offset-1">1. 싹편한 직장인대출</h6>
       <router-link
         :to="{ name: 'FileCheck' }"
-        class="pa-5 btn btn-danger btn-sm offset-4"
+        class="pa-5 btn btn-danger btn-sm offset-4 mr-3"
       >
         제출서류 확인
       </router-link>
-      <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a>
+
     </div>
 
     <div class="row mt-3">
@@ -124,6 +124,7 @@ export default {
         job: "",
         salary: "",
       },
+
     };
   },
   mounted() {

@@ -65,7 +65,7 @@
           <br />
           <div>
             <h5>
-              지정업체에 재직중인 직장인에게 한도와 금리를 우대해드리는 신용대출
+              {{item.loan_about}}
             </h5>
           </div>
           <div class="row">
@@ -120,7 +120,6 @@ export default {
       })
         .then((res) => {
           this.loanlist = res.data;
-          print("mounted this.loanlist : ", this.loanlist);
         })
         .catch((err) => {
           console.log(err.headers);

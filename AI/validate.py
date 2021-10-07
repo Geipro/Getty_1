@@ -2,6 +2,7 @@ from check import validation as vd
 import glob
 import os.path
 from PIL import Image
+from tesseractocr import getData
 
 def check(url):
     file = url
@@ -12,7 +13,14 @@ def check(url):
     img_resize = img.resize((256, 256))
     img_resize.save(f"./forTest/{name}.png")
 
-    print(f'input is {name}')
+    # print(f'input is {name}')
     answer = vd(f'.//forTest//{name}.png')
+    # print('예측결과', answer)
+    li = getData(url, answer)
+    print('')
+    print('')
+    print('')
 
-check('.//datas//1//건강보험료납부확인서12.png')
+
+    return(li)
+check('.//data//하이하이.png')

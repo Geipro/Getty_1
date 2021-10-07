@@ -35,13 +35,14 @@ def getData(url, imgType):
         comp_name = res
         toSend.append(birth)
         toSend.append(comp_name)
-    
+        print(toSend)
     elif imgType == '건강보험료납부확인서':
         x, y = 270, 539
         w, h = 170, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
         toSend.append(str(int(int(res.split()[0])*291.54)))
+        print(toSend)
 
     elif imgType == '소득금액증명서':
         x, y = 170, 1252
@@ -84,9 +85,10 @@ def getData(url, imgType):
         res = pytesseract.image_to_string(toRead, lang='kor')
         carPrice = res
         print(carPrice)
+    
+    return(toSend) 
 
-
-# getData('.//data//자격득실확인서1.png', '자격득실확인서')
+# getData('.//data//하이하이.png', '자격득실확인서')
 # getData('.//data//건강보험료납부확인서1.png', '건강보험료납부확인서')
 # getData('.//data//소득금액증명서1.png', '소득금액증명서')
 getData('.//data//자동차매매계약서1.png', '자동차매매계약서')

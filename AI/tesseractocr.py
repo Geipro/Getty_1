@@ -15,69 +15,142 @@ import pytesseract
 import cv2
 import os
 from PIL import Image
-from google.colab.patches import cv2_imshow
 
-cnt = 0
-for i in os.listdir('url'):
+class_names = ['건강보험료납부확인서', '근로소득원천징수', '자동차등록증',
+               '자동차등록원부', '자격득실확인서', '자동차매매계약서', '소득금액증명서']
 
-    path = './test/' + i
-    print(path)
-    image = cv2.imread(path)
+def getData(url, imgType):
+    toSend = []
+    img = cv2.imread(url)
+    if imgType == '자격득실확인서':
+        x, y = 786, 362
+        w, h = 80, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        birth = f'{res[:2]}.{res[2:4]}.{res[4:6]}'
+        x, y = 328, 556
+        w, h = 180, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        comp_name = res
+        toSend.append(birth)
+        toSend.append(comp_name)
+    
+    elif imgType == '건강보험료납부확인서':
+        x, y = 270, 539
+        w, h = 170, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        toSend.append(str(int(int(res.split()[0])*291.54)))
 
-    x, y = 250, 345
-    w, h = 325, 60
-    iii = image[y:y+h, x:x+w]
+    elif imgType == '소득금액증명서':
+        x, y = 170, 1252
+        w, h = 250, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        print(res)
+        phone = res
+        x, y = 680, 665
+        w, h = 200, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        print(int(res)*12)
 
-    res = pytesseract.image_to_string(iii, lang = 'Hangul')
-    print(res)
-    cv2_imshow(iii)
+        toSend.append(phone)
+        toSend.append(str(int(res)*12))
+    
+    elif imgType == '자동차매매계약서':
+        x, y = 1060, 455
+        w, h = 70, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        print(res)
+        birth = f'{res[:2]}.{res[2:4]}.{res[4:6]}'
+        x, y = 387, 505
+        w, h = 200, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        phone = res
+        print(phone)
+        x, y = 1041, 621
+        w, h = 90, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='eng+kor')
+        carType = res
+        print(carType)
+        x, y = 395, 721
+        w, h = 130, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        carPrice = res
+        print(carPrice)
 
-    # test
-    # if cnt == 2:
-    #     break
-    # else:
-    #     cnt += 1
 
-cnt = 0
-for i in os.listdir('./test/'):
+# getData('.//data//자격득실확인서1.png', '자격득실확인서')
+# getData('.//data//건강보험료납부확인서1.png', '건강보험료납부확인서')
+# getData('.//data//소득금액증명서1.png', '소득금액증명서')
+getData('.//data//자동차매매계약서1.png', '자동차매매계약서')
+# cnt = 0
+# for i in os.listdir('url'):
 
-    path = './test/' + i
-    print(path)
-    image = cv2.imread(path)
-    # cv2_imshow(image)
+#     path = './test/' + i
+#     print(path)
+#     image = cv2.imread(path)
 
-    # Convert type
-    pil_img = Image.fromarray(image)
+#     x, y = 250, 345
+#     w, h = 325, 60
+#     iii = image[y:y+h, x:x+w]
 
-    # GrayScale Conversion
-    # img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    # img_gray = cv2.cvtColor(pil_img, cv2.COLOR_BGR2GRAY)
+#     res = pytesseract.image_to_string(iii, lang = 'kor')
+#     print(res)
+#     cv2_imshow(iii)
 
-    x, y = 250, 345
-    w, h = 325, 60
-    iii = image[y:y+h, x:x+w]
-    cv2_imshow(iii)
-    # iii = img_gray[y:y+h, x:x+w]
+#     # test
+#     # if cnt == 2:
+#     #     break
+#     # else:
+#     #     cnt += 1
 
-    # os read file
-    filename = "{}.png".format(os.getpid())
-    cv2.imwrite(filename, iii)
-    # ttt = cv2.cvtColor(Image.open(filename), cv2.COLOR_BGR2RGB)
-    # cv2_imshow(ttt)
+# cnt = 0
+# for i in os.listdir('./test/'):
 
-    print(filename)
+#     path = './test/' + i
+#     print(path)
+#     image = cv2.imread(path)
+#     # cv2_imshow(image)
 
-    # pytesseract : image to string
-    text = pytesseract.image_to_string(Image.open(filename), lang = 'Hangul')
-    os.remove(filename)
+#     # Convert type
+#     pil_img = Image.fromarray(image)
 
-    # result
-    print(text)
-    # cv2_imshow(img_gray)
-    cv2_imshow(iii)
+#     # GrayScale Conversion
+#     # img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#     # img_gray = cv2.cvtColor(pil_img, cv2.COLOR_BGR2GRAY)
 
-    # test
-    if cnt == 2:
-        break
-    else:
-        cnt += 1
+#     x, y = 250, 345
+#     w, h = 325, 60
+#     iii = image[y:y+h, x:x+w]
+#     cv2_imshow(iii)
+#     # iii = img_gray[y:y+h, x:x+w]
+
+#     # os read file
+#     filename = "{}.png".format(os.getpid())
+#     cv2.imwrite(filename, iii)
+#     # ttt = cv2.cvtColor(Image.open(filename), cv2.COLOR_BGR2RGB)
+#     # cv2_imshow(ttt)
+
+#     print(filename)
+
+#     # pytesseract : image to string
+#     text = pytesseract.image_to_string(Image.open(filename), lang = 'Hangul')
+#     os.remove(filename)
+
+#     # result
+#     print(text)
+#     # cv2_imshow(img_gray)
+#     cv2_imshow(iii)
+
+#     # test
+#     if cnt == 2:
+#         break
+#     else:
+#         cnt += 1

@@ -52,7 +52,7 @@
               {{item.loan_about}}
             </h5>
           </div>
-          <div class="row">
+          <div class="row mt-3">
             <b-button v-if="isLogin && item.is_exist===false" variant="primary" class="pa-5 mr-4 btn-md offset-4" v-on:click="applyPd(event, item.lid)">
               신청하기
             </b-button>
@@ -60,19 +60,21 @@
               신청완료
             </b-button>
 
-            <b-button v-b-modal.modal-1 class="mr-4 ml-1">
+            <b-button v-if="isLogin" v-b-modal="'myModal' + item.lid" class="mr-4 ml-1">
               상세보기
             </b-button>
-            <b-modal id="modal-1" hide-footer scrollable centered no-fade size="lg">
+
+            <b-button v-else v-b-modal="'myModal' + item.lid" class="pa-5 mr-4 btn-md offset-5">
+              상세보기
+            </b-button>
+
+            <b-modal :id="'myModal' + item.lid" hide-footer scrollable centered no-fade size="lg">
               <form ref="form" style="text-align: center;">
                 <img :src="item.loan_img">
-                </form>
+              </form>
             </b-modal>
 
-            <b-button v-if="isLogin" variant="dark" class="mr-4 ml-1" v-on:click="linkDetail(event, item.loan_address)">
-              이동하기
-            </b-button>
-            <b-button v-else variant="dark" class="pa-5 mr-4 btn-md offset-5" v-on:click="linkDetail(event, item.loan_address)">
+            <b-button  variant="dark" class="pa-5 mr-4 btn-md" v-on:click="linkDetail(event, item.loan_address)">
               이동하기
             </b-button>
             <!-- <b-button variant="secondary" class="ml-1"> ♡ </b-button> -->
@@ -81,6 +83,7 @@
       </div>
     </div>
 
+    
   </div>
 
 </template>
@@ -111,6 +114,7 @@ export default {
       },
       title: '',
       apply: '',
+      img_url:'',
     };
   },
   mounted() {
@@ -122,6 +126,7 @@ export default {
       })
         .then((res) => {
           this.loanlist = res.data;
+          console.log(this.loanlist)
         })
         .catch((err) => {
           console.log(err.headers);
@@ -186,6 +191,10 @@ export default {
       if (window.confirm("이미 신청이 완료된 상태입니다. 마이페이지로 이동하시겠습니까?")) {
         window.open("http://localhost:8080/mypage","_self");
       }
+    },
+    openModal(event, url){
+      this.img_url = url
+      console.log(this.img_url)
     }
   },
 };

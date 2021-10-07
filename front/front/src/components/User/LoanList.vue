@@ -158,6 +158,7 @@ export default {
         }).then((res) =>{
           alert("신청완료!!")
           console.log(res)
+          this.$router.go()
         }).catch((err) =>{
           console.log(err)
         })
@@ -170,7 +171,7 @@ export default {
       window.open(addr)
     },
     createAlert(){
-      if (window.confirm("신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?")) {
+      if (window.confirm("이미 신청이 완료된 상태입니다. 마이페이지로 이동하시겠습니까?")) {
         window.open("http://localhost:8080/mypage","_self");
       }
     }

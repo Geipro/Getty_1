@@ -189,7 +189,7 @@ def create_user_files(db: Session, cid: int, file_url: str):
 
 
 # 고객 데이터 반환
-def get_user_data(db: Session, file_url: str):
+def get_user_data(file_url: str):
     return dict(validate.check(file_url))
 
 

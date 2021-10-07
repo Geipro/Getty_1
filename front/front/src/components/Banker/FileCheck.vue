@@ -33,7 +33,7 @@
       <h5 class="col-4 offset-1">대출신청한 상품</h5>
     </div>
     <div class="row mt-3">
-      <h6 class="col-3 offset-1">1. {{ userInfo.loan_name }}</h6>
+      <h3 class="col-3 offset-1">{{ userInfo.loan_name }}</h3>
 
       <div class="offset-6">
         <select class="form-control ml-3" aria-label="Is_Suitable" v-model="checkSuitable" @change="changeSuit">

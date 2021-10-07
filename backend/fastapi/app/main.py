@@ -33,6 +33,8 @@ origins = [
     "http://localhost:8080",
     "http://localhost:8000",
     "http://localhost:5000",
+    "http://j5a205.p.ssafy.io",
+    "http://j5a205.p.ssafy.io:80",
 ]
 
 # Cors

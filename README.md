@@ -105,14 +105,6 @@
 
 - jwt               1.2.0
 
-- multidict         5.2.0
-
-- mypy-extensions   0.4.3
-
-- numpy             1.21.2
-
-- pandas            1.3.3
-
 - pip               21.2.4
 
 - pydantic          1.8.2
@@ -122,10 +114,6 @@
 - PyMySQL           1.0.2
 
 - python-multipart  0.0.5
-
-- regex             2021.8.28
-
-- starlette         0.14.2
 
 - uvicorn           0.15.0
 

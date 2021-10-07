@@ -70,6 +70,7 @@ class LoanProduct(Base):
     interest_rate = Column(String(45), nullable=True, comment="금리")
     loan_amount = Column(Integer, nullable=True, comment="대출 가능 금액")
     loan_about = Column(String(500), nullable=True, comment="상품 설명")
+    loan_img = Column(String(100), nullable=True, comment="대출 이미지 링크")
 
 
 class Banker(Base):

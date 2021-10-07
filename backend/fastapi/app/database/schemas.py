@@ -63,6 +63,7 @@ class LoanCreate(BaseModel):
     interest_rate: str
     loan_amount: int
     loan_about: str
+    loan_img: str
 
     class Config:
         orm_mode = True

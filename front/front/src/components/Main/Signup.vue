@@ -7,8 +7,8 @@
           <h3>회원가입</h3>
         </div>
       </div>
-      <form 
-        @submit.prevent="onSubmit" 
+      <form
+        @submit.prevent="onSubmit"
         name="registration"
       >
         <div class="text-left form-group justify-content-between">
@@ -105,21 +105,21 @@
             <span class="error" v-if="errors.has('sex')">{{errors.first('sex')}}</span>
           </div>
         <div class="form-group text-left">
-          <label for="phone">전화번호</label> 
+          <label for="phone">전화번호</label>
           <input type="tel" name="phone" v-validate="'required|digits:11'" v-model="userinfo.phone_number" data-vv-as="전화번호"
           class="form-control" :class="{error: errors.has('phone')}" id="phone" aria-describedby="phoneHelp" placeholder="01012345678">
           <span class="error" v-if="errors.has('phoneNumber')">{{errors.first('phoneNumber')}}</span>
         </div>
-        
+
         <div class="form-group text-left">
-          <label for="job">직업</label> 
+          <label for="job">직업</label>
           <input type="text" name="job" v-model="userinfo.job" data-vv-as="직업" v-validate="'required'"
           class="form-control" :class="{error: errors.has('salary')}" id="job" aria-describedby="jobHelp" placeholder="무직">
           <span class="error" v-if="errors.has('job')">{{errors.first('job')}}</span>
         </div>
 
         <div class="form-group text-left">
-          <label for="salary">연봉(단위 : 만 원)</label> 
+          <label for="salary">연봉(단위 : 만 원)</label>
           <input type="digit" name="salary" v-model="userinfo.salary" data-vv-as="연봉" v-validate="'required'"
           class="form-control" :class="{error: errors.has('salary')}" id="salary" aria-describedby="salaryHelp" placeholder="ex) 4500(만원)">
           <span class="error" v-if="errors.has('salary')">{{errors.first('salary')}}</span>
@@ -248,7 +248,7 @@ export default {
         })
       }
     }
-  },  
+  },
   methods: {
     onSubmit() {
       this.$validator.validateAll()
@@ -274,7 +274,7 @@ export default {
         if (this.userinfo.passwordConfirmation) {
           axios({
             method: 'post',
-            url: `http://j5a205.p.ssafy.io/signup`,
+            url: `http://j5a205.p.ssafy.io:3000/signup`,
             data: this.sendData
           }).then((res) => {
             console.log(res)

@@ -83,7 +83,7 @@
       </div>
     </div>
 
-    
+
   </div>
 
 </template>
@@ -122,7 +122,7 @@ export default {
     if (this.token["token"] == null) {
       axios({
         method: "get",
-        url: `http://j5a205.p.ssafy.io/loan`,
+        url: `http://j5a205.p.ssafy.io:3000/loan`,
       })
         .then((res) => {
           this.loanlist = res.data;
@@ -135,7 +135,7 @@ export default {
     } else {
       axios({
         method: "get",
-        url: `http://j5a205.p.ssafy.io/user/loan`,
+        url: `http://j5a205.p.ssafy.io:3000/user/loan`,
         headers: { token: `${this.token.token}` },
       })
         .then((res) => {
@@ -146,7 +146,7 @@ export default {
         }),
         axios({
           method: "get",
-          url: "http://j5a205.p.ssafy.io/user/info",
+          url: "http://j5a205.p.ssafy.io:3000/user/info",
           headers: { token: `${this.token.token}` },
         })
           .then((res) => {
@@ -167,7 +167,7 @@ export default {
       if(this.token.token != null){
         axios({
           method: 'post',
-          url: `http://j5a205.p.ssafy.io/user/loan/request/${id}`,
+          url: `http://j5a205.p.ssafy.io:3000/user/loan/request/${id}`,
           data: id,
           headers:{
             "token" : localStorage.getItem("Token")
@@ -189,7 +189,7 @@ export default {
     },
     createAlert(){
       if (window.confirm("이미 신청이 완료된 상태입니다. 마이페이지로 이동하시겠습니까?")) {
-        window.open("http://localhost:8080/mypage","_self");
+        window.open("http://j5a205.p.ssafy.io/mypage","_self");
       }
     },
     openModal(event, url){

@@ -82,7 +82,7 @@ import axios from 'axios';
 
               axios({
                 method: "post",
-                url: `http://j5a205.p.ssafy.io/user/file`,
+                url: `http://j5a205.p.ssafy.io:3000/user/file`,
                 data: formData,
                 headers: {
                   "token" : this.token.token,

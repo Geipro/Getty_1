@@ -122,20 +122,20 @@ export default {
   mounted(){
     axios({
       method: 'get',
-      url: 'http://j5a205.p.ssafy.io/user/info',
+      url: 'http://j5a205.p.ssafy.io:3000/user/info',
       headers : {"token" : `${this.token.token}`}
     })
     .then((res) =>{
       this.userinfo = res.data.user
       this.uploadFiles = res.data.user_files
-      
+
       console.log(this.uploadFiles)
     }).catch((err) =>{
       console.log(err)
     }),
     axios({
       method: 'get',
-      url: 'http://j5a205.p.ssafy.io/user/loan/list',
+      url: 'http://j5a205.p.ssafy.io:3000/user/loan/list',
       headers : {"token" : `${this.token.token}`}
     })
     .then((res) =>{

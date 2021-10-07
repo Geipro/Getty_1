@@ -70,7 +70,7 @@ export default {
         getJWT: function () {
             axios({
                 method: 'post',
-                url: `http://j5a205.p.ssafy.io/signin`,
+                url: `http://j5a205.p.ssafy.io:3000/signin`,
                 data: this.credential
             }).then((res) => {
                 var token = res.data.Authorization;
@@ -78,7 +78,7 @@ export default {
                 if (localStorage.getItem('Token')) {
                   axios({
                     method: 'get',
-                    url: `http://j5a205.p.ssafy.io/user/info`,
+                    url: `http://j5a205.p.ssafy.io:3000/user/info`,
                     headers:{
                       "token" : localStorage.getItem("Token")
                     }

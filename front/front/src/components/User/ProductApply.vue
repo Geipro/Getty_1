@@ -52,7 +52,7 @@ import axios from 'axios'
     mounted(){
       axios({
         method: 'get',
-        url: `http://j5a205.p.ssafy.io/user/loan`,
+        url: `http://j5a205.p.ssafy.io:3000/user/loan`,
         headers:{
           "token" : localStorage.getItem("Token")
         }
@@ -67,7 +67,7 @@ import axios from 'axios'
         if(this.apply != null){
           axios({
             method: 'post',
-            url: `http://j5a205.p.ssafy.io/user/loan/request/${this.apply.lid}`,
+            url: `http://j5a205.p.ssafy.io:3000/user/loan/request/${this.apply.lid}`,
             data: this.apply.lid,
             headers:{
               "token" : localStorage.getItem("Token")

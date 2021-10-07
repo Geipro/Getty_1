@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-5 justify-content-center align-items-center" style="text-align: center; width: 100%" v-if="!isLogin">
+  <div class="mt-5 justify-content-center align-items-center" style="text-align: center; width: 100%">
     <!-- test1 : color: #559CDE  -->
-    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #73C6B6;">
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #019bbc;">
       <iframe src="https://giphy.com/embed/1KllEBZdsLBwt3sDMG" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
       <div class="ml-5">
         <h1 class="col">클릭한번으로 더욱 간편해진</h1>
@@ -19,7 +19,8 @@
         <h4 class="col" >실제 대출 여부를 확인하여 손쉬운 대출을 경험해보세요.</h4>
       </div>
     </div>
-    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #7FB3D5;">
+    <!-- 7FB3D5 -->
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #7fb3d5;">
       <iframe src="https://giphy.com/embed/W2i6o8uAXOx0QIoL2a" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
       <div class="ml-5">
         <h1 class="col">복잡한 과정없는, 조건없는</h1>
@@ -30,7 +31,7 @@
     </div>
 
 
-  <div class="row" v-if="isLogin">
+  <!-- <div class="row" v-if="isLogin">
     <div class="col ml-5">
       <h3 class="mb-4 text-center">싸피 은행의 대출 추천 상품을 소개합니다.</h3>
       <ul class="align-items-center text-center list-group list-group-horizontal offset-4">
@@ -51,7 +52,7 @@
         </li>
       </ul>
     </div>
-	</div>
+	</div> -->
 </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <!-- <div class="carousel-inner" style="height: 600px"> -->
-    <div class="carousel-inner mb-5 mt-3" style="height: mx-auto">
+    <div class="carousel-inner mb-5" style="height: mx-auto">
         <div class="carousel-item active">
           <router-link :to="{ name: 'LoanList' }" style="height: auto">
             <img src="@/assets/loan1.png" class="d-block w-100" alt="...">

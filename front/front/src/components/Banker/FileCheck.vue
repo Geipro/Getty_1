@@ -64,7 +64,12 @@
             <td class="">{{ item.file_name }}</td>
             <td>
               <b-button variant="light" class="btn mt-1" v-on:click="download(item.file_url)">서류 다운로드 받기</b-button>
-              <b-button variant="dark" class="btn mt-1 ml-3" v-on:click="getData()" >서류 데이터 받기</b-button>
+              <b-button v-b-modal="'myModal' + idx" variant="dark" class="btn mt-1 ml-3" v-on:click="getData(item.file_url)">서류 데이터 받기</b-button>
+              <b-modal :id="'myModal' + idx" hide-footer scrollable centered no-fade>
+                <div v-for="(v, k) in this.user_file_data" :key="k" :value="v.value">
+                  {{k}}: {{v}}
+                </div>
+              </b-modal>
             </td>
           </tr>
         </tbody>
@@ -113,6 +118,7 @@ export default {
         lid : localStorage.getItem("lid"),
         is_suitable : ''
       },
+      user_file_data:[]
     };
   },
   mounted() {
@@ -138,7 +144,10 @@ export default {
         this.userInfo.salary = res.data.user_detail.salary;
 
         res.data.user_files.forEach((element) => {
+          // console.log(element)
           this.userInfo.user_file.push(element);
+          // console.log(11222, element.file_url)
+          this.getData(element.file_url);
         });
 
         console.log(this.userInfo.user_file);
@@ -175,13 +184,18 @@ export default {
         alert("적합 판정을 해주셔야 합니다!")
       }
     },
-    getData(){
+    getData(url){
       axios({
-        method: "",
-        url: `http://j5a205.p.ssafy.io:3000/`,
-        data: "",
+        method: "get",
+        url: `http://j5a205.p.ssafy.io:3000/data/file_url/`,
+        headers:{
+          fileurl:`${url}`
+        }
       }).then((res) =>{
-        console.log(res)
+        console.log(11111,res)
+        res.data.forEach((element) => {
+          this.user_file_data.push(element);
+        });
       }).catch((err) =>{
         console.log(err)
       })

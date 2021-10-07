@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- <b-button pill variant="secondary" class="mr-1">대출 신청 대상자</b-button> -->
-    <h2>대출 신청 대상자</h2>
-    <hr />
+    <h2 class="ml-3">대출 신청 대상자</h2>
+    <hr class="ml-3" style="width:12%" align="left"/>
     <!-- <b-button-group>
       <b-button pill variant="secondary" class="mr-1">주택자금대출</b-button>
       <b-button pill variant="secondary" class="mr-1">예/적금 담보대출</b-button>

@@ -2,7 +2,7 @@
     <div id="first" class="row align-items-center wrapper">
         <div class="mx-auto col-md-4">
             <div class="myform form">
-                <div class="logo mb-3">
+                <div class="logo mb-3 text-center">
                     <h1>Login</h1>
                 </div>
                     <div class="form-group">

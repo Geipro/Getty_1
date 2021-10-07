@@ -159,3 +159,9 @@ class UserLoanDetail(BaseModel):
     salary: int
 
     is_suitable: str
+
+    
+# 고객 파일 정보
+class ReadUserFile(BaseModel):
+    data_list: list
+

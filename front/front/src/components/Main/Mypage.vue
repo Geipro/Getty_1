@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <nav nav class="bg-primary">
+    <!-- <nav nav class="bg-primary">
       <div style="height: 30px">
         <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
           신용대출
@@ -16,9 +16,9 @@
           MY CAR
         </router-link>
       </div>
-    </nav>
+    </nav> -->
     <div class="row mt-4">
-      <h4 class="col-5">마이페이지</h4>
+      <h4 class="col-4">마이페이지</h4>
     </div>
     <!-- 고객데이터 table -->
     <div  class="row mt-3">
@@ -32,10 +32,10 @@
             <th scope="row" class="table-active">연락처</th>
             <td>{{ userinfo.phone_number }}</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <th scope="row" class="table-active">주소</th>
             <td>{{ userinfo.address }}</td>
-          </tr>
+          </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
             <td>{{ userinfo.job }}</td>
@@ -61,26 +61,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="table-active">1</th>
-            <td>재직증명서</td>
-            <td><button type="button" class="btn btn-warning">확인하기</button></td>
+          <tr v-for="(name, idx) in uploadFiles" :key="idx">
+            <th scope="row" class="table-active">{{ idx + 1 }}</th>
+            <td>{{name.file_name}}</td>
+            <td><button type="button" class="btn btn-warning" v-on:click="viewFile(event, name.file_url)">다운로드</button></td>
           </tr>
-          <tr>
-            <th scope="row" class="table-active">2</th>
-            <td>소득증명서</td>
-            <td><button type="button" class="btn btn-warning">확인하기</button></td>
-          </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">3</th>
-            <td>건강보험자격득실증명서</td>
-            <td>건강보험자격득실확인서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">4</th>
-            <td>건강장기요양보험료 납부확인서</td>
-            <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr> -->
         </tbody>
       </table>
     </div>
@@ -99,26 +84,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" class="table-active">1</th>
-            <td>재직증명서</td>
-            <td><button type="button" class="btn btn-primary">적합</button></td>
+          <tr v-for="(name, index) in loaninfo" :key="index">
+            <th scope="row" class="table-active">{{ index + 1 }}</th>
+            <td>{{ loaninfo_name[index].loan_name }}</td>
+            <td v-if="loaninfo[index].is_suitable == '부적합 판정'">
+              <button type="button" class="btn btn-danger">{{ loaninfo[index].is_suitable }}</button>
+            <td v-else-if="loaninfo[index].is_suitable == '적합 판정'">
+              <button type="button" class="btn btn-primary">{{ loaninfo[index].is_suitable }}</button>
+            </td>
+            <td v-else>
+              <button type="button" class="btn btn-warning">{{ loaninfo[index].is_suitable }}</button>
+            </td>
           </tr>
-          <tr>
-            <th scope="row" class="table-active">2</th>
-            <td>소득증명서</td>
-            <td><button type="button" class="btn btn-danger">부적합</button></td>
-          </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">3</th>
-            <td>건강보험자격득실증명서</td>
-            <td>건강보험자격득실확인서.pdf</td>
-          </tr>
-          <tr>
-            <th scope="row" class="table-active">4</th>
-            <td>건강장기요양보험료 납부확인서</td>
-            <td>건강장기요양보험료_납부확인서.pdf</td>
-          </tr> -->
         </tbody>
       </table>
     </div>
@@ -152,7 +129,10 @@ export default {
         phone_number:'',
         address: "",
       },
-    };
+      loaninfo:[],
+      loaninfo_name:[],
+      uploadFiles:[],
+    }
   },
   mounted(){
     axios({
@@ -162,11 +142,28 @@ export default {
     })
     .then((res) =>{
       this.userinfo = res.data.user
-      // console.log(this.userinfo)
+      this.uploadFiles = res.data.user_files
+      console.log(this.uploadFiles)
+    }).catch((err) =>{
+      console.log(err)
+    }),
+    axios({
+      method: 'get',
+      url: 'http://j5a205.p.ssafy.io/user/loan/list',
+      headers : {"token" : `${this.token.token}`}
+    })
+    .then((res) =>{
+      this.loaninfo = res.data[0]
+      this.loaninfo_name = res.data[1]
     }).catch((err) =>{
       console.log(err)
     })
   },
+  methods:{
+    viewFile(event, url){
+      window.open(url)
+    }
+  }
 }
 </script>
 

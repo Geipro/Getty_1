@@ -1,6 +1,6 @@
 <template>
-    <div id="first" class="row h-50 align-items-center">
-        <div class="mx-auto col-md-4 h-50">
+    <div id="first" class="row h-50 align-items-center wrapper">
+        <div class="mx-auto col-md-4 h-60">
             <div class="myform form">
                 <div class="logo mb-3">
                     <h1>Login</h1>
@@ -17,20 +17,14 @@
                         <div class="d-flex justify-content-between">
                             <label for="id">비밀번호</label>
                         </div>
-                        <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.user_pw" data-vv-as="Password"
+                        <input type="password" ref="password" name="password" v-validate="'required|min:4'" v-model="credential.user_pw" data-vv-as="Password"
                         class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
                         <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
                     </div>
                     <div class="text-center">
-                        <!--
-                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" @click.prevent="getJWT">Login</button>
-                        -->
                         <button type="submit" @click="loginCheck" class="btn btn-block mybtn btn-primary tx-tfm">Login</button>
                     </div>
                     <div class="links">
-                        <!--
-                        <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
-                        -->
                         <div class="member text-center mt-3">
                             <router-link  :to="{ name: 'SignupMerge' }">
                                 <a id="goSignup">  회원가입</a>
@@ -51,7 +45,7 @@ import ko from 'vee-validate/dist/locale/ko.js'
 import axios from 'axios';
 
 ko.messages.required = (field) => `${field} 이/가 필요합니다.`
-ko.messages.password = (field) => `${field} 는 최소 6글자 여야합니다.`
+ko.messages.password = (field) => `${field} 는 최소 4글자 여야합니다.`
 
 const config = {
     locale: 'ko',
@@ -73,15 +67,6 @@ export default {
         }
     },
     methods: {
-        // change: function () {
-        //     this.$emit('change')
-        // },
-        // signup: function(){
-        //     this.$emit('signup')
-        // },
-        // changePw: function(){
-        //     this.$emit('pw')
-        // },        
         getJWT: function () {
             axios({
                 method: 'post',
@@ -116,3 +101,11 @@ export default {
     }
 }
 </script>
+
+<style>
+.wrapper {
+    display: grid;
+    place-items: center;
+    min-height: 80vh;
+}
+</style>

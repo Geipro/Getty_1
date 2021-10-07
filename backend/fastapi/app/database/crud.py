@@ -30,6 +30,14 @@ def get_loan_by_lid(db: Session, lid: int):
     return db.query(models.LoanProduct).filter(models.LoanProduct.lid == lid).first()
 
 
+def get_loan_name_by_lid(db: Session, lid: int):
+    return (
+        db.query(models.LoanProduct.loan_name)
+        .filter(models.LoanProduct.lid == lid)
+        .first()
+    )
+
+
 def get_loan_info_by_cli_lid(db: Session, cid: int, lid: int):
     return (
         db.query(models.UserLoan)
@@ -106,6 +114,7 @@ def create_loan(db: Session, loan: schemas.LoanCreate):
         loan_job=loan.loan_job,
         interest_rate=loan.interest_rate,
         loan_amount=loan.loan_amount,
+        loan_about=loan.loan_about,
     )
     db.add(db_loan)
     db.commit()
@@ -130,10 +139,7 @@ def create_banker(db: Session, banker: schemas.BankerCreate):
 
 # 고객 <-> 대출 상품 관계 생성
 def create_user_loan(db: Session, user_loan: dict):
-    db_user_loan = models.UserLoan(
-        cid=user_loan["cid"],
-        lid=user_loan["lid"]
-    )
+    db_user_loan = models.UserLoan(cid=user_loan["cid"], lid=user_loan["lid"])
 
     db.add(db_user_loan)
     db.commit()

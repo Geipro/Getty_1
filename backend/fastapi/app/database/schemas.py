@@ -60,8 +60,9 @@ class LoanCreate(BaseModel):
     loan_salary: str
     loan_address: str
     loan_job: str
-    interest_rate: int
+    interest_rate: str
     loan_amount: int
+    loan_about: str
 
     class Config:
         orm_mode = True
@@ -119,7 +120,7 @@ class UserFile(BaseModel):
 
 # 고객 신청 상품 정보
 class UserLoanInfo(BaseModel):
-    cid: int 
+    cid: int
     lid: int
     user_name: str
     loan_name: str
@@ -135,15 +136,16 @@ class UserLoan(BaseModel):
 
 # 고객이 신청한 대출 리스트
 class UserLoanInfo(BaseModel):
-    cid: int 
+    cid: int
     lid: int
     loan_name: str
     user_name: str
     is_suitable: str
 
+
 # 고객 신청 상품 세부정보
 class UserLoanDetail(BaseModel):
-    cid: int 
+    cid: int
     lid: int
     loan_name: str
 
@@ -154,5 +156,5 @@ class UserLoanDetail(BaseModel):
     birth: str
     sex: int
     salary: int
-    
+
     is_suitable: str

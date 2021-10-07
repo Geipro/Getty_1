@@ -1,6 +1,6 @@
 <template>
   <!-- signup box start -->
-  <div class="text-center row h-80 align-items-center" id="second">
+  <div class="text-center row align-items-center" id="second">
     <div class="myform form col-md-4 mx-auto">
       <div class="logo mb-3">
         <div class="col-md-12 text-center mt-1">

@@ -1,22 +1,6 @@
 <template>
   <div>
     <Navbar />
-    <!-- <nav nav class="bg-primary">
-      <div style="height: 30px">
-        <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
-          신용대출
-        </router-link>
-        <router-link :to="{ name: 'FileCheck' }" class="pa-5 offset-1" style="color: white">
-          주택자금대출
-        </router-link>
-        <router-link :to="{ name: 'FileCheck' }" class="pa-5 offset-1" style="color: white">
-          예/적금 담보대출
-        </router-link>
-        <router-link :to="{ name: 'FileCheck' }" class="pa-5 offset-1" style="color: white">
-          MY CAR
-        </router-link>
-      </div>
-    </nav> -->
     <div class="container mt-5">
       <div class="text-left ml-10 mr-10" id="first">
           <div class="logo mt-3 mb-5">

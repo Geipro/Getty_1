@@ -25,9 +25,6 @@
       <span v-else>
         <ul class="nav">
           <li class="nav-item">
-            <router-link :to="{ name: 'Mypage' }" class="text-light nav-link">마이페이지</router-link>
-          </li>
-          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="http://localhost:8080/loanList" style="color: white">금융서비스</a>
           </li>
           <li class="nav-item">

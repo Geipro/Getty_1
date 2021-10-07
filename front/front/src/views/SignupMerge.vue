@@ -1,5 +1,5 @@
 <template>
-  <div class="h-100" >
+  <div class="" >
     <Navbar />
     <Signup class="mt-5" />
   </div>

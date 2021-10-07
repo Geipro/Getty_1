@@ -1,6 +1,6 @@
 <template>
-    <div id="first" class="row h-50 align-items-center wrapper">
-        <div class="mx-auto col-md-4 h-60">
+    <div id="first" class="row align-items-center wrapper">
+        <div class="mx-auto col-md-4">
             <div class="myform form">
                 <div class="logo mb-3">
                     <h1>Login</h1>
@@ -106,6 +106,6 @@ export default {
 .wrapper {
     display: grid;
     place-items: center;
-    min-height: 80vh;
+    min-height: 75vh;
 }
 </style>

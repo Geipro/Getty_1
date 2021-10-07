@@ -59,7 +59,6 @@
                     돌아가기
                 </router-link>
             </div>
-            <br><br><br><br><br><br><br>
         </div>
     </div>
 </template>

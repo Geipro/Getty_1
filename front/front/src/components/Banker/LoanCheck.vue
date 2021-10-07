@@ -85,19 +85,19 @@
                 <p v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))" class="card-text">{{ product.loan_name }} 상품 신청</p>
                 <router-link
                   v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
-                  :to="{ name: 'UserCheck' }"
+                  :to="{ name: 'FileCheck' }"
                   class="pa-5 btn btn-primary btn-sm"
                   @click.native="saveClientID(product.cid, product.lid)"
                 >
-                  고객정보 확인
-                </router-link>
-                <router-link
-                  v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
-                  :to="{ name: 'FileCheck' }"
-                  class="pa-5 btn btn-danger btn-sm offset-1"
-                >
                   제출서류 확인
                 </router-link>
+                <!-- <router-link
+                  v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
+                  :to="{ name: 'FileCheck' }"
+                  class="pa-5 btn btn-danger btn-sm mt-2"
+                >
+                  제출서류 확인
+                </router-link> -->
               </div>
             </div>
           </div>

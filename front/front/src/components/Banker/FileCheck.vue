@@ -33,7 +33,8 @@
       <h5 class="col-4 offset-1">대출신청한 상품</h5>
     </div>
     <div class="row mt-3">
-      <h6 class="col-3 offset-1">1. 싹편한 직장인대출</h6>
+      <h6 class="col-3 offset-1">1. {{ userInfo.loan_name }}</h6>
+
       <router-link
         :to="{ name: 'FileCheck' }"
         class="pa-5 btn btn-danger btn-sm offset-4 mr-3"

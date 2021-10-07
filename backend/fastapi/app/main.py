@@ -263,7 +263,34 @@ async def read_user_loan(db: Session = Depends(get_db), token: str = Header(None
     db_user_loan_list = crud.get_user_loan(db, user)
     if not db_user_loan_list:
         raise HTTPException(status_code=400, detail="loan error")
-    return db_user_loan_list
+
+    response_data = []
+    print(f"cid = {user.cid}")
+    for user_loan_list in db_user_loan_list:
+        print(user_loan_list)
+        res = {
+            "loan_address": user_loan_list.loan_address,
+            "lid": user_loan_list.lid,
+            "loan_age": user_loan_list.loan_age,
+            "interest_rate": user_loan_list.interest_rate,
+            "loan_about": user_loan_list.loan_about,
+            "loan_salary": user_loan_list.loan_salary,
+            "loan_name": user_loan_list.loan_name,
+            "loan_job": user_loan_list.loan_job,
+            "loan_amount": user_loan_list.loan_amount,
+            "loan_img": user_loan_list.loan_img,
+            "is_exist": crud.get_is_already_exist(db, user.cid, user_loan_list.lid),
+        }
+        response_data.append(res)
+
+    return response_data
+    # return [
+    #     db_user_loan_list,
+    #     [
+    #         crud.get_is_already_exist(db, user.cid, user_loan_list.lid)
+    #         for user_loan_list in db_user_loan_list
+    #     ],
+    # ]
 
 
 @app.get("/user/loan/list", status_code=200)

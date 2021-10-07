@@ -53,13 +53,16 @@
             </h5>
           </div>
           <div class="row">
-            <b-button v-if="isLogin" variant="primary" class="pa-5 mr-2 btn-md offset-5" v-on:click="applyPd(event, item.lid)">
+            <b-button v-if="isLogin" variant="primary" class="pa-5 mr-4 btn-md offset-4" v-on:click="applyPd(event, item.lid)">
               신청하기
             </b-button>
-            <b-button variant="dark" class="mr-2 ml-1" v-on:click="linkDetail(event, item.loan_address)">
+            <b-button v-if="isLogin" variant="dark" class="mr-4 ml-1" v-on:click="linkDetail(event, item.loan_address)">
               상세보기
             </b-button>
-            <b-button variant="secondary" class="ml-1"> ♡ </b-button>
+            <b-button v-else variant="dark" class="pa-5 mr-4 btn-md offset-5" v-on:click="linkDetail(event, item.loan_address)">
+              상세보기
+            </b-button>
+            <b-button variant="secondary" class="ml-1" v-on:click="clickHeart(event)"> ♡ </b-button>
           </div>
         </div>
       </div>
@@ -160,7 +163,11 @@ export default {
       }
     },
     linkDetail(event, addr){
+      
       window.open(addr)
+    },
+    clickHeart(event){
+      alert(event.target.tagName)
     }
   },
 };

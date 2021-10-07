@@ -73,12 +73,23 @@ export default {
                 url: `http://j5a205.p.ssafy.io/signin`,
                 data: this.credential
             }).then((res) => {
-                console.log(res)
-                var token = res.data.Authorization
-                localStorage.setItem('ID', this.credential.user_id)
-                localStorage.setItem('Token', token)
-                alert(`${localStorage.getItem('ID')} 님 반갑습니다!`)
-                this.$router.push('/')
+                var token = res.data.Authorization;
+                localStorage.setItem('Token', token);
+                if (localStorage.getItem('Token')) {
+                  axios({
+                    method: 'get',
+                    url: `http://j5a205.p.ssafy.io/user/info`,
+                    headers:{
+                      "token" : localStorage.getItem("Token")
+                    }
+                  }).then((user) => {
+                    // console.log(1111,user.data.user)
+                    alert(`${user.data.user.user_name} 님 반갑습니다!`);
+                    this.$router.push('/')
+                  }).catch((err) => {
+                    console.log(err);
+                  });
+                }
             }).catch((err) => {
                 alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")
                 console.log(err.headers)

@@ -1,0 +1,34 @@
+자격득실확인서
+
+    # 주민등록 번호
+    draw.text((786, 362), personal, (0, 0, 0), font=bold_font1)
+    # 회사명
+    draw.text((328, 556), company, (0, 0, 0), font=normal_font)
+
+건강 보험료 납부확인서
+
+    draw.text((270, 539), tax1, (0, 0, 0), font=Lbold_font1)
+    tax * 291.54 -> 연봉
+
+소득금액 증명서
+
+    # 핸드폰 번호
+    draw.text((170,1252), phone, (0, 0, 0), font=normal_font)
+    # 월급
+    draw.text((680,665), income, (0, 0, 0), font=normal_font)
+    income * 12 -> 연봉
+
+자동차 매매 계약서
+
+    # 을 - 주민등록 번호
+    draw.text((1060, 455), personal, (0, 0, 0), font=normal_font)
+    # 을 - 연락처
+    draw.text((387, 505), phone, (0, 0, 0), font=normal_font)
+
+
+    # 차종
+    draw.text((1041, 621), carlist, (0, 0, 0), font=normal_font)
+
+    # 매매금액
+    draw.text((395, 721), random.choice(['50000000원', '45000000원', '40000000원', '35000000원', '30000000원', '55000000원',
+     '65000000원', '60000000원']), (0, 0, 0), font=normal_font)

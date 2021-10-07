@@ -20,28 +20,56 @@ class_names = ['건강보험료납부확인서', '근로소득원천징수', '�
                '자동차등록원부', '자격득실확인서', '자동차매매계약서', '소득금액증명서']
 
 def getData(url, imgType):
-    toSend = []
+    toSend = dict()
+    toSend['file_name'] = imgType
     img = cv2.imread(url)
     if imgType == '자격득실확인서':
+        
         x, y = 786, 362
         w, h = 80, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
         birth = f'{res[:2]}.{res[2:4]}.{res[4:6]}'
+        toSend['생년월일'] = birth
         x, y = 328, 556
+        w, h = 200, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1]
+
+        comp_name = arr
+        toSend['회사명'] =  comp_name[0]
+
+        x, y = 826, 556
+        w, h = 250, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        startDate = res.split('\n')[0:-1][0]
+        toSend['자격취득일'] = startDate
+        print(toSend)
+
+    elif imgType == '건강보험료납부확인서':
+
+        x, y = 948, 290
+        w, h = 170, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        toSend['생년월일'] = res.split('\n')[0:-1][0]
+
+        x, y = 400, 340
         w, h = 180, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        comp_name = res
-        toSend.append(birth)
-        toSend.append(comp_name)
-        print(toSend)
-    elif imgType == '건강보험료납부확인서':
+        arr = res.split('\n')[0:-1]
+        toSend['회사명'] =  arr
+        
+
+        
         x, y = 270, 539
         w, h = 170, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        toSend.append(str(int(int(res.split()[0])*291.54)))
+        toSend['연봉'] = str(int(int(res.split()[0])*291.54))
         print(toSend)
 
     elif imgType == '소득금액증명서':
@@ -88,71 +116,8 @@ def getData(url, imgType):
     
     return(toSend) 
 
-# getData('.//data//하이하이.png', '자격득실확인서')
-# getData('.//data//건강보험료납부확인서1.png', '건강보험료납부확인서')
-# getData('.//data//소득금액증명서1.png', '소득금액증명서')
-getData('.//data//자동차매매계약서1.png', '자동차매매계약서')
-# cnt = 0
-# for i in os.listdir('url'):
-
-#     path = './test/' + i
-#     print(path)
-#     image = cv2.imread(path)
-
-#     x, y = 250, 345
-#     w, h = 325, 60
-#     iii = image[y:y+h, x:x+w]
-
-#     res = pytesseract.image_to_string(iii, lang = 'kor')
-#     print(res)
-#     cv2_imshow(iii)
-
-#     # test
-#     # if cnt == 2:
-#     #     break
-#     # else:
-#     #     cnt += 1
-
-# cnt = 0
-# for i in os.listdir('./test/'):
-
-#     path = './test/' + i
-#     print(path)
-#     image = cv2.imread(path)
-#     # cv2_imshow(image)
-
-#     # Convert type
-#     pil_img = Image.fromarray(image)
-
-#     # GrayScale Conversion
-#     # img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-#     # img_gray = cv2.cvtColor(pil_img, cv2.COLOR_BGR2GRAY)
-
-#     x, y = 250, 345
-#     w, h = 325, 60
-#     iii = image[y:y+h, x:x+w]
-#     cv2_imshow(iii)
-#     # iii = img_gray[y:y+h, x:x+w]
-
-#     # os read file
-#     filename = "{}.png".format(os.getpid())
-#     cv2.imwrite(filename, iii)
-#     # ttt = cv2.cvtColor(Image.open(filename), cv2.COLOR_BGR2RGB)
-#     # cv2_imshow(ttt)
-
-#     print(filename)
-
-#     # pytesseract : image to string
-#     text = pytesseract.image_to_string(Image.open(filename), lang = 'Hangul')
-#     os.remove(filename)
-
-#     # result
-#     print(text)
-#     # cv2_imshow(img_gray)
-#     cv2_imshow(iii)
-
-#     # test
-#     if cnt == 2:
-#         break
-#     else:
-#         cnt += 1
+if __name__ == '__main__':
+    # getData('.//data//자격득실확인서1.png', '자격득실확인서')
+    getData('.//data//건강보험료납부확인서1.png', '건강보험료납부확인서')
+    # getData('.//data//소득금액증명서1.png', '소득금액증명서')
+    # getData('.//data//자동차매매계약서1.png', '자동차매매계약서')

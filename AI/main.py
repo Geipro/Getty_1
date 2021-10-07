@@ -9,4 +9,4 @@ import os.path
 from PIL import Image
 from tesseractocr import getData
 
-result = check('.//data//근로소득원천징수영수증1.png')
+result = check('.//data//자격득실확인서1.png')

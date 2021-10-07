@@ -11,7 +11,8 @@ class_names = ['건강보험료납부확인서', '근로소득원천징수', '�
                '자동차등록원부', '자격득실확인서', '자동차매매계약서', '소득금액증명서']
 
 def validation(url):
-    model = load_model('model_save.h5')
+
+    model = load_model('.//AI//model_save.h5')
     data = np.array([plt.imread(url, 0)])
     data = np.asarray(data)
 

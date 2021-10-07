@@ -108,7 +108,7 @@ export default {
         .catch((err) => {
           console.log(err.headers);
         });
-        this.title = "★ 신용 대출 상품"
+        this.title = "⭐️ 신용 대출 상품"
     } else {
       axios({
         method: "get",
@@ -131,7 +131,7 @@ export default {
             if (res.data.user_files[0] != null) {
               this.hasFile = true;
             }
-            this.title = "★ 신청 가능한 신용 대출 상품"
+            this.title = "⭐️ 신청 가능한 신용 대출 상품"
             this.isLogin = true
           })
           .catch((err) => {

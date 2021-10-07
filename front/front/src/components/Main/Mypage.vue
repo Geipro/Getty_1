@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="myPage">
     <Navbar />
 
     <div class="row mt-4">
@@ -44,7 +44,8 @@
         <tbody>
           <tr v-for="(name, idx) in uploadFiles" :key="idx">
             <th scope="row" class="table-active">{{ idx + 1 }}</th>
-            <td>{{name.file_name}}</td>
+            <td v-if="name.file_name">{{ name.file_name }}</td>
+            <td v-else>파일분류 미완</td>
             <td><button type="button" class="btn btn-warning" v-on:click="viewFile(event, name.file_url)">다운로드</button></td>
           </tr>
         </tbody>
@@ -115,6 +116,9 @@ export default {
       uploadFiles:[],
     }
   },
+  created(){
+
+  },
   mounted(){
     axios({
       method: 'get',
@@ -124,6 +128,7 @@ export default {
     .then((res) =>{
       this.userinfo = res.data.user
       this.uploadFiles = res.data.user_files
+      
       console.log(this.uploadFiles)
     }).catch((err) =>{
       console.log(err)
@@ -149,6 +154,8 @@ export default {
 </script>
 
 <style>
-
+#myPage{
+  text-align: center;
+}
 </style>
 

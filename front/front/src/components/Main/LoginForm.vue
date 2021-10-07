@@ -3,7 +3,7 @@
         <div class="mx-auto col-md-4">
             <div class="myform form">
                 <div class="logo mb-3 text-center">
-                    <h1>Login</h1>
+                    <h3>로그인</h3>
                 </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between">

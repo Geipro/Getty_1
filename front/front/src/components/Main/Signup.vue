@@ -1,10 +1,10 @@
 <template>
   <!-- signup box start -->
-  <div class="text-center row align-items-center" id="second">
+  <div class="text-center row align-items-center" id="signUpCSS">
     <div class="myform form col-md-4 mx-auto">
       <div class="logo mb-3">
         <div class="col-md-12 text-center mt-1">
-          <h1>Signup</h1>
+          <h3>회원가입</h3>
         </div>
       </div>
       <form 
@@ -141,7 +141,7 @@
         </div>
         <div class="col-md-12 ">
           <div class="form-group">
-            <p class="text-center"><router-link  :to="{ name: 'About' }"><a>로그인으로 가기</a> </router-link> </p>
+            <p class="text-center"><router-link  :to="{ name: 'About' }"><a>로그인</a> </router-link> </p>
           </div>
         </div>
       </form>
@@ -294,7 +294,13 @@ export default {
 
 </script>
 
-<style>
-@import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
+<style scoped>
+#signUpCSS{
+  @import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
+}
+
+.signUpCSS{
+  @import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
+}
 
 </style>

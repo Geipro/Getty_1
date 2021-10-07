@@ -10,9 +10,8 @@
         <h6>&copy;SSAFY BANK. All rights reserved</h6>
       </div>
       <div class="text-right col-5">
-        <h3></h3>
-        <br>
-        <h6>평일 09:00 ~ 18:00 (은행휴무일 제외)</h6>
+        <h4 class="text-primary"><a href="https://www.shinhan.com/hpe/index.jsp#300000000000" target="_blank">은행소개 </a> | <a href="https://www.shinhan.com/hpe/index.jsp#050000000000" target="_blank"> 고객센터</a></h4>
+        <h6 class="align-self-bottom">평일 09:00 ~ 18:00 (은행휴무일 제외)</h6>
       </div>
     </footer>
   </div>
@@ -74,4 +73,7 @@ footer {
 section {
   padding-bottom: 80px;
 }
+
+.tab { white-space: pre; }
+
 </style>

@@ -30,12 +30,12 @@
           <li class="nav-item">
             <router-link :to="{ name: 'About' }" class="text-light nav-link">로그인</router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="https://www.shinhan.com/hpe/index.jsp#050000000000" style="color: white">고객센터</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.shinhan.com/hpe/index.jsp#300000000000" style="color: white">회사소개</a>
-          </li>
+          </li> -->
         </ul>
       </span>
     </div>

@@ -69,55 +69,136 @@ def getData(url, imgType):
         w, h = 170, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        toSend['연봉'] = str(int(int(res.split()[0])*291.54))
+        toSend['연봉'] = str(int(int(res.split()[0])*291.54))+'원'
         print(toSend)
 
     elif imgType == '소득금액증명서':
-        x, y = 170, 1252
-        w, h = 250, 30
+        
+        x, y = 170, 388
+        w, h = 300, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        print(res)
-        phone = res
+        loc = ' '.join(res.split()[:2])
+        toSend['주소'] = loc
+
+        x, y = 302, 638
+        w, h = 180, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['회사명'] =  arr
+        
         x, y = 680, 665
         w, h = 200, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        print(int(res)*12)
+        arr = res.split('\n')[0:-1][0]
+        toSend['연봉'] =  str(int(arr)*12)+'원'
+        
+        x, y = 170, 1252
+        w, h = 250, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        phone = res.split('\n')[0:-1][0]
+        toSend['전화번호'] = phone
 
-        toSend.append(phone)
-        toSend.append(str(int(res)*12))
+    elif imgType == '근로소득원천징수':
+
+        x, y = 919, 325
+        w, h = 100, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1]
+        toSend['대표자명'] = arr
+
+        x, y = 409, 325
+        w, h = 180, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['회사명'] =  arr
+        
+        x, y = 1053, 463
+        w, h = 200, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['주민등록번호'] =  arr
+
+        
+        x, y = 409, 363
+        w, h = 220, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = ''.join(res.split('\n')[0:-1])
+        arr = arr[:3]+'-'+arr[4:]
+        toSend['사업자등록번호'] =  arr
+
+
+        x, y = 1005, 397
+        w, h = 100, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['종사업장일련번호'] =  arr
+
+        
+        x, y = 421, 714
+        w, h = 200, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['연봉'] =  str(int(arr)*12)+'원'
     
     elif imgType == '자동차매매계약서':
+        x, y = 838, 219
+        w, h = 150, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['접수일자'] = arr
+
+        x, y = 390, 670
+        w, h = 150, 30
+        toRead = img[y:y+h, x:x+w]
+        res = pytesseract.image_to_string(toRead, lang='kor')
+        arr = res.split('\n')[0:-1][0]
+        toSend['차대번호'] = arr
+
         x, y = 1060, 455
         w, h = 70, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        print(res)
         birth = f'{res[:2]}.{res[2:4]}.{res[4:6]}'
+        toSend['생년월일'] = birth
+
         x, y = 387, 505
         w, h = 200, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        phone = res
-        print(phone)
+        phone = res.split('\n')[0:-1][0]
+        toSend['전화번호'] = phone
+
         x, y = 1041, 621
         w, h = 90, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='eng+kor')
-        carType = res
-        print(carType)
+        carType = res.split('\n')[0:-1][0]
+        toSend['차종'] = carType
+
         x, y = 395, 721
         w, h = 130, 30
         toRead = img[y:y+h, x:x+w]
         res = pytesseract.image_to_string(toRead, lang='kor')
-        carPrice = res
-        print(carPrice)
-    
+        carPrice = res.split('\n')[0:-1][0]
+        toSend['가격'] = carPrice
+    print(toSend)
     return(toSend) 
 
 if __name__ == '__main__':
     # getData('.//data//자격득실확인서1.png', '자격득실확인서')
-    getData('.//data//건강보험료납부확인서1.png', '건강보험료납부확인서')
+    # getData('.//data//건강보험료납부확인서1.png', '건강보험료납부확인서')
     # getData('.//data//소득금액증명서1.png', '소득금액증명서')
     # getData('.//data//자동차매매계약서1.png', '자동차매매계약서')
+    # getData('.//data//근로소득원천징수영수증1.png', '근로소득원천징수')
+    getData('.//data//자동차등록증1.png', '자동차등록증')

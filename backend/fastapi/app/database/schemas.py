@@ -165,3 +165,7 @@ class UserLoanDetail(BaseModel):
 class ReadUserFile(BaseModel):
     data_list: list
 
+# 고객 파일 URL
+class UserFileURL(BaseModel):
+    file_url: str
+

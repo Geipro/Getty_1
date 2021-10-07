@@ -4,7 +4,7 @@
     <div class="container">
       <div class="text-center mt-5 pb-2">
         <div class="custom-file form-check form-check-inline mb-5">
-          <div class="float-left text-right col-md-5">
+          <div v-if="isLogin" class="float-left text-right col-md-5" >
             <div v-if="hasFile">
               <b-button class="btn btn-warning btn-lg mr-3">
                 <router-link :to="{ name: 'Mypage' }" class="text-light"
@@ -25,7 +25,7 @@
               >
             </div>
           </div>
-          <div class="float-right text-left col-md-7">
+          <div v-if="isLogin" class="float-right text-left col-md-7">
             <div class="text-left">
               <h6>서류를 무작위로 제출하여</h6>
             </div>
@@ -38,7 +38,7 @@
       <div class="logo md-5 mb-5 text-left">
         <h1>{{ this.title }}</h1>
       </div>
-      <div v-for="(item, idx) in this.loanlist" :key="idx" :value="item.value">
+      <div class="pl-3 pt-3 pb-2 pr-3 mb-3" style="box-shadow:0 4px 6px 0 hsla(0, 0%, 0%, 0.2); border-radius:20px" v-for="(item, idx) in this.loanlist" :key="idx" :value="item.value">
         <div class="text-left">
           <div class="text-secondary">
             <h6 calss="text-secondary">인터넷 | 모바일 | 영업점</h6>
@@ -62,7 +62,6 @@
             <b-button variant="secondary" class="ml-1"> ♡ </b-button>
           </div>
         </div>
-        <hr />
       </div>
     </div>
   </div>
@@ -88,6 +87,7 @@ export default {
     return {
       loanlist: [],
       hasFile: false,
+      isLogin: false,
       token: {
         token: localStorage.getItem("Token"),
       },
@@ -132,6 +132,7 @@ export default {
               this.hasFile = true;
             }
             this.title = "★ 신청 가능한 신용 대출 상품"
+            this.isLogin = true
           })
           .catch((err) => {
             console.log(err);

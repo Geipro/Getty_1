@@ -1,32 +1,35 @@
 <template>
-<div>
-  <div class="row" v-if="!isLogin">
-    <router-link :to="{ name: 'About' }" class="pa-5 btn btn-warning offset-3" style="height: auto">
-      <h4 class="content" style="text-align:center">
-        <b-icon class="float-left" font-scale="2" icon="box-arrow-in-right" style="text-align:center" aria-hidden="true"></b-icon><br>
-        <br>뱅킹 로그인</h4>
-    </router-link>
-    <div class="col ml-5">
-      <h3 class="mb-4 text-center w-50">싸피 은행의 대출 추천 상품을 소개합니다.</h3>
-      <ul class="align-items-center text-center list-group list-group-horizontal">
-        <li class="list-group-item">
-          <h5 style="color: blue">싹편한 언택트 대출</h5><br>
-          365일 언제 어디서나<br>
-          내가 필요한 시점에 신청
-        </li>
-        <li class="list-group-item">
-          <h5 style="color: blue">싹편한 전세 대출</h5><br>
-          온라인으로 한도 확인하고<br>
-          실제 대출 여부 선택 가능
-        </li>
-        <li class="list-group-item">
-          <h5 style="color: blue">싸피주택대출</h5><br>
-          최대 30년까지 분할상환<br>
-          가능한 담보대출
-        </li>
-      </ul>
+  <div class="mt-5 justify-content-center align-items-center" style="text-align: center; width: 100%" v-if="!isLogin">
+    <!-- test1 : color: #559CDE  -->
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #73C6B6;">
+      <iframe src="https://giphy.com/embed/1KllEBZdsLBwt3sDMG" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      <div class="ml-5">
+        <h1 class="col">클릭한번으로 더욱 간편해진</h1>
+        <h1 class="col" >대출신청, 싹편한 언택트 대출</h1>
+        <h4 class="pt-3 col" >서류제출 한번으로 신청가능한 대출상품 리스트 확인 가능합니다.</h4>
+        <h4 class="col" >365일 언제 어디서나 내가 필요한 시점에 신청해보세요.</h4>
+      </div>
     </div>
-  </div>
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #FEF9E7;">
+      <iframe src="https://giphy.com/embed/l0IylQoMkcbZUbtKw" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      <div class="ml-5">
+        <h1 class="col">기대 그 이상의 손쉬운 대출,</h1>
+        <h1 class="col" >싹편한 전세 대출</h1>
+        <h4 class="pt-3 col" >온라인으로 신청하고 온라인으로 바로 확인 가능합니다.</h4>
+        <h4 class="col" >실제 대출 여부를 확인하여 손쉬운 대출을 경험해보세요.</h4>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #7FB3D5;">
+      <iframe src="https://giphy.com/embed/W2i6o8uAXOx0QIoL2a" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      <div class="ml-5">
+        <h1 class="col">복잡한 과정없는, 조건없는</h1>
+        <h1 class="col" >서류 제출하나로 가능, MY CAR 대출</h1>
+        <h4 class="pt-3 col" >높은 금리의 자동차 대출을 좀더 낮은 금리의 대출로 전환</h4>
+        <h4 class="col" >신차 구입 예정 고객에게 차량구입 대금을 지원해 드립니다.</h4>
+      </div>
+    </div>
+
+
   <div class="row" v-if="isLogin">
     <div class="col ml-5">
       <h3 class="mb-4 text-center">싸피 은행의 대출 추천 상품을 소개합니다.</h3>

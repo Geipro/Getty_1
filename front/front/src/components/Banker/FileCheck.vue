@@ -30,12 +30,12 @@
     <hr style="border: solid 1px grey; width: 85%" />
 
     <div class="row mt-5">
-      <h5 class="col-4 offset-1">대출신청한 상품</h5>
+      <h5 class="col-2 offset-1">대출신청한 상품</h5>
     </div>
     <div class="row mt-3">
-      <h3 class="col-3 offset-1">{{ userInfo.loan_name }}</h3>
+      <h3 class="col-2 offset-1">{{ userInfo.loan_name }}</h3>
 
-      <div class="offset-5">
+      <div class="">
         <select class="form-control ml-3" aria-label="Is_Suitable" v-model="checkSuitable" @change="changeSuit">
           <option value="yes">적합 판정</option>
           <option value="no">부적합 판정</option>

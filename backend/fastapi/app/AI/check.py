@@ -4,7 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-from keras.utils import np_utils
 
 
 class_names = ['건강보험료납부확인서', '근로소득원천징수', '자동차등록증',

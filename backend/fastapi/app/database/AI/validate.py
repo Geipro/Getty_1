@@ -1,24 +1,25 @@
-from . import check as vd
+from AI import check as vd
 import glob
 import os.path
 from PIL import Image
-from . import tesseractocr as ts
+from AI import tesseractocr as ts
 
 def check(url):
     file = url
-    
-    # title, ext = os.path.splitext(file)
-    # name = title.split('//')[-1]
-    # img = Image.open(file)
-    # img_resize = img.resize((256, 256))
-    # img_resize.save(f".//AI//forTest//{name}.png")
+    os.system("curl " + url + " > test.png")
 
-    # # print(f'input is {name}')
-    # answer = vd.validation(f'.//AI//forTest//{name}.png')
-    answer = vd.validation(file)
+    name='test'
+    img = Image.open('test.png')
+    
+    img_resize = img.resize((256, 256))
+    img_resize.save(f".//AI//forTest//{name}.png")
+
+    # print(f'input is {name}')
+    answer = vd.validation(f'.//AI//forTest//{name}.png')
     print('예측결과', answer)
     li = dict()
-    ts.getData(url, answer)
+    ts.getData('./test.png', answer)
+    img.show()
     print('')
     print('')
     print('')

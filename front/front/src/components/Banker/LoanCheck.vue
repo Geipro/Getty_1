@@ -9,7 +9,7 @@
       <b-button pill variant="secondary" class="mr-1">MY CAR</b-button>
     </b-button-group> -->
 
-    <div class="card text-center mt-5">
+    <div class="text-center mt-5 ml-5 mr-5 mb-5" style="border-radius:20px">
       <div class="card-header row">
         <ul class="nav nav-tabs card-header-tabs">
           <li v-on:click="changeCase(1)" class="nav-item">
@@ -56,8 +56,8 @@
       </div>
 
       <div v-for="(product, index) in loanlist" :key="index">
-        <div class="card mt-4" v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))">
-          <div class="row mb-4 inner">
+        <div class="mt-3 pt-1 pb-1" v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))" style="box-shadow:0 4px 6px 0 hsla(0, 0%, 0%, 0.2); border-radius:20px">
+          <div class="row mb-4 ml-5 inner">
             <div
               v-if="product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')"
               class="mt-3 col-2 offset-1 bg-danger content test"

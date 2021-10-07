@@ -1,9 +1,9 @@
 <template>
-  <div class="h-100" id="app">
+  <div id="app">
     <section>
       <router-view/>
     </section>
-    <footer id="footer" class="d-flex text-center text-lg-start bg-light text-muted py-4">
+    <!-- <footer id="footer" class="d-flex text-center text-lg-start bg-light text-muted py-4">
       <div class="text-left col-4">
         <h6></h6>
         <h3 style="line-height:20px">고객센터 1599-8000</h3>
@@ -13,7 +13,7 @@
         <h4 class="text-primary"><a href="https://www.shinhan.com/hpe/index.jsp#300000000000" target="_blank">은행소개 </a> | <a href="https://www.shinhan.com/hpe/index.jsp#050000000000" target="_blank"> 고객센터</a></h4>
         <h6 class="align-self-bottom">평일 09:00 ~ 18:00 (은행휴무일 제외)</h6>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -29,6 +29,7 @@
   min-height: 100vh;
   position: relative;
   width: 100%;
+  /* height: 100%; */
 }
 
 #nav {
@@ -58,7 +59,7 @@ footer {
     text-transform: none;
     text-decoration: none;
 }
-/* 
+/*
 footer {
   width: 100%;
   height: 80px;

@@ -2,10 +2,10 @@
   <div>
     <BankerNavbar />
     <div class="row mt-5">
-      <h3 class="col-5">고객정보확인</h3>
+      <h3 class="col-5 offset-1">고객정보확인</h3>
     </div>
     <!-- 고객데이터 table -->
-    <div class="row mt-3">
+    <div class="row mt-3" style="text-align: center;">
       <table class="table offset-1 col-10">
         <tbody>
           <tr>
@@ -29,9 +29,9 @@
     </div>
     <hr style="border: solid 1px grey; width: 85%" />
     <div class="row mt-5">
-      <h5 class="col-5">대출신청한 상품</h5>
+      <h5 class="col-5 offset-1">대출신청한 상품</h5>
     </div>
-    <div class="row">
+    <div class="row mt-3">
       <h6 class="col-3 offset-2">1. 싹편한 직장인대출</h6>
       <router-link
         :to="{ name: 'FileCheck' }"

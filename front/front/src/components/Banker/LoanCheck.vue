@@ -60,19 +60,19 @@
           <div class="row mb-4 ml-5 inner">
             <div
               v-if="product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')"
-              class="mt-3 col-2 offset-1 bg-danger content test"
+              class="mt-3 col-3 offset-1 bg-danger content test"
             >
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
             <div
               v-else-if="product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')"
-              class="mt-3 col-2 offset-1 bg-primary content"
+              class="mt-3 col-3 offset-1 bg-primary content"
             >
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>
             <div
               v-else-if="product.is_suitable == '확인중' && (cur === '1' || cur === '3')"
-              class="mt-3 col-2 offset-1 bg-warning content"
+              class="mt-3 col-3 offset-1 bg-warning content"
             >
               <h3 style="color:white">{{ product.is_suitable }}</h3>
             </div>

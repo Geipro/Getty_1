@@ -62,7 +62,7 @@
             <b-button v-else variant="dark" class="pa-5 mr-4 btn-md offset-5" v-on:click="linkDetail(event, item.loan_address)">
               상세보기
             </b-button>
-            <b-button variant="secondary" class="ml-1" v-on:click="clickHeart(event)"> ♡ </b-button>
+            <b-button variant="secondary" class="ml-1"> ♡ </b-button>
           </div>
         </div>
       </div>
@@ -166,9 +166,6 @@ export default {
       
       window.open(addr)
     },
-    clickHeart(event){
-      alert(event.target.tagName)
-    }
   },
 };
 </script>

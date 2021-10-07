@@ -181,10 +181,16 @@ def create_user_files(db: Session, cid: int, file_url: str):
     db.add(db_user_file)
     db.commit()
     db.refresh(db_user_file)
-    file_result = validate.check(file_url)
+    file_result = dict(validate.check(file_url))
+    print(f"file_result = {file_result}")
     file_name = file_result["file_name"]
     update_user_files(db=db, cid=cid, file_url=file_url, file_name=file_name)
     return db_user_file
+
+
+# 고객 데이터 반환
+def get_user_data(db: Session, file_url: str):
+    return dict(validate.check(file_url))
 
 
 # 고객 파일 수정

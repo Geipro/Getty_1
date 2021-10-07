@@ -10,15 +10,15 @@ def check(url):
 
     name='test'
     img = Image.open('test.png')
-    
+
     img_resize = img.resize((256, 256))
     img_resize.save(f".//AI//forTest//{name}.png")
 
     # print(f'input is {name}')
     answer = vd.validation(f'.//AI//forTest//{name}.png')
     print('예측결과', answer)
-    li = dict()
-    ts.getData('./test.png', answer)
+    # li = dict()
+    li = dict(ts.getData('./test.png', answer))
     img.show()
     print('')
     print('')

@@ -459,5 +459,5 @@ async def get_user_loan_detail(cid: int, lid: int, db: Session = Depends(get_db)
 
 
 @app.get("/data/file_url", status_code=200)
-async def get_user_file_data(file_url: str = Header(None)):
-    return crud.get_user_data(file_url=file_url)
+async def get_user_file_data(fileurl: str = Header(None)):
+    return crud.get_user_data(file_url=fileurl)

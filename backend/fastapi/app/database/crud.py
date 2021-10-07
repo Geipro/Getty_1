@@ -38,6 +38,16 @@ def get_loan_name_by_lid(db: Session, lid: int):
     )
 
 
+def get_is_already_exist(db: Session, cid: int, lid: int):
+    if (
+        db.query(models.UserLoan)
+        .filter(models.UserLoan.cid == cid, models.UserLoan.lid == lid)
+        .first()
+    ):
+        return True
+    return False
+
+
 def get_loan_info_by_cli_lid(db: Session, cid: int, lid: int):
     return (
         db.query(models.UserLoan)

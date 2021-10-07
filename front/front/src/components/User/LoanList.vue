@@ -53,8 +53,11 @@
             </h5>
           </div>
           <div class="row">
-            <b-button v-if="isLogin" variant="primary" class="pa-5 mr-4 btn-md offset-4" v-on:click="applyPd(event, item.lid)">
+            <b-button v-if="isLogin && item.is_exist===false" variant="primary" class="pa-5 mr-4 btn-md offset-4" v-on:click="applyPd(event, item.lid)">
               신청하기
+            </b-button>
+            <b-button v-else-if="isLogin && item.is_exist===true" variant="info" class="pa-5 mr-4 btn-md offset-4" v-on:click="createAlert()">
+              신청완료
             </b-button>
             <b-button v-if="isLogin" variant="dark" class="mr-4 ml-1" v-on:click="linkDetail(event, item.loan_address)">
               상세보기
@@ -166,6 +169,11 @@ export default {
 
       window.open(addr)
     },
+    createAlert(){
+      if (window.confirm("신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?")) {
+        window.open("http://localhost:8080/mypage","_self");
+      }
+    }
   },
 };
 </script>

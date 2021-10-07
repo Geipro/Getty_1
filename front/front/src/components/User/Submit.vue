@@ -3,7 +3,7 @@
         <Navbar />
         <div class="container mt-5">
             <div class="logo md-5 mb-5 text-left">
-                <h1>★ 나의 서류 제출하기</h1>
+                <h1>⭐️ 나의 서류 제출하기</h1>
             </div>
             <div>
                 <h2 class="text-left">개인정보처리 동의서</h2>

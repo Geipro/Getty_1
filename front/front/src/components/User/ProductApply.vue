@@ -3,7 +3,7 @@
       <Navbar />
       <div class="container text-left">
         <div class="logo mt-5 md-5 mb-5">
-            <h1>★ 대출 신청하기</h1>
+            <h1>⭐️ 대출 신청하기</h1>
         </div>
         <div class="mt-3 mb-5 row">
           <p class="text-secondary mr-3">신청 상품 : </p>

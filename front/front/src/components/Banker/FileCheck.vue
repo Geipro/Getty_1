@@ -125,7 +125,7 @@ export default {
     );
     axios({
       method: "get",
-      url: `http://j5a205.p.ssafy.io/detail/user/${localStorage.getItem(
+      url: `http://j5a205.p.ssafy.io:3000/detail/user/${localStorage.getItem(
         "cid"
       )}/loan/${localStorage.getItem("lid")}`,
     })
@@ -169,7 +169,7 @@ export default {
       if(this.send_data != null){
         axios({
           method:"PATCH",
-          url:`http://j5a205.p.ssafy.io/user/loan/status`,
+          url:`http://j5a205.p.ssafy.io:3000/user/loan/status`,
           data : this.send_data
         }).then(res =>{
           console.log(res)

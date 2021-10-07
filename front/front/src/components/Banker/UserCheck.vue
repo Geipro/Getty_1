@@ -83,7 +83,7 @@ export default {
     );
     axios({
       method: "get",
-      url: `http://j5a205.p.ssafy.io/detail/user/${localStorage.getItem(
+      url: `http://j5a205.p.ssafy.io:3000/detail/user/${localStorage.getItem(
         "cid"
       )}/loan/${localStorage.getItem("lid")}`,
     })

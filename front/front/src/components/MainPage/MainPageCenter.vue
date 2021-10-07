@@ -6,7 +6,7 @@
           <h1 class="col pt-5">365일 언제 어디서나</h1>
           <h2 class="col" >싸피 싹편한 언택트 대출 S</h2>
           <h3 class="pt-3 col" >365일 언제 어디서나 내가 필요한 시점에 간편하게 신청!</h3>
-          <button type="button" class="col-6 btn btn-light">가능한 대출 상품 보기</button>
+          <b-button variant="outline-primary" class="col-6 btn btn-light p">가능한 대출 상품 보기</b-button>
         </div>
       <img src="@/assets/main.png" style="height:360px">
     </div>

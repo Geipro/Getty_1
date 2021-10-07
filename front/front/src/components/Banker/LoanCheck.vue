@@ -144,7 +144,7 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://j5a205.p.ssafy.io/loan/user/list"
+      url: "http://j5a205.p.ssafy.io:3000/loan/user/list"
     })
       .then(res => {
         console.log(`this.cur = ${this.cur}`)
@@ -159,7 +159,7 @@ export default {
     saveClientID(cid, lid) {
       axios({
         method: "get",
-        url: "http://j5a205.p.ssafy.io/loan/user/list"
+        url: "http://j5a205.p.ssafy.io:3000/loan/user/list"
       })
         .then(res => {
           this.loanlist = res.data;

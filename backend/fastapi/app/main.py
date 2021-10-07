@@ -33,6 +33,8 @@ origins = [
     "http://localhost:8080",
     "http://localhost:8000",
     "http://localhost:5000",
+    "http://j5a205.p.ssafy.io",
+    "http://j5a205.p.ssafy.io:80",
 ]
 
 # Cors
@@ -456,6 +458,6 @@ async def get_user_loan_detail(cid: int, lid: int, db: Session = Depends(get_db)
     return {"user_detail": user_detail, "user_files": user_files}
 
 
-@app.get("/data/file_url", status_code=200)
-async def get_user_file_data(fileurl: str = Header(None)):
-    return crud.get_user_data(file_url=fileurl)
+@app.get("/data/img_url", status_code=200)
+async def get_user_file_data(file_url: schemas.UserFileURL):
+    return crud.get_user_data(file_url=file_url.file_url)

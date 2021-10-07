@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'BankerLoan' }">
         <img src="@/assets/logo.png" style="width:70px">
       </router-link>
-        싸피은행
+        SSAFY BANK
     </div>
   </div>
   <br>

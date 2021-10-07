@@ -1,7 +1,7 @@
 <template>
   <div>
     <BankerNavbar />
-    <div class="row mt-3">
+    <div class="row mt-5">
       <h3 class="col-5">고객정보확인</h3>
     </div>
     <!-- 고객데이터 table -->
@@ -11,27 +11,18 @@
           <tr>
             <th scope="row" class="table-active col-3">이름</th>
             <td>{{ userInfo.user_name }}</td>
-            <!-- <td>이름</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">연락처</th>
             <td>{{ userInfo.phone_number }}</td>
-            <!-- <td>연락처</td> -->
           </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">주소</th>
-            <td>{{ userInfo.address }}</td>
-            <td>주소</td>
-          </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
             <td>{{ userInfo.job }}</td>
-            <!-- <td>직장</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">소득규모</th>
             <td>{{ userInfo.salary }}</td>
-            <!-- <td>소득규모</td> -->
           </tr>
         </tbody>
       </table>

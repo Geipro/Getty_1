@@ -1,11 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-success bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-success bg-primary" id="navbar">
   <div class="container-fluid">
     <div style="color: white" class="text-left">
       <router-link :to="{ name: 'Home' }">
         <img src="@/assets/logo.png" style="width:70px">
       </router-link>
-      싸피은행
+      <!-- 싸피은행 -->
+      SSAFY BANK
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <span v-if="isLogin">
@@ -86,4 +87,9 @@ li {
 a {
   color: #42b983;
 } */
+
+/* #navbar {
+  font-family: 'Noto Sans KR', sans-serif;
+} */
+
 </style>

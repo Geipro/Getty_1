@@ -11,27 +11,18 @@
           <tr>
             <th scope="row" class="table-active col-3">이름</th>
             <td>{{ userInfo.user_name }}</td>
-            <!-- <td>이름</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">연락처</th>
             <td>{{ userInfo.phone_number }}</td>
-            <!-- <td>연락처</td> -->
           </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">주소</th>
-            <td>{{ userInfo.address }}</td> -->
-          <!-- <td>주소</td> -->
-          <!-- </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
             <td>{{ userInfo.job }}</td>
-            <!-- <td>직장</td> -->
           </tr>
           <tr>
             <th scope="row" class="table-active">소득규모</th>
             <td>{{ userInfo.salary }}</td>
-            <!-- <td>소득규모</td> -->
           </tr>
         </tbody>
       </table>
@@ -48,29 +39,11 @@
       >
         제출서류 확인
       </router-link>
-      <!-- <a href="#" class="btn btn-primary btn-sm col-1 offset-1">적합판정</a> -->
-      <!-- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div> -->
     </div>
-
     <div class="row mt-5">
       <router-link
-        :to="{ name: '#' }"
-        class="pa-3 btn btn-primary btn-sm col-1 mr-4 offset-5"
-      >
-        수정
-      </router-link>
-      <router-link
         :to="{ name: 'BankerLoan' }"
-        class="pa-3 btn btn-secondary btn-sm col-1"
+        class="pa-3 btn btn-secondary btn-sm col-1 mr-4 offset-5"
       >
         목록
       </router-link>

@@ -1,22 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <!-- <nav nav class="bg-primary">
-      <div style="height: 30px">
-        <router-link :to="{ name: 'LoanList' }" class="pa-5" style="color: white">
-          신용대출
-        </router-link>
-        <router-link :to="{ name: 'FileCheck' }" class="pa-5 offset-1" style="color: white">
-          주택자금대출
-        </router-link>
-        <router-link :to="{ name: 'FileCheck' }" class="pa-5 offset-1" style="color: white">
-          예/적금 담보대출
-        </router-link>
-        <router-link :to="{ name: 'FileCheck' }" class="pa-5 offset-1" style="color: white">
-          MY CAR
-        </router-link>
-      </div>
-    </nav> -->
+
     <div class="row mt-4">
       <h4 class="col-4">마이페이지</h4>
     </div>
@@ -32,10 +17,6 @@
             <th scope="row" class="table-active">연락처</th>
             <td>{{ userinfo.phone_number }}</td>
           </tr>
-          <!-- <tr>
-            <th scope="row" class="table-active">주소</th>
-            <td>{{ userinfo.address }}</td>
-          </tr> -->
           <tr>
             <th scope="row" class="table-active">직장/직무</th>
             <td>{{ userinfo.job }}</td>

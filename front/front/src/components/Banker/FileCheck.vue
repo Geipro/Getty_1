@@ -34,13 +34,8 @@
     </div>
     <div class="row mt-3">
       <h6 class="col-3 offset-1">1. 싹편한 직장인대출</h6>
-      <router-link
-        :to="{ name: 'FileCheck' }"
-        class="pa-5 btn btn-danger btn-sm offset-4 mr-3"
-      >
-        제출서류 확인
-      </router-link>
-      <div class="">
+      
+      <div class="offset-6">
         <select class="form-control ml-3" aria-label="Is_Suitable" v-model="checkSuitable" @change="changeSuit">
           <option value="yes">적합 판정</option>
           <option value="no">부적합 판정</option>
@@ -52,9 +47,9 @@
       <table class="table offset-1 col-10">
         <thead>
           <tr class="table-active">
-            <th scope="col">No.</th>
-            <th scope="col">서류내용</th>
-            <th scope="col">제출서류</th>
+            <th class="w-10" scope="col" style="width:10%">No.</th>
+            <th class="w-30" scope="col" style="width:40%" >서류내용</th>
+            <th class="w-60" scope="col" style="width:50%">제출서류</th>
           </tr>
         </thead>
         <tbody>
@@ -63,11 +58,14 @@
             :key="idx"
             :value="item.value"
             scope="row"
-            class="align-self-center align-items-center"
+            class=""
           >
-            <th scope="row" class="table-active align-self-center align-items-center">{{ idx + 1 }}</th>
-            <td class="align-self-center align-items-center">{{ item.file_name }}</td>
-            <b-button variant="gray"  class="btn align-self-center align-items-center" v-on:click="download(item.file_url)">다운로드 받기</b-button>
+            <th scope="row" class="table-active">{{ idx + 1 }}</th>
+            <td class="">{{ item.file_name }}</td>
+            <td>
+              <b-button variant="light" class="btn mt-1" v-on:click="download(item.file_url)">서류 다운로드 받기</b-button>
+              <b-button variant="dark" class="btn mt-1 ml-3" v-on:click="getData()" >서류 데이터 받기</b-button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -114,14 +112,12 @@ export default {
         cid : localStorage.getItem("cid"),
         lid : localStorage.getItem("lid"),
         is_suitable : ''
-      }
+      },
     };
   },
   mounted() {
     console.log(
-      `cid, lid : ${localStorage.getItem("cid")}, ${localStorage.getItem(
-        "lid"
-      )}`
+      `cid, lid : ${localStorage.getItem("cid")}, ${localStorage.getItem("lid")}`
     );
     axios({
       method: "get",
@@ -178,6 +174,17 @@ export default {
       }else{
         alert("적합 판정을 해주셔야 합니다!")
       }
+    },
+    getData(){
+      axios({
+        method: "",
+        url: `http://j5a205.p.ssafy.io:3000/`,
+        data: "",
+      }).then((res) =>{
+        console.log(res)
+      }).catch((err) =>{
+        console.log(err)
+      })
     }
   },
 };

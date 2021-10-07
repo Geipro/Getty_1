@@ -83,21 +83,28 @@
                 v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
                 class="card-title">{{ product.user_name }} 고객님</h5>
                 <p v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))" class="card-text">{{ product.loan_name }} 상품 신청</p>
-                <router-link
+                <b-button
                   v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
-                  :to="{ name: 'UserCheck' }"
+                  class="pa-5 btn btn-sm" variant="primary"
+                  @click="saveClientID(product.cid, product.lid)"
+                >
+                  제출서류 확인
+                </b-button>
+                <!-- <router-link
+                  v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
+                  :to="{ name: 'FileCheck' }"
                   class="pa-5 btn btn-primary btn-sm"
                   @click.native="saveClientID(product.cid, product.lid)"
                 >
-                  고객정보 확인
-                </router-link>
-                <router-link
+                  제출서류 확인
+                </router-link> -->
+                <!-- <router-link
                   v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
                   :to="{ name: 'FileCheck' }"
                   class="pa-5 btn btn-danger btn-sm offset-1"
                 >
                   제출서류 확인
-                </router-link>
+                </router-link> -->
               </div>
             </div>
           </div>
@@ -157,19 +164,21 @@ export default {
   },
   methods: {
     saveClientID(cid, lid) {
+      localStorage.setItem("cid", cid);
+      localStorage.setItem("lid", lid);
+      
       axios({
         method: "get",
         url: "http://j5a205.p.ssafy.io:3000/loan/user/list"
       })
         .then(res => {
           this.loanlist = res.data;
-          // console.log(this.loanlist)
+          this.$router.push({ name: 'FileCheck'})
+          console.log(this.loanlist)
         })
         .catch(err => {
           console.log(err);
         });
-      localStorage.setItem("cid", cid);
-      localStorage.setItem("lid", lid);
       // console.log(localStorage.getItem("cid")); // Print cid
       // console.log(localStorage.getItem("lid")); // Print lid
     },

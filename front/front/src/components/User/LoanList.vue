@@ -59,18 +59,30 @@
             <b-button v-else-if="isLogin && item.is_exist===true" variant="info" class="pa-5 mr-4 btn-md offset-4" v-on:click="createAlert()">
               신청완료
             </b-button>
-            <b-button v-if="isLogin" variant="dark" class="mr-4 ml-1" v-on:click="linkDetail(event, item.loan_address)">
+
+            <b-button v-b-modal.modal-1 class="mr-4 ml-1">
               상세보기
             </b-button>
+            <b-modal id="modal-1" hide-footer scrollable centered no-fade size="lg">
+              <form ref="form" style="text-align: center;">
+                <img :src="item.loan_img">
+                </form>
+            </b-modal>
+
+            <b-button v-if="isLogin" variant="dark" class="mr-4 ml-1" v-on:click="linkDetail(event, item.loan_address)">
+              이동하기
+            </b-button>
             <b-button v-else variant="dark" class="pa-5 mr-4 btn-md offset-5" v-on:click="linkDetail(event, item.loan_address)">
-              상세보기
+              이동하기
             </b-button>
             <!-- <b-button variant="secondary" class="ml-1"> ♡ </b-button> -->
           </div>
         </div>
       </div>
     </div>
+
   </div>
+
 </template>
 
 <script>

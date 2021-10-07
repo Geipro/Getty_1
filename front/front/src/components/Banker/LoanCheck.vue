@@ -85,7 +85,7 @@
                 <p v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))" class="card-text">{{ product.loan_name }} 상품 신청</p>
                 <b-button
                   v-if="(product.is_suitable == '부적합 판정' && (cur === '1' || cur === '4')) || (product.is_suitable == '적합 판정' && (cur === '1' || cur === '2')) || (product.is_suitable == '확인중' && (cur === '1' || cur === '3'))"
-                  class="pa-5 btn btn-sm" variant="primary"
+                  class="pa-5 btn btn-sm mt-2" variant="primary"
                   @click="saveClientID(product.cid, product.lid)"
                 >
                   제출서류 확인

@@ -2,9 +2,9 @@
   <div id="first">
     <Navbar />
     <div class="container">
-      <div class="text-center mt-5 pb-2">
+      <div  v-if="isLogin" class="text-center mt-3 pb-2">
         <div class="custom-file form-check form-check-inline mb-5">
-          <div v-if="isLogin" class="float-left text-right col-md-5" >
+          <div class="float-left text-right col-md-5" >
             <div v-if="hasFile">
               <b-button class="btn btn-warning btn-lg mr-3">
                 <router-link :to="{ name: 'Mypage' }" class="text-light"
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <div class="logo md-5 mb-5 text-left">
+      <div class="logo mt-3 md-3 mb-5 text-left">
         <h1>{{ this.title }}</h1>
       </div>
       <div class="pl-3 pt-3 pb-2 pr-3 mb-3" style="box-shadow:0 4px 6px 0 hsla(0, 0%, 0%, 0.2); border-radius:20px" v-for="(item, idx) in this.loanlist" :key="idx" :value="item.value">

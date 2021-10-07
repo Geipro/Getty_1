@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-success bg-primary" id="navbar">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-success bg-primary" id="navbar">
   <div class="container-fluid">
     <div style="color: white" class="text-left">
       <router-link :to="{ name: 'Home' }">

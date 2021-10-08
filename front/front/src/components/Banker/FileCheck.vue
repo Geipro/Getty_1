@@ -64,9 +64,9 @@
             <td class="">{{ item.file_name }}</td>
             <td>
               <b-button variant="light" class="btn mt-1" v-on:click="download(item.file_url)">서류 다운로드 받기</b-button>
-              <b-button v-b-modal="'myModal' + idx" variant="dark" class="btn mt-1 ml-3" v-on:click="getData(item.file_url)">서류 데이터 받기</b-button>
+              <b-button v-b-modal="'myModal' + idx" variant="dark" class="btn mt-1 ml-3">서류 데이터 받기</b-button>
               <b-modal :id="'myModal' + idx" hide-footer scrollable centered no-fade>
-                <div v-for="(v, k) in this.user_file_data" :key="k" :value="v.value">
+                <div v-for="(v, k) in user_file_data[idx]" :key="k" :value="v.value">
                   {{k}}: {{v}}
                 </div>
               </b-modal>
@@ -184,19 +184,23 @@ export default {
         alert("적합 판정을 해주셔야 합니다!")
       }
     },
-    getData(url){
+    getData(urlt){
       axios({
         method: "get",
         url: `http://j5a205.p.ssafy.io:3000/data/file_url/`,
         headers:{
-          fileurl:`${url}`
+          fileurl : urlt
         }
       }).then((res) =>{
         console.log(11111,res)
-        res.data.forEach((element) => {
-          this.user_file_data.push(element);
-        });
+        // res.data.forEach((element) => {
+        //   this.user_file_data.push(element);
+        // });
+        this.user_file_data.push(res.data)
+        console.log("fileurl : " + urlt)
+        
       }).catch((err) =>{
+        console.log("fileUrl : " + urlt)
         console.log(err)
       })
     }

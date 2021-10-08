@@ -85,7 +85,7 @@ export default {
                   }).then((user) => {
                     // console.log(1111,user.data.user)
                     alert(`${user.data.user.user_name} 님 반갑습니다!`);
-                    this.$router.push('/')
+                    this.$router.push({ name: 'Home'})
                   }).catch((err) => {
                     console.log(err);
                   });

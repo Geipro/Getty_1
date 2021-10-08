@@ -33,11 +33,12 @@ origins = [
     "http://localhost:8080",
     "http://localhost:3000",
     "http://localhost:5000",
+    "http://localhost:8080",
     "http://j5a205.p.ssafy.io:3000",
     "http://j5a205.p.ssafy.io:80",
 ]
 
-# Cors
+# Corss
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

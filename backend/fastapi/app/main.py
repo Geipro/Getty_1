@@ -27,15 +27,16 @@ app = FastAPI()
 
 # Cors
 origins = [
-    "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
+    "http://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
-    "http://localhost:3000",
+    "http://localhost:8000",
     "http://localhost:5000",
-    "http://localhost:8080",
+    "http://localhost:3000",
     "http://j5a205.p.ssafy.io:3000",
     "http://j5a205.p.ssafy.io:80",
+    "http://j5a205.p.ssafy.io",
 ]
 
 # Corss

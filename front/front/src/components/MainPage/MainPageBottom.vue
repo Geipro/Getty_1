@@ -10,7 +10,7 @@
         <h4 class="col" >365일 언제 어디서나 내가 필요한 시점에 신청해보세요.</h4>
       </div>
     </div>
-    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #FEF9E7;">
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #fff6e5;">
       <iframe src="https://giphy.com/embed/l0IylQoMkcbZUbtKw" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
       <div class="ml-5">
         <h1 class="col">기대 그 이상의 손쉬운 대출,</h1>

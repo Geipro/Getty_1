@@ -90,8 +90,9 @@ import axios from 'axios';
                 },
               })
               .then(function (res) {
-                console.log(res);
-                console.log("SUCCESS!!");
+                //console.log(res);
+                //console.log("SUCCESS!!");
+                res
               })
               .catch(function (err) {
                 alert(err);

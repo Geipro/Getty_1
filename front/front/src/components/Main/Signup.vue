@@ -277,7 +277,8 @@ export default {
             url: `http://j5a205.p.ssafy.io:3000/signup`,
             data: this.sendData
           }).then((res) => {
-            console.log(res)
+            //console.log(res)
+            res
             alert('회원가입이 완료되었습니다~!')
             //this.login()
             this.$router.push('/about')

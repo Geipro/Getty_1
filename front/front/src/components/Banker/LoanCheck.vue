@@ -154,7 +154,7 @@ export default {
       url: "http://j5a205.p.ssafy.io:3000/loan/user/list"
     })
       .then(res => {
-        console.log(`this.cur = ${this.cur}`)
+        //console.log(`this.cur = ${this.cur}`)
         this.loanlist = res.data;
         // console.log(this.loanlist)
       })
@@ -174,7 +174,7 @@ export default {
         .then(res => {
           this.loanlist = res.data;
           this.$router.push({ name: 'FileCheck'})
-          console.log(this.loanlist)
+          //console.log(this.loanlist)
         })
         .catch(err => {
           console.log(err);
@@ -184,7 +184,7 @@ export default {
     },
     changeCase(num) {
       this.cur = String(num);
-      console.log(`Case Change -> ${this.cur}`);
+      //console.log(`Case Change -> ${this.cur}`);
     },
   },
 };

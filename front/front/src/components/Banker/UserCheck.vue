@@ -76,11 +76,11 @@ export default {
     };
   },
   mounted() {
-    console.log(
-      `cid, lid : ${localStorage.getItem("cid")}, ${localStorage.getItem(
-        "lid"
-      )}`
-    );
+    // console.log(
+    //   `cid, lid : ${localStorage.getItem("cid")}, ${localStorage.getItem(
+    //     "lid"
+    //   )}`
+    // );
     axios({
       method: "get",
       url: `http://j5a205.p.ssafy.io:3000/detail/user/${localStorage.getItem(

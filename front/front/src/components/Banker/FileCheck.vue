@@ -122,9 +122,9 @@ export default {
     };
   },
   mounted() {
-    console.log(
-      `cid, lid : ${localStorage.getItem("cid")}, ${localStorage.getItem("lid")}`
-    );
+    // console.log(
+    //   `cid, lid : ${localStorage.getItem("cid")}, ${localStorage.getItem("lid")}`
+    // );
     axios({
       method: "get",
       url: `http://j5a205.p.ssafy.io:3000/detail/user/${localStorage.getItem(
@@ -132,7 +132,7 @@ export default {
       )}/loan/${localStorage.getItem("lid")}`,
     })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.userInfo.user_name = res.data.user_detail.user_name;
         this.userInfo.loan_name = res.data.user_detail.loan_name;
         this.userInfo.cid = localStorage.getItem("cid");
@@ -150,7 +150,7 @@ export default {
           this.getData(element.file_url);
         });
 
-        console.log(this.userInfo.user_file);
+        //console.log(this.userInfo.user_file);
       })
       .catch((err) => {
         console.log(err);
@@ -177,8 +177,9 @@ export default {
           url:`http://j5a205.p.ssafy.io:3000/user/loan/status`,
           data : this.send_data
         }).then(res =>{
-          console.log(res)
+          res
           alert("적합 판정이 완료되었습니다!")
+          this.$router.push({ name: 'BankerLoan'})
         })
       }else{
         alert("적합 판정을 해주셔야 합니다!")
@@ -192,15 +193,15 @@ export default {
           fileurl : urlt
         }
       }).then((res) =>{
-        console.log(11111,res)
+        //console.log(11111,res)
         // res.data.forEach((element) => {
         //   this.user_file_data.push(element);
         // });
         this.user_file_data.push(res.data)
-        console.log("fileurl : " + urlt)
+        //console.log("fileurl : " + urlt)
         
       }).catch((err) =>{
-        console.log("fileUrl : " + urlt)
+        //console.log("fileUrl : " + urlt)
         console.log(err)
       })
     }

@@ -118,7 +118,7 @@ export default {
     };
   },
   mounted() {
-    console.log("this.token : ", this.token["token"]);
+    //console.log("this.token : ", this.token["token"]);
     if (this.token["token"] == null) {
       axios({
         method: "get",
@@ -126,7 +126,7 @@ export default {
       })
         .then((res) => {
           this.loanlist = res.data;
-          console.log(this.loanlist)
+          //console.log(this.loanlist)
         })
         .catch((err) => {
           console.log(err.headers);
@@ -150,7 +150,7 @@ export default {
           headers: { token: `${this.token.token}` },
         })
           .then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             if (res.data.user_files[0] != null) {
               this.hasFile = true;
             }
@@ -174,7 +174,8 @@ export default {
           }
         }).then((res) =>{
           alert("신청완료!!")
-          console.log(res)
+          //console.log(res)
+          res
           this.$router.go()
         }).catch((err) =>{
           console.log(err)
@@ -194,7 +195,7 @@ export default {
     },
     openModal(event, url){
       this.img_url = url
-      console.log(this.img_url)
+      //console.log(this.img_url)
     }
   },
 };

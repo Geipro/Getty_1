@@ -129,7 +129,7 @@ export default {
       this.userinfo = res.data.user
       this.uploadFiles = res.data.user_files
 
-      console.log(this.uploadFiles)
+      //console.log(this.uploadFiles)
     }).catch((err) =>{
       console.log(err)
     }),

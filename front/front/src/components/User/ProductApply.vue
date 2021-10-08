@@ -74,7 +74,8 @@ import axios from 'axios'
             }
           }).then((res) =>{
             alert("신청완료!!")
-            console.log(res)
+            //console.log(res)
+            res
           }).catch((err) =>{
             console.log(err)
           })

@@ -65,9 +65,18 @@
             <td>
               <b-button variant="light" class="btn mt-1" v-on:click="download(item.file_url)">서류 다운로드 받기</b-button>
               <b-button v-b-modal="'myModal' + idx" variant="dark" class="btn mt-1 ml-3">서류 데이터 받기</b-button>
-              <b-modal :id="'myModal' + idx" hide-footer scrollable centered no-fade>
+              <b-modal :id="'myModal' + idx" hide-footer scrollable centered no-fade title="서류 데이터 확인하기">
                 <div v-for="(v, k) in user_file_data[idx]" :key="k" :value="v.value">
-                  {{k}}: {{v}}
+                  <div v-if='k=="file_name"'>
+                    서류명: {{v}}
+                  </div>
+                  <div v-else>
+                    {{k}}: {{v}}
+                  </div>
+                </div>
+                <!-- <b-table hover :items="user_file_data[idx]"></b-table> -->
+                <div class="mt-3">
+                  <b-img :src='item.file_url' fluid thumbnail></b-img>
                 </div>
               </b-modal>
             </td>
@@ -199,7 +208,7 @@ export default {
         // });
         this.user_file_data.push(res.data)
         //console.log("fileurl : " + urlt)
-        
+
       }).catch((err) =>{
         //console.log("fileUrl : " + urlt)
         console.log(err)

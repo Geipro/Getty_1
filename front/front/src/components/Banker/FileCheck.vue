@@ -187,7 +187,7 @@ export default {
           data : this.send_data
         }).then(res =>{
           res
-          alert("적합 판정이 완료되었습니다!")
+          alert("판정이 완료되었습니다!")
           this.$router.push({ name: 'BankerLoan'})
         })
       }else{

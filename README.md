@@ -4,9 +4,13 @@
 
 ## 👨‍👩‍👦팀원 소개 및 역할 소개
 
-### **맹창영**
+### **석정준**
 
-🎃 AI
+🌰 프론트엔드
+
+### **신숙**
+
+🐶 프론트엔드
 
 ### **목상원**
 
@@ -16,13 +20,9 @@
 
 🍒 백엔드
 
-### **신숙**
+### **맹창영**
 
-🐶 프론트엔드
-
-### **석정준**
-
-🌰 프론트엔드
+🎃 AI
 
 ## 📆 프로젝트 개요
 
@@ -52,7 +52,7 @@
 
 ## ✍ 프로젝트 소개
 
-- 창영님
+RPA를 통한 Digital Tranformation으로 행원의 생산성, 고객의 편의성을 높이는 서비스
 
 ## ⭐️ 기능
 
@@ -61,49 +61,63 @@
 > - 보장은 고객과 판매자가 서로 떨어져 있지만, 시장 분위기를 공유하며 구매와 판매를 동시에 느낄 수 있게 하는 기능을 제공합니다.
 > - 보장 서비스의 차별점인 픽업매니저를 운영하여 주문이 들어온 것들을 한번에 픽업하여 고객이 주문한 제품을 찾아가기 편리하도록 서비스를 개발하였습니다.
 
-### 메인
+- 메인
 
-![메인화면](https://user-images.githubusercontent.com/50372451/136393124-c4905896-3c26-4fd8-be20-4bb480fbbc84.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393124-c4905896-3c26-4fd8-be20-4bb480fbbc84.png" width="80%" height="80%"></p>
 
-### 회원가입
+- 회원가입
 
-![회원가입](https://user-images.githubusercontent.com/50372451/136393133-b16e8cfb-55df-490c-a919-2d992e2874fc.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393133-b16e8cfb-55df-490c-a919-2d992e2874fc.png" width="80%" height="80%"></p>
 
-### 서류제출
+- 서류제출
 
-![서류제출1](https://user-images.githubusercontent.com/50372451/136393127-643ebb68-091d-474f-9bad-bf6c02727a47.png)
-![서류제출2](https://user-images.githubusercontent.com/50372451/136393130-9e8d0e73-793a-43c6-b468-1499145ead58.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393127-643ebb68-091d-474f-9bad-bf6c02727a47.png" width="80%" height="80%"></p>
 
-### 마이페이지
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393130-9e8d0e73-793a-43c6-b468-1499145ead58.png" width="80%" height="80%"></p>
 
-![마이페이지](https://user-images.githubusercontent.com/50372451/136393122-b9790b58-aacc-4237-b6fb-d9cf92c72ed6.png)
+- 마이페이지
 
-![고객정보](https://user-images.githubusercontent.com/50372451/136393112-3e4dae2d-7de2-4a51-a7df-d2edd45cafc9.png)
-![금융상품](https://user-images.githubusercontent.com/50372451/136393116-e27e7eeb-8f6f-4fcf-b4a1-6067d09981a3.png)
-![대출신청상품승인](https://user-images.githubusercontent.com/50372451/136393117-22458728-31b5-4c75-8690-fbc0615fff92.png)
-![대출신청자](https://user-images.githubusercontent.com/50372451/136393121-d4b18cd5-5502-4f2f-bdee-d9db566978f9.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393122-b9790b58-aacc-4237-b6fb-d9cf92c72ed6.png" width="80%" height="80%"></p>
+
+- 고객정보
+
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393112-3e4dae2d-7de2-4a51-a7df-d2edd45cafc9.png" width="80%" height="80%"></p>
+
+- 금융상품
+
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393116-e27e7eeb-8f6f-4fcf-b4a1-6067d09981a3.png" width="80%" height="80%"></p>
+
+- 대출신청상품승인
+
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393117-22458728-31b5-4c75-8690-fbc0615fff92.png" width="80%" height="80%"></p>
+
+- 대출신청자
+
+<p align="center"><img src="https://user-images.githubusercontent.com/50372451/136393121-d4b18cd5-5502-4f2f-bdee-d9db566978f9.png" width="80%" height="80%"></p>
 
 ## ⚙ 개발 환경 및 IDE
 
 ### Dependencies
 
-- Swagger 3.0.0
+#### Frontend
 
-- Vue.js : 2.6.11
+- Swagger           3.0.0
 
-- axios: 0.21.4
+- Vue.js            2.6.11
 
-- bootstrap: 4.6.0,
+- axios             0.21.4
 
-- vee-validate: 2.2.15
+- bootstrap         4.6.0
+
+- vee-validate      2.2.15
+
+#### Backend
 
 - bcrypt            3.2.0
 
 - cryptography      3.4.8
 
 - fastapi           0.68.1
-
-- jwt               1.2.0
 
 - pip               21.2.4
 
@@ -117,6 +131,16 @@
 
 - uvicorn           0.15.0
 
+- tensorflow        2.6.0
+
+- pandas            1.3.3
+
+- Pillow            8.3.2
+
+- PyJWT             2.2.0
+
+- matplotlib        3.4.3
+
 ### Database
 
 - Mysql
@@ -126,3 +150,9 @@
 ### Test Id
 
 - ID
+
+  - kinggod205
+
+- PW
+
+  - HerryPotter12#

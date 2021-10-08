@@ -93,11 +93,12 @@ import axios from 'axios';
                 //console.log(res);
                 //console.log("SUCCESS!!");
                 res
+                this.$router.push({ name: "LoanList" });
               })
               .catch(function (err) {
-                alert(err);
+                alert("지원하는 서류 파일이 아닙니다.")
+                console.log(err)
               });
-              this.$router.push({ name: "LoanList" });
             }
           },
           handleFileUpload(e){

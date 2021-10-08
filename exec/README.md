@@ -156,3 +156,9 @@ RPA를 통한 Digital Tranformation으로 행원의 생산성, 고객의 편의�
 - PW
 
   - HerryPotter12#
+
+
+
+### 시연시나리오
+
+<img src="./시나리오.PNG" width="80%" height="80%">

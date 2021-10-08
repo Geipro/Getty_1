@@ -177,14 +177,12 @@ def create_user_loan_request(db: Session, user_loan: dict):
 
 # 고객 파일 저장
 def create_user_files(db: Session, cid: int, file_url: str):
-    db_user_file = models.ClientFile(cid=cid, file_url=file_url)
+    file_result = dict(validate.check(file_url))
+    file_name = file_result["file_name"]
+    db_user_file = models.ClientFile(cid=cid, file_url=file_url,file_name=file_name)
     db.add(db_user_file)
     db.commit()
     db.refresh(db_user_file)
-    file_result = dict(validate.check(file_url))
-    print(f"file_result = {file_result}")
-    file_name = file_result["file_name"]
-    update_user_files(db=db, cid=cid, file_url=file_url, file_name=file_name)
     return db_user_file
 
 

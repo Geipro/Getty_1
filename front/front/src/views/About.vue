@@ -1,6 +1,6 @@
 <template>
   <!-- Login about을 이름 바꿔도 됨 -->
-  <div class="h-100" id="about">
+  <div class="" id="about">
     <Navbar />
     <login-form></login-form>
   </div>

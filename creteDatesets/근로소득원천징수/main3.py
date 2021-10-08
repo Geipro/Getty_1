@@ -14,58 +14,58 @@ def makedata3(name, personal, company, income, tax, index):
     comnum = '631-'
     if '삼성' in company:
         comnum += '11-00100'
-        ceo = '김삼성'
+        ceo = '삼성'
     elif '현대' in company:
         comnum += '11-00200'
-        ceo = '김현대'
+        ceo = '현대'
 
     elif '에스케이' in company:
         comnum += '11-00300'
-        ceo = '김에스케이'
+        ceo = '에스케이'
 
     elif '엘지' in company:
         comnum += '11-00400'
-        ceo = '김엘지'
+        ceo = '엘지'
 
     elif '케이티' in company:
         comnum += '11-00500'
-        ceo = '김케이티'
+        ceo = '케이티'
 
     elif '네이버' in company:
         comnum += '11-00600'
-        ceo = '김네이버'
+        ceo = '네이버'
 
     elif '카카오' in company:
         comnum += '11-00700'
-        ceo = '김카카오'
+        ceo = '카카오'
 
     elif '넥슨' in company:
         comnum += '11-00800'
-        ceo = '김넥슨'
+        ceo = '넥슨'
 
     elif '라인' in company:
         comnum += '11-00900'
-        ceo = '김라인'
+        ceo = '라인'
 
     elif '포스코' in company:
         comnum += '11-01000'
-        ceo = '김포스코'
+        ceo = '포스코'
 
     elif '한국' in company:
         comnum += '11-01100'
-        ceo = '김한국'
+        ceo = '한국'
 
     elif '롯데' in company:
         comnum += '11-01200'
-        ceo = '김롯데'
+        ceo = '롯데'
 
     elif '기아' in company:
         comnum += '11-01300'
-        ceo = '김기아'
+        ceo = '기아'
 
     elif '한화' in company:
         comnum += '11-01400'
-        ceo = '김한화'
+        ceo = '한화'
 
     jong = ''
     if '전자' in company:

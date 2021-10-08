@@ -88,4 +88,4 @@ def makedata5(name, address, personal, carnum, carlist, jaeone, height, weight, 
     # 검사유효기간 - 끝
     draw.text((603, 784), "2023-12-19", (0, 0, 0), font=small_font)
 
-    img.save(f"./자동차등록증/datasets/자동차등록증{index + 1}.jpg")
+    img.save(f"./자동차등록증/datasets/자동차등록증{index + 1}.png")

@@ -8,7 +8,7 @@ def makedata4(name, address, personal, company, income, tax, index):
     img = Image.open("./소득금액증명서/소득금액증명서_국세청_양식.jpg")
     draw = ImageDraw.Draw(img)
     st = str(random.randint(0000, 9999)) + '-' + str(random.randint(000, 999)) + '-' + str(random.randint(0000, 9999))
-    phone = '010-' + str(random.randint(0000, 9999)) + str(random.randint(0000, 9999))
+    phone = '010-' + str(random.randint(0000, 9999))+ '-' + str(random.randint(0000, 9999))
 
     # 발급번호
     draw.text((88, 285), st, (0, 0, 0), font=normal_font)

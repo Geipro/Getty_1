@@ -1,9 +1,9 @@
 <template>
-    <div id="first" class="row h-50 align-items-center">
-        <div class="mx-auto col-md-4 h-50">
+    <div id="first" class="row align-items-center wrapper">
+        <div class="mx-auto col-md-4">
             <div class="myform form">
-                <div class="logo mb-3">
-                    <h1>Login</h1>
+                <div class="logo mb-3 text-center">
+                    <h3>로그인</h3>
                 </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between">
@@ -17,20 +17,14 @@
                         <div class="d-flex justify-content-between">
                             <label for="id">비밀번호</label>
                         </div>
-                        <input type="password" ref="password" name="password" v-validate="'required|min:6'" v-model="credential.user_pw" data-vv-as="Password"
+                        <input type="password" ref="password" name="password" v-validate="'required|min:4'" v-model="credential.user_pw" data-vv-as="Password"
                         class="form-control" :class="{error: errors.has('password')}"  id="password" aria-describedby="password" placeholder="Enter Password">
                         <span class="error" v-if="errors.has('password')">{{errors.first('password')}}</span>
                     </div>
                     <div class="text-center">
-                        <!--
-                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" @click.prevent="getJWT">Login</button>
-                        -->
                         <button type="submit" @click="loginCheck" class="btn btn-block mybtn btn-primary tx-tfm">Login</button>
                     </div>
                     <div class="links">
-                        <!--
-                        <p class="text-center">Don't have account? <a href="#" id="signup" @click="signup">Sign up here</a></p>
-                        -->
                         <div class="member text-center mt-3">
                             <router-link  :to="{ name: 'SignupMerge' }">
                                 <a id="goSignup">  회원가입</a>
@@ -51,7 +45,7 @@ import ko from 'vee-validate/dist/locale/ko.js'
 import axios from 'axios';
 
 ko.messages.required = (field) => `${field} 이/가 필요합니다.`
-ko.messages.password = (field) => `${field} 는 최소 6글자 여야합니다.`
+ko.messages.password = (field) => `${field} 는 최소 4글자 여야합니다.`
 
 const config = {
     locale: 'ko',
@@ -73,26 +67,29 @@ export default {
         }
     },
     methods: {
-        // change: function () {
-        //     this.$emit('change')
-        // },
-        // signup: function(){
-        //     this.$emit('signup')
-        // },
-        // changePw: function(){
-        //     this.$emit('pw')
-        // },        
         getJWT: function () {
             axios({
                 method: 'post',
-                url: `http://j5a205.p.ssafy.io/signin`,
+                url: `http://j5a205.p.ssafy.io:3000/signin`,
                 data: this.credential
             }).then((res) => {
-                // console.log(res)
-                localStorage.setItem('nickname', this.credential.user_id)
-                localStorage.setItem('JWT_TOKEN', res.data.accessToken)
-                //alert(`${localStorage.getItem('nickname')} 님 반갑습니다!`)
-                this.$router.push({ name: 'User' })
+                var token = res.data.Authorization;
+                localStorage.setItem('Token', token);
+                if (localStorage.getItem('Token')) {
+                  axios({
+                    method: 'get',
+                    url: `http://j5a205.p.ssafy.io:3000/user/info`,
+                    headers:{
+                      "token" : localStorage.getItem("Token")
+                    }
+                  }).then((user) => {
+                    // console.log(1111,user.data.user)
+                    alert(`${user.data.user.user_name} 님 반갑습니다!`);
+                    this.$router.push({ name: 'Home'})
+                  }).catch((err) => {
+                    console.log(err);
+                  });
+                }
             }).catch((err) => {
                 alert("탈퇴한 회원이거나 아이디 혹은 비밀번호가 일치하지 않습니다.")
                 console.log(err.headers)
@@ -115,9 +112,11 @@ export default {
     }
 }
 </script>
+
 <style>
-@import url('https://unpkg.com/semantic-ui-css@2.2.9/semantic.css');
-span.error {
-    color: #9F3A38;
+.wrapper {
+    display: grid;
+    place-items: center;
+    min-height: 75vh;
 }
 </style>

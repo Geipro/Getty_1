@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar />
+    <Navbar/>
     <MainPageCenter />
     <MainPageBottom />
   </div>
@@ -20,3 +20,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

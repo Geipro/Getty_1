@@ -41,11 +41,6 @@ const routes = [
     component: () => import('../components/User/LoanList.vue')
   },
   {
-    path: '/product',
-    name: 'Product',
-    component: () => import('../components/User/Product.vue')
-  },
-  {
     path: '/productApply',
     name: 'ProductApply',
     component: () => import('../components/User/ProductApply.vue')
@@ -54,6 +49,16 @@ const routes = [
     path: '/signup',
     name: 'SignupMerge',
     component: () => import('../views/SignupMerge.vue')
+  },
+  {
+    path: '/mypage',
+    name: 'Mypage',
+    component: () => import('../components/Main/Mypage.vue')
+  },
+  {
+    path: '/submitDoc',
+    name: 'SubmitDoc',
+    component: () => import('../components/User/Submit.vue')
   }
 ]
 

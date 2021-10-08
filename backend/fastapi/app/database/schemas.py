@@ -44,10 +44,10 @@ class Token(BaseModel):
 class UserToken(BaseModel):
     cid: int
     user_id: str
-    user_pw: str
+    # user_pw: str
     user_name: str
     phone_number: str
-    create_date: date
+    # create_date: date
 
     class Config:
         orm_mode = True
@@ -60,8 +60,10 @@ class LoanCreate(BaseModel):
     loan_salary: str
     loan_address: str
     loan_job: str
-    interest_rate: int
+    interest_rate: str
     loan_amount: int
+    loan_about: str
+    loan_img: str
 
     class Config:
         orm_mode = True
@@ -102,3 +104,68 @@ class ClientID(BaseModel):
 # banker_id
 class BankerID(BaseModel):
     bid: int
+
+
+# 고객 개인 파일 업로드
+class UserUploadFile(BaseModel):
+    cid: int
+    file_url: str
+
+
+# 고객 개인 파일
+class UserFile(BaseModel):
+    cid: Optional[int]
+    file_name: Optional[str]
+    file_url: Optional[str]
+
+
+# 고객 신청 상품 정보
+class UserLoanInfo(BaseModel):
+    cid: int
+    lid: int
+    user_name: str
+    loan_name: str
+    is_suitable: str
+
+
+# 고객이 신청한 대출
+class UserLoan(BaseModel):
+    cid: int
+    lid: int
+    is_suitable: str
+
+
+# 고객이 신청한 대출 리스트
+class UserLoanInfo(BaseModel):
+    cid: int
+    lid: int
+    loan_name: str
+    user_name: str
+    is_suitable: str
+
+
+# 고객 신청 상품 세부정보
+class UserLoanDetail(BaseModel):
+    cid: int
+    lid: int
+    loan_name: str
+
+    user_name: str
+    phone_number: str
+    address: str
+    job: str
+    birth: str
+    sex: int
+    salary: int
+
+    is_suitable: str
+
+    
+# 고객 파일 정보
+class ReadUserFile(BaseModel):
+    data_list: list
+
+# 고객 파일 URL
+class UserFileURL(BaseModel):
+    file_url: str
+

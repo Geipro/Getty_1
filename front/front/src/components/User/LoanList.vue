@@ -41,7 +41,6 @@
       <div class="pl-3 pt-3 pb-2 pr-3 mb-3" style="box-shadow:0 4px 6px 0 hsla(0, 0%, 0%, 0.2); border-radius:20px" v-for="(item, idx) in this.loanlist" :key="idx" :value="item.value">
         <div class="text-left">
           <div class="text-secondary">
-            <h6 calss="text-secondary">인터넷 | 모바일 | 영업점</h6>
           </div>
           <div class="mt-3">
             <h2>{{ item.loan_name }}</h2>
@@ -68,7 +67,7 @@
               상세보기
             </b-button>
 
-            <b-modal :id="'myModal' + item.lid" hide-footer scrollable centered no-fade size="lg">
+            <b-modal :id="'myModal' + item.lid" hide-footer scrollable centered no-fade size="lg" :title="item.loan_name">
               <form ref="form" style="text-align: center;">
                 <img :src="item.loan_img">
               </form>
@@ -131,7 +130,7 @@ export default {
         .catch((err) => {
           console.log(err.headers);
         });
-        this.title = "⭐️ 신용 대출 상품"
+        this.title = "⭐️ 대출 상품"
     } else {
       axios({
         method: "get",
@@ -154,7 +153,7 @@ export default {
             if (res.data.user_files[0] != null) {
               this.hasFile = true;
             }
-            this.title = "⭐️ 신청 가능한 신용 대출 상품"
+            this.title = "⭐️ 신청 가능한 대출 상품"
             this.isLogin = true
           })
           .catch((err) => {

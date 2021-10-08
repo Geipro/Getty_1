@@ -90,9 +90,9 @@ import axios from 'axios';
                 },
               })
               .then(function (res) {
-                //console.log(res);
+                console.log(res);
                 //console.log("SUCCESS!!");
-                res
+                // res
                 this.$router.push({ name: "LoanList" });
               })
               .catch(function (err) {

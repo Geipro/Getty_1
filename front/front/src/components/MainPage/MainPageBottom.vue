@@ -20,7 +20,7 @@
       </div>
     </div>
     <!-- 7FB3D5 -->
-    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #7fb3d5;">
+    <div class="row justify-content-center align-items-center" style="height: 720px; text-align: left; pointer-events: none; background-color: #7db2cc;">
       <iframe src="https://giphy.com/embed/W2i6o8uAXOx0QIoL2a" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
       <div class="ml-5">
         <h1 class="col">복잡한 과정없는, 조건없는</h1>

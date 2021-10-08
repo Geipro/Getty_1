@@ -31,9 +31,9 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
-    "http://localhost:8000",
+    "http://localhost:3000",
     "http://localhost:5000",
-    "http://j5a205.p.ssafy.io",
+    "http://j5a205.p.ssafy.io:3000",
     "http://j5a205.p.ssafy.io:80",
 ]
 

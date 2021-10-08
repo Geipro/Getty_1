@@ -56,16 +56,16 @@ import axios from 'axios';
         },
         data: function () {
             return {
-                credential: {
-                    incomeCertificate: '',
-                    insuranceCertificate: '',
-                    paymentCertificate: ''
-                },
-                token:{
-                  token : localStorage.getItem('Token')
-                },
-                files: "",
-                file_name :"Choose File!"
+              credential: {
+                incomeCertificate: '',
+                insuranceCertificate: '',
+                paymentCertificate: ''
+              },
+              token:{
+                token : localStorage.getItem('Token')
+              },
+              files: "",
+              file_name :"Choose File!",
             }
         },
 
@@ -90,10 +90,10 @@ import axios from 'axios';
                 },
               })
               .then(function (res) {
-                console.log(res);
-                //console.log("SUCCESS!!");
-                // res
-                this.$router.push({ name: "LoanList" });
+                
+                console.log(res.data);
+                alert("파일업로드가 완료되었습니다.")
+                document.location.href="http://j5a205.p.ssafy.io/loanList"
               })
               .catch(function (err) {
                 alert("지원하는 서류 파일이 아닙니다.")
